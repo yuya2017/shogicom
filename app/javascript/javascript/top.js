@@ -12,7 +12,7 @@ document.addEventListener("turbolinks:load", function(){
     var profile_id = ".profile-" + img_id;
     if(!$(profile_id).hasClass("d-block")) {
       $(profile_id).addClass('d-block');
-      if($('.profile_link') && $('.d-block').length < 4){
+      if($('.profile_link') && $('.d-block').length < 2){
       return false;
       }
     }

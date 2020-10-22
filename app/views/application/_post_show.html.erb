@@ -2,18 +2,18 @@
   <div class="card_summary d-flex my-4">
     <div class="prifile_img">
       <% if post.user.user_image? %>
-        <img src='<%= post.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="<%= post.id %>">
+        <img src='<%= post.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="post-<%= post.id %>">
         <figcaption class="balloon-name-description">
           <p><%= post.user.user_name %></p>
         </figcaption>
       <% else %>
-        <img src="/assets/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="<%= post.id %>">
+        <img src="/assets/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="post-<%= post.id %>">
           <figcaption class="balloon-name-description">
             <p><%= post.user.user_name %></p>
           </figcaption>
       <% end %>
     </div>
-    <div class="card profile_link profile-<%= post.id %>">
+    <div class="card profile_link profile-post-<%= post.id %>">
       <div class="card-body profile_body">
         <p class="card-text">よく使うアプリ：<%= post.user.user_app %></p>
         <p class="card-text">棋力：<%= post.user.user_chess %></p>
