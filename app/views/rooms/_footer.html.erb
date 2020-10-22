@@ -1,0 +1,10 @@
+<div id="fixed-bottom">
+  <%= form_with model: @message do |f| %>
+    <div class="form-group">
+      <%= f.text_area :message_content, class: 'form-control', id: 'message_content', rows: '1', maxlength: '100' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '送信', class: 'btn btn-primary btn-block disabled', id: 'message-button' %>
+    </div>
+  <% end %>
+</div>

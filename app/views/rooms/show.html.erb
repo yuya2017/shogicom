@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render "sidebar" %>
+		<main class="col-md-10 px-4 ml-sm-auto header_next">
+      <div id="message-container">
+        <div id='messages' data-room_id="<%= @room.id %>">
+          <%= render @messages %>
+        </div>
+      </div>
+      <%= render 'footer' %>
+    </main>
+  </div>
+</div>

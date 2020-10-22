@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render "sidebar" %>
+		<main class="col-md-10 px-4 ml-sm-auto header_next">
+			<% @community_messages.each do |message| %>
+				<a href="/rooms/<%="#{message.room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= message.room.room_name %></p>
+							<p class="mypage_message_user">名前：<%= message.room.community.user.user_name %></p>
+							<span style="float:right; padding-right:50px;"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
+						</div>
+						<div class="mypage_message_content">
+							<p class="mypage_message_text"><%= message.message_content %></p>
+						</div>
+					</div>
+				</a>
+				<p>----------------------------------------------------------------------</p>
+			<% end %>
+			<% @community_no_messages.each do |community| %>
+				<a href="/rooms/<%="#{community.room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= community.room.room_name %></p>
+						</div>
+						<p class="mypage_message_user">名前：<%= community.user.user_name %></p>
+					</div>
+				</a>
+				<p>---------------------------------------------------------------------------------------------------------</p>
+			<% end %>
+		</main>
+	</div>
+</div?

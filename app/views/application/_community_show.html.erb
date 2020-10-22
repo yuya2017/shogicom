@@ -1,0 +1,45 @@
+<% @communities.each do |community| %>
+  <div class="card_summary d-flex my-4">
+    <div class="prifile_img">
+      <% if community.user.user_image? %>
+        <img src='<%= community.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="<%= community.id %>">
+        <figcaption class="balloon-name-description">
+          <p><%= community.user.user_name %></p>
+        </figcaption>
+      <% else %>
+        <img src="/assets/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="<%= community.id %>">
+          <figcaption class="balloon-name-description">
+            <p><%= community.user.user_name %></p>
+          </figcaption>
+      <% end %>
+    </div>
+    <div class="card profile_link profile-<%= community.id %>">
+      <div class="card-body profile_body">
+        <p class="card-text">よく使うアプリ：<%= community.user.user_app %></p>
+        <p class="card-text">棋力：<%= community.user.user_chess %></p>
+        <p class="card-text">よく対戦する持ち時間：<%= community.user.user_time %></p>
+        <p class="card-text">自己紹介</p>
+        <p class="card-text"><%= community.user.user_content %></p>
+        <%= link_to "プロフィール", "tops/#{community.user_id}", class:"card-link" %>
+        <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => community.user_id), class: "card-link", method: :post  %>
+      </div>
+    </div>
+    <div class="card mx-1">
+      <a href="/communities/<%="#{community.id}" %>" style="text-decoration:none;">
+        <div class="card-header">
+          <h4><%= community.room.room_name %></h4>
+        </div>
+        <div class="card-body">
+          <p>開催場所：<%= community.community_place %></p>
+          <p>参加費：<%= community.community_money %></p>
+          <p>募集内容</p>
+          <p class="card-text"><%= community.community_content %></p>
+          <p><%= l community.community_limit, format: '%-m月%-d日(%a)' %></p>
+          <p><%= l community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <span>#<%= community.community_all_tag %></span>
+          <p><%= l community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      </a>
+    </div>
+  </div>
+<% end %>

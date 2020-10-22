@@ -1,0 +1,44 @@
+<% @posts.each do |post| %>
+  <div class="card_summary d-flex my-4">
+    <div class="prifile_img">
+      <% if post.user.user_image? %>
+        <img src='<%= post.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="<%= post.id %>">
+        <figcaption class="balloon-name-description">
+          <p><%= post.user.user_name %></p>
+        </figcaption>
+      <% else %>
+        <img src="/assets/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="<%= post.id %>">
+          <figcaption class="balloon-name-description">
+            <p><%= post.user.user_name %></p>
+          </figcaption>
+      <% end %>
+    </div>
+    <div class="card profile_link profile-<%= post.id %>">
+      <div class="card-body profile_body">
+        <p class="card-text">よく使うアプリ：<%= post.user.user_app %></p>
+        <p class="card-text">棋力：<%= post.user.user_chess %></p>
+        <p class="card-text">よく対戦する持ち時間：<%= post.user.user_time %></p>
+        <p class="card-text">自己紹介</p>
+        <p class="card-text"><%= post.user.user_content %></p>
+        <%= link_to "プロフィール", "tops/#{post.user_id}", class:"card-link" %>
+        <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => post.user_id), class: "card-link", method: :post  %>
+      </div>
+    </div>
+    <div class="card mx-1">
+      <a href="/posts/<%="#{post.id}" %>" style="text-decoration:none;">
+        <div class="card-header">
+          <h4><%= post.room.room_name %></h4>
+        </div>
+        <div class="card-body">
+          <p>対戦したいアプリ：<%= post.post_app %></p>
+          <p>棋力：<%= post.post_chess %></p>
+          <p>持ち時間：<%= post.post_time %></p>
+          <p>募集内容</p>
+          <p class="card-text"><%= post.post_content %></p>
+          <span>#<%= post.post_all_tag %></span>
+          <p><%= l post.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      </a>
+    </div>
+  </div>
+<% end %>

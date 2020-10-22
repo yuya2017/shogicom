@@ -1,0 +1,19 @@
+<header>
+  <ul class="nav justify-content-end">
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to 'Myページ', "/tops/#{current_user.id}", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+      </li>
+    <% end %>
+  </ul>
+</header>

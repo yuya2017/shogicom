@@ -1,0 +1,92 @@
+<ul class="cp_breadcrumb">
+	<li><a href="/">ホーム</a></li>
+	<li><a href="">マイページ</a></li>
+</ul>
+<div class="container">
+	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+		<li class="nav-item">
+  		<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">個人用チャット</a>
+		</li>
+	  <li class="nav-item">
+		  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">オンライン対戦</a>
+		</li>
+		<li class="nav-item">
+  		<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">大会です。</a>
+		</li>
+	</ul>
+	<div class="tab-content" id="pills-tabContent">
+		<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+			<% @messages.zip(@message_users) do |message, user| %>
+				<a href="/rooms/<%="#{message.room_id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= message.room.room_name %></p>
+							<p class="mypage_message_user">名前：<%= user.user_name %></p>
+							<span style="float:right; padding-right:50px;"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
+						</div>
+						<div class="mypage_message_content">
+							<p class="mypage_message_text"><%= message.message_content %></p>
+						</div>
+					</div>
+				</a>
+				<p>---------------------------------------------------------------------------------------------------------</p>
+			<% end %>
+			<% @no_messages.zip(@no_message_users) do |room, user| %>
+				<a href="/rooms/<%="#{room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= room.room_name %></p>
+						</div>
+						<p class="mypage_message_user">名前：<%= user.user_name %></p>
+					</div>
+				</a>
+				<p>---------------------------------------------------------------------------------------------------------</p>
+			<% end %>
+		</div>
+		<div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+			<% @post_messages.each do |message| %>
+				<a href="/rooms/<%="#{message.room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= message.room.room_name %></p>
+							<span style="float:right; padding-right:50px;"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
+						</div>
+						<div class="mypage_message_content">
+							<p class="mypage_message_text"><%= message.message_content %></p>
+						</div>
+					</div>
+				</a>
+			<% end %>
+		</div>
+		<div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+			<% @tournament_messages.each do |message| %>
+				<a href="/rooms/<%="#{message.room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= message.room.room_name %></p>
+							<p class="mypage_message_user">名前：<%= message.room.tournament.user.user_name %></p>
+							<span style="float:right; padding-right:50px;"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
+						</div>
+						<div class="mypage_message_content">
+							<p class="mypage_message_text"><%= message.message_content %></p>
+						</div>
+					</div>
+				</a>
+				<p>----------------------------------------------------------------------</p>
+			<% end %>
+			<% @tournament_no_messages.each do |tournament| %>
+				<a href="/rooms/<%="#{tournament.room.id}" %>" style="text-decoration:none;">
+					<div class="mypage_message_body">
+						<div class="mypage_message_title">
+							<p class="mypage_message_text">部屋名：<%= tournament.room.room_name %></p>
+						</div>
+						<p class="mypage_message_user">名前：<%= tournament.user.user_name %></p>
+					</div>
+				</a>
+				<p>---------------------------------------------------------------------------------------------------------</p>
+			<% end %>
+
+
+		</div>
+	</div>
+</div>

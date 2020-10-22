@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render "sidebar" %>
+    <main class="col-md-10 px-4 ml-sm-auto header_next">
+			<div class="main title">
+				<h2>大会開催</h2>
+			</div>
+			<%= form_with model: @tournament, local: true do |f| %>
+				<% if @tournament.errors.any? %>
+					<div id="error_explanation">
+						<h3 style="color:red;">
+						<%= I18n.t("errors.messages.not_saved",
+											count: @tournament.errors.count,
+											resource: @tournament.class.model_name.human.downcase)
+						%>
+						</h3>
+						<ul>
+							<% @tournament.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+				<%= f.fields_for :room do |i| %>
+					<div class="form-group">
+						<%= i.label :room_name, '部屋名*' %>
+						<%= i.text_field :room_name, class: 'form-control'%>
+						<small class="form-text text-muted">
+							大会の名前を入力してください。
+						</small>
+					</div>
+				<% end %>
+				<div class="form-group">
+					<%= f.label :tournament_chess, '棋力*' %>
+					<%= f.text_field :tournament_chess, class: 'form-control',value: current_user.user_chess %>
+					<small class="form-text text-muted">
+						募集したい方の棋力を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_app, '使用するアプリ*' %>
+					<%= f.text_field :tournament_app, class: 'form-control',value: current_user.user_app %>
+					<small class="form-text text-muted">
+						希望するアプリを入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_time, '対戦時間*' %>
+					<%= f.text_field :tournament_time, class: 'form-control',value: current_user.user_time %>
+					<small class="form-text text-muted">
+						希望する対戦時間を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_content, '募集内容' %>
+					<%= f.text_area :tournament_content, class: 'form-control'%>
+					<small class="form-text text-muted">
+						募集内容を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_number_of_people, '応募人数' %>
+					<%= f.number_field :tournament_number_of_people, class: 'form-control'%>
+					<small class="form-text text-muted">
+						応募人数を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_limit, '応募期間' %>
+					<%= f.date_select :tournament_limit, class: 'form-control'%>
+					<small class="form-text text-muted">
+						応募の期日を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :tournament_date, '開催日時' %>
+					<%= f.datetime_select :tournament_date, class: 'form-control'%>
+					<small class="form-text text-muted">
+						開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
+					</small>
+				</div>
+				<div class="buttonContainer">
+					<%= f.submit '投稿', class: 'btn btn-primary buttonConfirm' %>
+				</div>
+			<% end %>
+		</main>
+	</div>
+</div>

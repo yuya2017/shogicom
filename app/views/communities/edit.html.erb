@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render "sidebar" %>
+    <main class="col-md-10 px-4 ml-sm-auto header_next">
+			<div class="main title">
+				<h2>編集</h2>
+			</div>
+			<%= form_with model: @community, local: true do |f| %>
+				<% if @community.errors.any? %>
+					<div id="error_explanation">
+						<h3 style="color:red;">
+						<%= I18n.t("errors.messages.not_saved",
+											count: @community.errors.count,
+											resource: @community.class.model_name.human.downcase)
+						%>
+						</h3>
+						<ul>
+							<% @community.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+				<%= f.fields_for :room do |i| %>
+					<div class="form-group">
+						<%= i.label :room_name, '部屋名*' %>
+						<%= i.text_field :room_name, class: 'form-control'%>
+						<small class="form-text text-muted">
+							コミュニティの名前を入力してください。
+						</small>
+					</div>
+				<% end %>
+				<div class="form-group">
+					<%= f.label :community_place, '開催場所*' %>
+					<%= f.text_field :community_place, class: 'form-control' %>
+					<small class="form-text text-muted">
+						開催場所を記入してください。
+            まだ決まっていない場合は市町村を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :community_date, '開催日時*' %>
+					<%= f.date_select :community_date, class: 'form-control'%>
+					<small class="form-text text-muted">
+				  	開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :community_limit, '応募期間*' %>
+					<%= f.date_select :community_limit, class: 'form-control' %>
+					<small class="form-text text-muted">
+						応募の期日を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :community_money, '参加費' %>
+					<%= f.text_field :community_money, class: 'form-control'%>
+					<small class="form-text text-muted">
+						参加費を入力してください。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :community_all_tag, 'タグ' %>
+					<%= f.text_field :community_all_tag, class: 'form-control'%>
+					<small class="form-text text-muted">
+						好きなタグをつけることができます。
+					</small>
+				</div>
+				<div class="form-group">
+					<%= f.label :community_content, '募集内容' %>
+					<%= f.text_area :community_content, class: 'form-control'%>
+					<small class="form-text text-muted">
+					  詳細な募集内容を入力してください。
+					</small>
+				</div>
+		    <div class="buttonContainer">
+			    <%= f.submit '編集', class: 'btn btn-primary buttonConfirm' %>
+		    </div>
+      <% end %>
+	    <div class="buttonContainer">
+        <%= link_to '削除', "/communities/#{@community.id}", method: :delete, class:"btn btn-danger buttondestroy", data: {confirm: "削除しますか？"} %>
+	    </div>
+    </main>
+  </div>
+</div>

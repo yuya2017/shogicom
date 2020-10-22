@@ -1,0 +1,43 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: オンライン投稿
+      room: 部屋
+      tournament: 大会投稿
+    attributes:
+      user:
+        user_name: ユーザー名
+        user_chess: 棋力
+        user_app: アプリ名
+        user_time: 持ち時間
+        user_email: メールアドレス
+        user_content: 自己紹介
+        user_image: プロフィール画像
+        user_pref: 所在地
+        password: パスワード
+        password_confirmation: 確認用パスワード
+      post:
+        post_chess: 棋力
+        post_app: アプリ名
+        post_time: 対戦時間
+        post_all_tag: タグ
+        post_content: 募集内容
+      room:
+        room_name: 部屋名
+        tournament_chess: 棋力
+        tournament_app: アプリ名
+        tournament_time: 対戦時間
+        tournament_all_tag: タグ
+        tournament_content: 募集内容
+        tournament_number_of_people: 人数
+        tournament_limit: 募集期間
+        tournament_date: 開催時間
+
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
