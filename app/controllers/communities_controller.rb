@@ -27,6 +27,7 @@ class CommunitiesController < ApplicationController
   def show
     @communities = Community.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @community.room
+    @community_users = CommunityUser.all
   end
 
   def edit

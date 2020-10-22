@@ -35,8 +35,11 @@
 					</div>
 				</div>
 				<div class="post_message_link">
-					<%= link_to 'チャットルーム',"/rooms/#{@room.id}", class: "btn-circle-3d mx-4", style:"text-decoration: none;" %>
-					<%= link_to '大会へ参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn-circle-3d mx-4", style:"text-decoration: none;", method: :post %>
+          <% if @tournament_users.where(tournament_id: @tournament.id).where(user_id: current_user.id).present? %>
+					  <%= link_to 'チャットルームへ',"/rooms/#{@room.id}", class: "btn-circle-3d mx-4", style:"text-decoration: none;" %>
+          <% else %>
+					  <%= link_to '大会へ参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn-circle-3d mx-4", style:"text-decoration: none;", method: :post %>
+          <% end %>
 					<% if user_signed_in? %>
 						<% if @tournament.user_id == current_user.id %>
 							<%= link_to '編集',"/tournaments/#{@tournament.id}/edit", class: "btn-circle-3d", style:"text-decoration:none; background:#FF3366;" %>

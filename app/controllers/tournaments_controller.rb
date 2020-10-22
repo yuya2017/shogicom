@@ -27,6 +27,7 @@ class TournamentsController < ApplicationController
   def show
     @tournaments = Tournament.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @tournament.room
+    @tournament_users = TournamentUser.all
   end
 
   def edit

@@ -33,13 +33,16 @@
         </div>
 			</div>
 			<div class="post_message_link">
-				<%= link_to 'チャットルーム',"/rooms/#{@room.id}", class: "btn-circle-3d mx-4", style:"text-decoration: none;" %>
-				<%= link_to 'コミュニティーへ参加', communities_community_participation_path(:community => @community.id), class: "btn-circle-3d mx-4", style:"text-decoration: none;", method: :post %>
-				<% if user_signed_in? %>
-					<% if @community.user_id == current_user.id %>
-						<%= link_to '編集',"/communities/#{@community.id}/edit", class: "btn-circle-3d", style:"text-decoration:none; background:#FF3366;" %>
-				  <% end %>
-			  <% end %>
+        <% if @community_users.where(community_id: @community.id).where(user_id: current_user.id).present? %>
+  				<%= link_to 'チャットルーム',"/rooms/#{@room.id}", class: "btn-circle-3d mx-4", style:"text-decoration: none;" %>
+        <% else %>
+  				<%= link_to 'コミュニティーへ参加', communities_community_participation_path(:community => @community.id), class: "btn-circle-3d mx-4", style:"text-decoration: none;", method: :post %>
+        <% end %>
+  				<% if user_signed_in? %>
+  					<% if @community.user_id == current_user.id %>
+  						<%= link_to '編集',"/communities/#{@community.id}/edit", class: "btn-circle-3d", style:"text-decoration:none; background:#FF3366;" %>
+  				  <% end %>
+  			  <% end %>
 		  </div>
     <%= render "community_show" %>
     <%= paginate @communities %>
