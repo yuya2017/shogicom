@@ -64,3 +64,6 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'activeadmin'
 gem 'kaminari'
+gem 'gon'
+gem "dotenv-rails"
+gem 'geocoder'
