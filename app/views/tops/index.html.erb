@@ -41,19 +41,69 @@
           </div>
         </div>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-          <%= render "community_show" %>
-            <div class="view-more">
-              <button class="learn-more">
-                <span class="circle" aria-hidden="true">
-                  <span class="icon arrow"></span>
-                </span>
-                <a href="/communities/all_content">
-                  <span class="button-text">もっと見る</span>
-                </a>
-              </button>
-            </div>
+        <h2>コミュニティイベント</h2>
+        <div id='map'></div>
+        <%= render "community_show" %>
+          <div class="view-more">
+            <button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <a href="/tournaments/all_content">
+                <span class="button-text">もっと見る</span>
+              </a>
+            </button>
+          </div>
         </div>
       </div>
     </main>
   </div>
 </div>
+
+<script>
+
+let map
+let geocoder
+let marker = [];
+let infoWindow = [];
+const user = gon.user;
+const communities = gon.communities
+
+
+function initMap(){
+    // geocoderを初期化
+    geocoder = new google.maps.Geocoder()
+    // mapの初期位置設定
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -35.6809591, lng: 139.7673068},
+    zoom: 8
+    });
+
+    geocoder.geocode( { 'address': user.user_pref }, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location)
+      }
+    });
+
+    for (let i = 0; i < communities.length; i++) {
+        geocoder.geocode( { 'address': communities[i].community_place }, function(results, status) {
+        if (status == 'OK') {
+            marker[i] = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            let id = communities[i]['id']
+            infoWindow[i] = new google.maps.InfoWindow({
+            content: `<a href='/communities/${id}'>${communities[i].community_place}</a>`
+            });
+            marker[i].addListener("click", function(){
+                infoWindow[i].open(map, marker[i]);
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        });
+    }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>

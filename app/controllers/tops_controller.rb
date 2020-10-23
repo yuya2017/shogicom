@@ -5,6 +5,8 @@ class TopsController < ApplicationController
     @posts = Post.all.includes(:room).order(updated_at: "DESC").limit(10)
     @tournaments = Tournament.all.includes(:room).order(updated_at: "DESC").limit(10)
     @communities = Community.all.includes(:room).order(updated_at: "DESC").limit(10)
+    gon.user = current_user
+    gon.communities = Community.all
   end
 
   def mypage
