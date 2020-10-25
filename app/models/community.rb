@@ -5,12 +5,18 @@ class Community < ApplicationRecord
   has_one :room, dependent: :destroy
   accepts_nested_attributes_for :room
 
+  before_validation :geocode
   validates :community_place, presence: true
   validates :community_date, presence: true
   validates :community_limit, presence: true
   validates :community_money, presence: true
-
   validates :user_id, presence: true
+
+  geocoded_by :community_place do |obj, results|
+    unless geo = results.first
+      obj.community_place = nil
+    end
+  end
 
   def self.community_user_create(user_id, community_id)
     user = CommunityUser.new(
@@ -19,7 +25,6 @@ class Community < ApplicationRecord
     )
     user.save
   end
-
 
   def self.enterCommunity(user_id, community_id)
     room = Room.find_by(community_id: community_id)
@@ -39,4 +44,5 @@ class Community < ApplicationRecord
       return room
     end
   end
+
 end
