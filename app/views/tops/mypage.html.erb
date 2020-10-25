@@ -28,7 +28,7 @@
   					<p>自己紹介</p>
   					<p class="card-text"><%= @user.user_content %></p>
   				</div>
-          <% if @user = current_user %>
+          <% if @user == current_user %>
             <%= link_to 'アカウント編集', edit_user_registration_path, class: "btn btn-primary buttonConfirm" %>
           <% end %>
 			  </div>

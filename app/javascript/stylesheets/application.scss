@@ -82,16 +82,14 @@ header {
   width: 100%;
 }
 
-.card_summary {
-  position: relative;
-}
-
 .profile_link {
   display: none;
   position: absolute;
-  bottom: -22px;
   z-index: 1;
   width: 30rem;
+}
+.profile_main {
+  position: relative;
 }
 
 .profile_body:before {
@@ -433,7 +431,6 @@ header {
 }
 
 #message-container {
-  max-width: 768px;
   margin: 0 auto;
   padding: 1rem 1rem 8rem 1rem;
 }
@@ -443,7 +440,7 @@ header {
   bottom: 0;
   width: 80%;
   padding: 1rem;
-text-align: center;
+  text-align: center;
   background-color: white;
 }
 
