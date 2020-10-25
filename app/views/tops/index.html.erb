@@ -71,9 +71,7 @@ const communities = gon.communities
 
 
 function initMap(){
-    // geocoderを初期化
     geocoder = new google.maps.Geocoder()
-    // mapの初期位置設定
     map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -35.6809591, lng: 139.7673068},
     zoom: 8
