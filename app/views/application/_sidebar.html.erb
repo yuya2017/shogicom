@@ -1,40 +1,72 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <ul class="nav flex-column">
-      <li class="nav-item">
+      <li class="nav-item sidebar_item">
         <span data-feather="home"></span>
         <%= link_to 'ノシ将棋', "/", class:"nav-link top_icon" %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to 'ホーム', "/", class:"nav-link" %>
+        <%= link_to root_path do %>
+          <div class="nav-link sidebar_item">
+            <span><i class="fas fa-home"></i><span>
+            <p class="sidebar_font">ホーム</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "チャットルーム", tops_private_message_path, class:'nav-link'%>
+        <%= link_to tops_private_message_path do %>
+          <div class="nav-link sidebar_item">
+            <span><i class="fas fa-comments"></i></span>
+            <p class="sidebar_font">チャットルーム</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "コメントしたオンライン対戦", tops_participating_post_path, class:'nav-link' %>
+        <%= link_to tops_participating_post_path do %>
+          <div class="nav-link sidebar_item">
+            <span><i class="fas fa-globe-asia"></i><span>
+            <p class="sidebar_font">参加済みの対戦</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "参加している大会", tops_participating_tournament_path, class:'nav-link' %>
+        <%= link_to tops_participating_tournament_path do %>
+          <div class="nav-link sidebar_item">
+            <span><i class="fas fa-chess"></i><span>
+            <p class="sidebar_font">参加済みの大会</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "参加しているコミュニティー", tops_participating_community_path, class:'nav-link' %>
+        <%= link_to tops_participating_community_path do %>
+          <div class="nav-link sidebar_item">
+            <span><i class="fas fa-users"></i><span>
+            <p class="sidebar_font">参加済みのイベント</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-          <%= link_to "オンライン対戦投稿", new_post_path, class:'nav-link' %>
+        <%= link_to new_post_path do %>
+          <div class="nav-link sidebar_item sidebar_post">
+            <span><i class="fas fa-globe-asia mr-1"></i><i class="fas fa-edit"></i><span>
+            <p class="sidebar_font">オンライン対戦投稿</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "大会投稿", new_tournament_path, class:'nav-link' %>
+        <%= link_to new_tournament_path do %>
+          <div class="nav-link sidebar_item sidebar_post">
+            <span><i class="fas fa-chess mr-1"></i><i class="fas fa-edit"></i><span>
+            <p class="sidebar_font">大会開催</p>
+          </div>
+        <% end %>
       </li>
       <li class="nav-item">
-        <span data-feather="home"></span>
-        <%= link_to "コミュニティ開催", new_community_path, class:'nav-link' %>
+        <%= link_to new_community_path do %>
+          <div class="nav-link sidebar_item sidebar_post">
+            <span><i class="fas fa-users mr-1"></i><i class="fas fa-edit"></i><span>
+            <p class="sidebar_font">イベント開催</p>
+          </div>
+        <% end %>
       </li>
     </ul>
 </nav>
