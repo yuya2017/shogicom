@@ -1,15 +1,23 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "sidebar" %>
-		<main class="col-md-10 px-4 ml-sm-auto header_next">
-			<h1>新規登録</h1>
-		  <h2>新規登録していただくと、色々な機能を使用することができます。</h2>
-	    <ul>
-	      <li>１．投稿することができます。</li>
-	      <li>２．自分だけのチャットルームを持つことができ、感想戦なども行えます。</li>
-	      <li>３．投稿する際にデフォルトで値を入れることができます。</li>
-	    <ul>
-		  <p>下記の内容をご入力の上、お進みください。</p>
+		<main class="col-md-9 px-4 ml-sm-auto header_next">
+      <h1 class="heading">新規登録</h1>
+      <div class="explanation_main">
+        <h2 class="explanation_title">
+          新規登録していただくと、色々な機能を使用することができます。
+        </h2>
+        <div class="explanation_body">
+          <ul class="explanation_show">
+            <li>１．投稿することができます。</li>
+            <li>２．自分だけのチャットルームを持つことができ、感想戦なども行えます。</li>
+            <li>３．投稿する際にデフォルトで値を入れることができます。</li>
+          <ul>
+        </div>
+      </div>
+      <div class="inputInformation">
+        <p>下記の内容をご入力の上、お進みください。</p>
+      </div>
 		  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 				<%= render "devise/shared/error_messages", resource: resource %>
 		    <div class="field form_group">

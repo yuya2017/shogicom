@@ -1,7 +1,40 @@
 <div class="container-fluid">
   <div class="row">
-    <%= render "sidebar" %>
-		<main class="col-md-10 px-4 ml-sm-auto header_next">
+    <% if @room.private_id.present? %>
+      <%= render 'message_bar' %>
+    <% elsif @room.tournament_id.present? %>
+      <%= render 'tournament_message_bar' %>
+    <% elsif @room.community_id.present? %>
+      <%= render 'community_message_bar' %>
+    <% else %>
+      <%= render 'post_message_bar'%>
+    <% end %>
+		<main class="col-md-9 px-4 ml-sm-auto room_header">
+      <% if @room.private_id.present? %>
+        <%= link_to rooms_private_message_path do %>
+          <div class="nav-link room_top">
+            <p class="room_top_font"><span><i class="fas fa-comments"></i></span>チャットルーム</p>
+          </div>
+        <% end %>
+      <% elsif @room.tournament_id.present? %>
+        <%= link_to rooms_participating_tournament_path do %>
+          <div class="nav-link room_top">
+            <p class="room_top_font"><span><i class="fas fa-chess"></i><span>参加済みの大会</p>
+          </div>
+        <% end %>
+      <% elsif @room.community_id.present? %>
+        <%= link_to rooms_participating_community_path do %>
+          <div class="nav-link room_top">
+            <p class="room_top_font"><span><i class="fas fa-users"></i><span>参加済みのイベント</p>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to rooms_participating_post_path do %>
+          <div class="nav-link room_top">
+            <p class="room_top_font"><span><i class="fas fa-globe-asia"></i><span>参加済みの対戦</p>
+          </div>
+        <% end %>
+      <% end %>
       <div id="message-container">
         <div id='messages' data-room_id="<%= @room.id %>">
           <%= render @messages %>

@@ -1,10 +1,22 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "sidebar" %>
-    <main class="col-md-10 px-4 ml-sm-auto header_next">
-			<div class="main title">
-				<h2>コミュニティ開催</h2>
-			</div>
+    <main class="col-md-9 px-4 ml-sm-auto header_next">
+      <h1 class="heading">イベント</h1>
+      <div class="explanation_main">
+        <h2 class="explanation_title">
+          賢く投稿を行うために。
+        </h2>
+        <div class="explanation_body">
+          <ul class="explanation_show">
+            <li>１．開催場所は分かる範囲で書いてください。存在しない場所を設定するとエラーが出ます。</li>
+            <li>２．参加費についても分かる範囲で書いてください。人数決定後、詳細なことについてはチャットルームで決定してください。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="inputInformation">
+        <p>下記の内容をご入力の上、お進みください。</p>
+      </div>
 			<%= form_with model: @community, local: true do |f| %>
 				<% if @community.errors.any? %>
 					<div id="error_explanation">
@@ -53,7 +65,7 @@
 					</small>
 				</div>
 				<div class="form-group">
-					<%= f.label :community_money, '参加費' %>
+					<%= f.label :community_money, '参加費*' %>
 					<%= f.text_field :community_money, class: 'form-control'%>
 					<small class="form-text text-muted">
 						参加費を入力してください。

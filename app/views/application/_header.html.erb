@@ -1,19 +1,38 @@
 <header>
-  <ul class="nav justify-content-end">
-    <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to 'Myページ', "/tops/#{current_user.id}", class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="header_body">
+    <div class="headet-icon">
+      <%= link_to root_path do %>
+        <img src="/img/logo.jpg" alt="ノシ将棋" class="logo">
+      <% end %>
+    </div>
+    <div>
+      <%= link_to '対戦相手を探す', posts_all_content_path, class:"header_search" %>
+      <%= link_to '大会を探す', tournaments_all_content_path, class:"header_search" %>
+      <%= link_to 'イベントを探す', communities_all_content_path, class:"header_search" %>
+    </div>
+    <div class="header_mypage d-flex">
+      <div class="dropdown header_icon">
+        <a href="#" id="DropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-edit fa-2x mx-4"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="DropdownMenuLink">
+          <a class="dropdown-item" href="/posts/new">オンライン対戦</a>
+          <a class="dropdown-item" href="/tournaments/new">大会開催</a>
+          <a class="dropdown-item" href="/communities/new">コミュニティ</a>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <%= link_to "/tops/#{current_user.id}" do %>
+          <% if current_user.user_image? %>
+            <img src='<%= current_user.user_image %>' class="header_image" alt="ユーザーアイコン">
+          <% else %>
+            <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to "新規登録", new_user_registration_path, class: "mx-4" %>
+        <%= link_to "ログイン", new_user_session_path, class: "mx-4"  %>
+      <% end %>
+    </div>
+  </div>
 </header>

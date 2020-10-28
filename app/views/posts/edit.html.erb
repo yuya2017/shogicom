@@ -1,10 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "sidebar" %>
-    <main class="col-md-10 px-4 ml-sm-auto header_next">
-			<div class="main title">
-				<h2>編集</h2>
-			</div>
+    <main class="col-md-9 px-4 ml-sm-auto header_next">
+      <h1 class="heading">編集</h1>
+      <div class="inputInformation">
+        <p>下記の内容をご入力の上、お進みください。</p>
+      </div>
 			<%= form_with model: @post, local: true do |f| %>
 				<% if @post.errors.any? %>
 					<div id="error_explanation">
@@ -26,27 +27,27 @@
 						<%= i.label :room_name, '部屋名*' %>
 						<%= i.text_field :room_name, class: 'form-control'%>
 						<small class="form-text text-muted">
-							部屋の名前を決めてください。
+							投稿ごとにチャットルームを持つことができます。
 						</small>
 					</div>
 				<% end %>
 				<div class="form-group">
 					<%= f.label :post_chess, '棋力*' %>
-					<%= f.text_field :post_chess, class: 'form-control'%>
+					<%= f.text_field :post_chess, class: 'form-control',value: current_user.user_chess %>
 					<small class="form-text text-muted">
-						対戦したい方の棋力を入力してください。
+						自分の推定棋力を入力してください。
 					</small>
 				</div>
 				<div class="form-group">
 					<%= f.label :post_app, '使用するアプリ*' %>
-					<%= f.text_field :post_app, class: 'form-control'%>
+					<%= f.text_field :post_app, class: 'form-control',value: current_user.user_app %>
 					<small class="form-text text-muted">
 						希望するアプリを入力してください。
 					</small>
 				</div>
 				<div class="form-group">
 					<%= f.label :post_time, '対戦時間*' %>
-					<%= f.text_field :post_time, class: 'form-control'%>
+					<%= f.text_field :post_time, class: 'form-control',value: current_user.user_time %>
 					<small class="form-text text-muted">
 						希望する対戦時間を入力してください。
 					</small>

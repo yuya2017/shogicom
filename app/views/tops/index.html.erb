@@ -1,107 +1,74 @@
 <div class="container-fluid">
-  <div class="row">
-    <%= render "sidebar" %>
-    <main class="col-md-10 px-4 ml-sm-auto header_next">
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">オンライン対戦</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">大会</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">コミュニティ開催</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <%= render "post_show" %>
-          <div class="view-more">
-            <button class="learn-more">
-              <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-              </span>
-              <a href="/posts/all_content">
-                <span class="button-text">もっと見る</span>
-              </a>
-            </button>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <%= render "tournament_show" %>
-          <div class="view-more">
-            <button class="learn-more">
-              <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-              </span>
-              <a href="/tournaments/all_content">
-                <span class="button-text">もっと見る</span>
-              </a>
-            </button>
-          </div>
-        </div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <h2>コミュニティイベント</h2>
-        <div id='map'></div>
-        <%= render "community_show" %>
-          <div class="view-more">
-            <button class="learn-more">
-              <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
-              </span>
-              <a href="/tournaments/all_content">
-                <span class="button-text">もっと見る</span>
-              </a>
-            </button>
-          </div>
-        </div>
+  <div class="row top_header">
+    <div class="col-7 header_next header_top_left">
+      <div class="top_img_top d-flex">
+        <img src="/img/top_left.png" alt="" class="top_img my-2 mx-2">
+        <img src="/img/top_right.png" alt="" class="top_img my-2 mx-2">
       </div>
-    </main>
+      <div class="top_img_bottom d-flex">
+        <img src="/img/bottom_left.png" alt="" class="top_img my-2 mx-2">
+        <img src="/img/bottom_right.png" alt="" class="top_img my-2 mx-2">
+      </div>
+    </div>
+    <div class="col-5 header_next header_top_right">
+      <div class="header_comment">
+        <h3 class="header_title">遊びましょう。</h3>
+        <h3 class="header_title mb-4">同じアプリで。同じレベルで。</h3>
+        <p>将棋は年代問わず遊べて</p>
+        <p>コミュニティを広げるのに最適です。</p>
+        <p>あなたが遊びたい形で対戦相手を探して見ましょう。</p>
+      </div>
+      <div class="view-more my-4">
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <a href="/posts/all_content">
+            <span class="button-text">対戦相手を探す</span>
+          </a>
+        </button>
+      </div>
+      <div class="view-more my-4">
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <a href="/tournaments/all_content">
+            <span class="button-text">大会を探す</span>
+          </a>
+        </button>
+      </div>
+      <div class="view-more my-4">
+        <button class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <a href="/communities/all_content">
+            <span class="button-text">イベントを探す</span>
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <h1 class="top_bottom_title">----ノシ将棋の3つの特徴----</h1>
+  <div class="row top_bottom">
+    <div class="col-4 top_feature">
+      <img src="/img/post.png" alt="オンライン対戦" class="top_img top_bottom_content">
+      <h2 class="mb-4">１．オンライン対戦</h2>
+      <p>様々なアプリを使用していただいて対戦することができます。</p>
+      <p>棋力を検索していただければ自分と同じレベルの方とも対戦できます。</p>
+    </div>
+    <div class="col-4 top_feature">
+      <img src="/img/tournament.png" alt="大会" class="top_img top_bottom_content">
+      <h2 class="mb-4">２．大会</h2>
+      <p>気楽にオンライン上で大会を開くことができ、</p>
+      <p>白熱して対戦することができます。</p>
+    </div>
+    <div class="col-4 top_feature">
+      <img src="/img/community.png" alt="コミュニティイベント" class="top_img top_bottom_content">
+      <h2 class="mb-4">３．コミュニティイベント開催</h2>
+      <p>将棋の醍醐味は対面で対戦することだと思います。</p>
+      <p>イベントを開催して色々な将棋仲間と出会いましょう。</p>
+    </div>
   </div>
 </div>
-
-<script>
-
-let map
-let geocoder
-let marker = [];
-let infoWindow = [];
-const user = gon.user;
-const communities = gon.communities
-
-
-function initMap(){
-    geocoder = new google.maps.Geocoder()
-    map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -35.6809591, lng: 139.7673068},
-    zoom: 8
-    });
-
-    geocoder.geocode( { 'address': user.user_pref }, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location)
-      }
-    });
-
-    for (let i = 0; i < communities.length; i++) {
-        geocoder.geocode( { 'address': communities[i].community_place }, function(results, status) {
-        if (status == 'OK') {
-            marker[i] = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-            let id = communities[i]['id']
-            infoWindow[i] = new google.maps.InfoWindow({
-            content: `<a href='/communities/${id}'>${communities[i].community_place}</a>`
-            });
-            marker[i].addListener("click", function(){
-                infoWindow[i].open(map, marker[i]);
-            });
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-        });
-    }
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>

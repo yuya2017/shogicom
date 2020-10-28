@@ -1,51 +1,98 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <%= render "sidebar" %>
-    <main class="col-md-10 px-4 ml-sm-auto header_next">
-			<div class="card_summary d-flex my-4">
-				<div class="prifile_img">
-					<% if @community.user.user_image? %>
-						<img src='<%= @community.user.user_image %>' class="icon_no_link" alt="ユーザーアイコン">
-						<figcaption class="balloon-name-description">
-							<p><%= @community.user.user_name %></p>
-						</figcaption>
-					<% else %>
-						<img src="/assets/profile.jpg" class="icon_no_link" alt="ユーザーアイコン">
-							<figcaption class="balloon-name-description">
-								<p><%= @community.user.user_name %></p>
-							</figcaption>
-					<% end %>
-				</div>
-        <div class="card mx-1">
-					<div class="card-header">
-						<h4><%= @community.room.room_name %></h4>
-					</div>
-          <div class="card-body">
-            <p>開催場所：<%= @community.community_place %></p>
-            <p>参加費：<%= @community.community_money %></p>
-            <p>募集内容</p>
-            <p class="card-text"><%= @community.community_content %></p>
-            <p><%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
-            <p><%= l @community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
-            <span>#<%= @community.community_all_tag %></span>
-            <p><%= l @community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
-          </div>
-        </div>
-			</div>
-			<div class="post_message_link">
-        <% if @community_users.where(community_id: @community.id).where(user_id: current_user.id).present? %>
-  				<%= link_to 'チャットルーム',"/rooms/#{@room.id}", class: "btn-circle-3d mx-4", style:"text-decoration: none;" %>
+    <div class="col-md-3 d-none d-md-block header_next">
+      <p class="text-center">投稿者</p>
+      <div class="prifile_img text-center">
+        <% if @community.user.user_image? %>
+          <img src='<%= @community.user.user_image %>' class="icon_no_link mb-4" alt="ユーザーアイコン">
+            <p><%= @community.user.user_name %></p>
         <% else %>
-  				<%= link_to 'コミュニティーへ参加', communities_community_participation_path(:community => @community.id), class: "btn-circle-3d mx-4", style:"text-decoration: none;", method: :post %>
+          <img src="/assets/profile.jpg" class="icon_no_link mb-4" alt="ユーザーアイコン">
+              <p><%= @community.user.user_name %></p>
         <% end %>
-  				<% if user_signed_in? %>
-  					<% if @community.user_id == current_user.id %>
-  						<%= link_to '編集',"/communities/#{@community.id}/edit", class: "btn-circle-3d", style:"text-decoration:none; background:#FF3366;" %>
-  				  <% end %>
-  			  <% end %>
-		  </div>
-    <%= render "community_show" %>
-    <%= paginate @communities %>
-		</main>
-	</div>
+      </div>
+      <% if user_signed_in? && @community.user_id == current_user.id %>
+      <div class="side_user_edit">
+        <%= link_to '編集',"/communities/#{@community.id}/edit", class: "btn-circle-3d", style:"background:#FF3366;" %>
+      </div>
+      <% end %>
+      <p class="text-center">このイベントに参加するユーザー</p>
+      <ul class="nav flex-column">
+        <% @users.each do |user| %>
+        <li class="nav-item my-2">
+          <p><%= user.user_name %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-9 header_next">
+      <div class="show_box_outer">
+        <div class="post_box">
+          <h4><%= @community.room.room_name %></h4>
+          <span class="tag_text">#<%= @community.community_all_tag %></span>
+          <p class="show_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
+          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p>開催場所：<%= @community.community_place %></p>
+          <p>参加費：<%= @community.community_money %></p>
+          <p>募集内容</p>
+          <p><%= @community.community_content %></p>
+          <h5 class="text-center">地図</h5>
+          <div id='map' class="show_map"></div>
+          <p class="post_date"><%= l @community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      </div>
+      <div class="post_message_link">
+        <% if @community_users.where(user_id: current_user.id).present? %>
+        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
+        <% else %>
+        <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+
+let map
+let geocoder
+let marker = [];
+let infoWindow = [];
+const user = gon.user;
+const community = gon.community;
+
+function initMap(){
+    geocoder = new google.maps.Geocoder()
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.5040528, lng: 138.6485391},
+    zoom: 8
+    });
+
+    geocoder.geocode( { 'address': community.community_place }, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location)
+
+      }
+    });
+
+    geocoder.geocode( { 'address': community.community_place }, function(results, status) {
+    if (status == 'OK') {
+        marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        let id = community['id']
+        infoWindow = new google.maps.InfoWindow({
+        content: `<a href='/communities/${id}'>${community.community_place}</a>`
+        });
+        marker.addListener("click", function(){
+            infoWindow.open(map, marker);
+        });
+    } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+    }
+    });
+
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>

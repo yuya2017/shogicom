@@ -21,27 +21,27 @@
           <p class="card-text">よく対戦する持ち時間：<%= tournament.user.user_time %></p>
           <p class="card-text">自己紹介</p>
           <p class="card-text"><%= tournament.user.user_content %></p>
-          <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link" %>
-          <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link", method: :post  %>
+          <% unless tournament.user == current_user %>
+            <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link profile_btn" %>
+            <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="card mx-1">
-      <a href="/tournaments/<%="#{tournament.id}" %>" style="text-decoration:none;">
-        <div class="card-header">
+    <div class="post_box_outer">
+      <a href="/tournaments/<%="#{tournament.id}" %>">
+        <div class="post_box">
           <h4><%= tournament.room.room_name %></h4>
-        </div>
-        <div class="card-body">
-          <p>対戦したいアプリ：<%= tournament.tournament_app %></p>
+          <span class="tag_text">#<%= tournament.tournament_all_tag %></span>
+          <p class="tournament_date">開催日時：<%= l tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %>〜</p>
+          <p class="tournament_date">応募期間：<%= l tournament.tournament_limit, format: '%-m月%-d日(%a)' %>まで</p>
+          <p>アプリ：<%= tournament.tournament_app %></p>
           <p>棋力：<%= tournament.tournament_chess %></p>
           <p>持ち時間：<%= tournament.tournament_time %></p>
           <p>募集内容</p>
-          <p class="card-text"><%= tournament.tournament_content %></p>
+          <p><%= tournament.tournament_content %></p>
           <p><%= tournament.tournament_number_of_people %></p>
-          <p><%= l tournament.tournament_limit, format: '%-m月%-d日(%a)' %></p>
-          <p><%= l tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %></p>
-          <span>#<%= tournament.tournament_all_tag %></span>
-          <p><%= l tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p class="post_date"><%= l tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
         </div>
       </a>
     </div>
