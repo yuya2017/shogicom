@@ -1,9 +1,5 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<nav class="col-md-3 d-none d-md-block bg-light sidebar">
     <ul class="nav flex-column">
-      <li class="nav-item sidebar_item">
-        <span data-feather="home"></span>
-        <%= link_to 'ノシ将棋', "/", class:"nav-link top_icon" %>
-      </li>
       <li class="nav-item">
         <%= link_to root_path do %>
           <div class="nav-link sidebar_item">
@@ -13,7 +9,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to tops_private_message_path do %>
+        <%= link_to rooms_private_message_path do %>
           <div class="nav-link sidebar_item">
             <span><i class="fas fa-comments"></i></span>
             <p class="sidebar_font">チャットルーム</p>
@@ -21,7 +17,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to tops_participating_post_path do %>
+        <%= link_to rooms_participating_post_path do %>
           <div class="nav-link sidebar_item">
             <span><i class="fas fa-globe-asia"></i><span>
             <p class="sidebar_font">参加済みの対戦</p>
@@ -29,7 +25,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to tops_participating_tournament_path do %>
+        <%= link_to rooms_participating_tournament_path do %>
           <div class="nav-link sidebar_item">
             <span><i class="fas fa-chess"></i><span>
             <p class="sidebar_font">参加済みの大会</p>
@@ -37,12 +33,15 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to tops_participating_community_path do %>
+        <%= link_to rooms_participating_community_path do %>
           <div class="nav-link sidebar_item">
             <span><i class="fas fa-users"></i><span>
             <p class="sidebar_font">参加済みのイベント</p>
           </div>
         <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to new_post_path do %>

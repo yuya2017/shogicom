@@ -1,0 +1,8 @@
+<div class="col-md-3 d-none d-md-block bg-light sidebar">
+  <%= search_form_for @q, url: posts_search_post_path, class:"ml-4 w-75 d-inline center-block" do |f| %>
+    <div class="input-group header_top">
+      <%= f.search_field :post_chess_or_post_app_or_post_time_or_post_all_tag_cont, placeholder: '何でも検索...', class: 'form-control', id: 'tags_top'%>
+      <%= f.submit ("🔍"), class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>

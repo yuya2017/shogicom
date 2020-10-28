@@ -1,8 +1,8 @@
 class TournamentsController < ApplicationController
-
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show]
   before_action :set_target_tournament, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
+  before_action :set_search
 
   def new
     @tournament = Tournament.new
@@ -27,7 +27,11 @@ class TournamentsController < ApplicationController
   def show
     @tournaments = Tournament.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @tournament.room
-    @tournament_users = TournamentUser.all
+    @tournament_users = @tournament.tournament_users.all
+    @users = []
+    @tournament_users.each do |users|
+      @users.push(User.find(users.user_id))
+    end
   end
 
   def edit
@@ -49,6 +53,12 @@ class TournamentsController < ApplicationController
     else
       render("tournaments/edit")
     end
+  end
+
+  def search_tournament
+    @q = Tournament.ransack(params[:q])
+    grouping_hash = params[:q][:tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_cont: word })}
+    @tournaments = Tournament.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
   end
 
   #大会参加用
@@ -73,5 +83,10 @@ class TournamentsController < ApplicationController
       redirect_to("/")
     end
   end
+
+  def set_search
+    @q = Tournament.ransack(params[:q])
+  end
+
 
 end

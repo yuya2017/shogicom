@@ -1,10 +1,22 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "sidebar" %>
-    <main class="col-md-10 px-4 ml-sm-auto header_next">
-			<div class="main title">
-				<h2>オンライン対戦投稿</h2>
-			</div>
+    <main class="col-md-9 px-4 ml-sm-auto header_next">
+      <h1 class="heading">オンライン対戦</h1>
+      <div class="explanation_main">
+        <h2 class="explanation_title">
+          賢く投稿を行うために。
+        </h2>
+        <div class="explanation_body">
+          <ul class="explanation_show">
+            <li>１．使用するアプリ名は正式名を入力していただくと検索にかかりやすいです。</li>
+            <li>２．棋力はそのアプリの棋力、または自分の推定棋力を入力してください。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="inputInformation">
+        <p>下記の内容をご入力の上、お進みください。</p>
+      </div>
 			<%= form_with model: @post, local: true do |f| %>
 				<% if @post.errors.any? %>
 					<div id="error_explanation">
@@ -26,7 +38,7 @@
 						<%= i.label :room_name, '部屋名*' %>
 						<%= i.text_field :room_name, class: 'form-control'%>
 						<small class="form-text text-muted">
-							部屋の名前を決めてください。
+							投稿ごとにチャットルームを持つことができます。
 						</small>
 					</div>
 				<% end %>
@@ -34,7 +46,7 @@
 					<%= f.label :post_chess, '棋力*' %>
 					<%= f.text_field :post_chess, class: 'form-control',value: current_user.user_chess %>
 					<small class="form-text text-muted">
-						対戦したい方の棋力を入力してください。
+						自分の推定棋力を入力してください。
 					</small>
 				</div>
 				<div class="form-group">

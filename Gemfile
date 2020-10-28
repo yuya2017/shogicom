@@ -67,3 +67,4 @@ gem 'kaminari'
 gem 'gon'
 gem "dotenv-rails"
 gem 'geocoder'
+gem 'ransack'
