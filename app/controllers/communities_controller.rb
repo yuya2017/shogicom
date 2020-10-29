@@ -1,9 +1,9 @@
 class CommunitiesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :community_participation]
   before_action :set_target_community, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
-  before_action :set_search
+  before_action :set_search, only: [:all_content]
 
   def new
     @community = Community.new
