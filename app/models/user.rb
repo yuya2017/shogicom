@@ -14,8 +14,6 @@ class User < ApplicationRecord
   has_many :communities, dependent: :destroy
   has_many :community_users, dependent: :destroy
 
-
-
   validates :user_name, presence: true, uniqueness: true
   validates :user_chess, presence: true
   validates :user_app, presence: true
@@ -25,7 +23,6 @@ class User < ApplicationRecord
   def remember_me
     true
   end
-
 
   enum user_pref: {
       北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -37,5 +34,4 @@ class User < ApplicationRecord
       徳島県:36,香川県:37,愛媛県:38,高知県:39,
       福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
     }
-
 end
