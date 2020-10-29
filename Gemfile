@@ -45,6 +45,7 @@ group :development do
   gem 'pry-byebug'
   gem 'spring-commands-rspec'
   gem 'letter_opener_web'
+  gem 'rubocop', require: false
 end
 
 group :test do
