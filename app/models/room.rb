@@ -11,12 +11,12 @@ class Room < ApplicationRecord
 
   def self.enterRoom(user_id, private_id)
     if Room.where(user_id: user_id).where(private_id: private_id).present?
-      room_key = Room.where(user_id: user_id).where(private_id: private_id)[0].id
+      Room.where(user_id: user_id).where(private_id: private_id)[0].id
     else
       if Room.where(private_id: user_id).where(user_id: private_id).present?
-        room_key = Room.where(private_id: user_id).where(user_id: private_id)[0].id
+        Room.where(private_id: user_id).where(user_id: private_id)[0].id
       else
-        room_key = Room.new(
+        Room.new(
           room_name: "個人用チャットルーム",
           user_id: user_id,
           private_id: private_id
@@ -55,7 +55,7 @@ class Room < ApplicationRecord
     return private_messages, message_users, no_messages, no_message_users
   end
 
-  def self.my_post_room(messages, current_user)
+  def self.my_post_room(messages)
     private_rooms = []
     post_messages = []
     messages.each do |message|
@@ -72,7 +72,7 @@ class Room < ApplicationRecord
     post_messages = post_messages.sort.reverse
   end
 
-  def self.my_tournament_room(tournament_users, current_user)
+  def self.my_tournament_room(tournament_users)
     tournament_rooms = []
     tournament_messages = []
     tournament_no_messages = []
@@ -90,7 +90,7 @@ class Room < ApplicationRecord
     return tournament_messages, tournament_no_messages
   end
 
-  def self.my_community_room(community_users, current_user)
+  def self.my_community_room(community_users)
     community_rooms = []
     community_messages = []
     community_no_messages = []

@@ -13,7 +13,7 @@ class Community < ApplicationRecord
   validates :user_id, presence: true
 
   geocoded_by :community_place do |obj, results|
-    unless geo = results.first
+    unless results.first
       obj.community_place = nil
     end
   end

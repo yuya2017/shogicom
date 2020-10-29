@@ -17,13 +17,13 @@ class RoomsController < ApplicationController
     @private_messages, @message_users, @no_messages, @no_message_users = Room.my_private_room(rooms, current_user)
 
     #post_message
-    @post_messages = Room.my_post_room(messages, current_user)
+    @post_messages = Room.my_post_room(messages)
 
     #tournament_message
-    @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users, current_user)
+    @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users)
 
     #community_message
-    @community_messages, @community_no_messages = Room.my_community_room(community_users, current_user)
+    @community_messages, @community_no_messages = Room.my_community_room(community_users)
 
   end
 
@@ -49,17 +49,17 @@ class RoomsController < ApplicationController
 
   def participating_post
     messages = current_user.messages
-    @post_messages = Room.my_post_room(messages, current_user)
+    @post_messages = Room.my_post_room(messages)
   end
 
   def participating_tournament
     tournament_users = current_user.tournament_users.all
-    @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users, current_user)
+    @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users)
   end
 
   def participating_community
     community_users = current_user.community_users.all
-    @community_messages, @community_no_messages = Room.my_community_room(community_users, current_user)
+    @community_messages, @community_no_messages = Room.my_community_room(community_users)
   end
 
   private
