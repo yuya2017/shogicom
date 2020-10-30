@@ -1,23 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 d-none d-md-block header_next">
-      <p class="text-center">投稿者</p>
-      <div class="prifile_img text-center">
-        <% if @post.user.user_image? %>
-          <img src='<%= @post.user.user_image %>' class="icon_no_link mb-4" alt="ユーザーアイコン">
-            <p><%= @post.user.user_name %></p>
-        <% else %>
-          <img src="/assets/profile.jpg" class="icon_no_link mb-4" alt="ユーザーアイコン">
-              <p><%= @post.user.user_name %></p>
-        <% end %>
-      </div>
-      <% if user_signed_in? && @post.user_id == current_user.id %>
-      <div class="side_user_edit">
-			  <%= link_to '編集',"/posts/#{@post.id}/edit", class: "btn-circle-3d", style:"background:#FF3366;" %>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-9 header_next">
+    <div class="col-md-9 order-md-last header_next show_media">
       <div class="show_box_outer">
         <div class="post_box">
           <h4><%= @post.room.room_name %></h4>
@@ -33,6 +16,23 @@
       <div class="post_message_link">
         <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
       </div>
+    </div>
+    <div class="col-md-3 pull-md-9 header_next">
+      <p class="text-center">投稿者</p>
+      <div class="prifile_img text-center">
+        <% if @post.user.user_image? %>
+          <img src='<%= @post.user.user_image %>' class="icon_no_link mb-4" alt="ユーザーアイコン">
+            <p><%= @post.user.user_name %></p>
+        <% else %>
+          <img src="/assets/profile.jpg" class="icon_no_link mb-4" alt="ユーザーアイコン">
+              <p><%= @post.user.user_name %></p>
+        <% end %>
+      </div>
+      <% if user_signed_in? && @post.user_id == current_user.id %>
+      <div class="side_user_edit">
+        <%= link_to '編集',"/posts/#{@post.id}/edit", class: "btn-circle-3d", style:"background:#FF3366;" %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

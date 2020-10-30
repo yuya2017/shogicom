@@ -1,15 +1,23 @@
 <div class="container-fluid">
   <div class="row">
     <% if @room.private_id.present? %>
-      <%= render 'message_bar' %>
+      <nav class="col-md-3 d-none d-md-block sidebar">
+        <%= render 'message_bar' %>
+      </nav>
     <% elsif @room.tournament_id.present? %>
-      <%= render 'tournament_message_bar' %>
+      <nav class="col-md-3 d-none d-md-block sidebar">
+        <%= render 'tournament_message_bar' %>
+      </nav>
     <% elsif @room.community_id.present? %>
-      <%= render 'community_message_bar' %>
+      <nav class="col-md-3 d-none d-md-block sidebar">
+        <%= render 'community_message_bar' %>
+      </nav>
     <% else %>
-      <%= render 'post_message_bar'%>
+      <nav class="col-md-3 d-none d-md-block sidebar">
+        <%= render 'post_message_bar'%>
+      </nav>
     <% end %>
-		<main class="col-md-9 px-4 ml-sm-auto room_header">
+		<main class="col-md-9 ml-sm-auto room_header">
       <% if @room.private_id.present? %>
         <%= link_to rooms_private_message_path do %>
           <div class="nav-link room_top">

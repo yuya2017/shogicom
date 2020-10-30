@@ -1,4 +1,5 @@
 class TopsController < ApplicationController
+  layout 'no_header_search'
 
   def index
   end

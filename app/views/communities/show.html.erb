@@ -1,6 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 d-none d-md-block header_next">
+    <div class="col-md-9 order-md-last header_next show_media">
+      <div class="show_box_outer">
+        <div class="post_box">
+          <h4><%= @community.room.room_name %></h4>
+          <span class="tag_text">#<%= @community.community_all_tag %></span>
+          <p class="show_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
+          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p>開催場所：<%= @community.community_place %></p>
+          <p>参加費：<%= @community.community_money %></p>
+          <p>募集内容</p>
+          <p><%= @community.community_content %></p>
+          <h5 class="text-center">地図</h5>
+          <div id='map' class="show_map"></div>
+          <p class="post_date"><%= l @community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      </div>
+      <div class="post_message_link">
+        <% if @community_users.where(user_id: current_user.id).present? %>
+        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
+        <% else %>
+        <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3 header_next">
       <p class="text-center">投稿者</p>
       <div class="prifile_img text-center">
         <% if @community.user.user_image? %>
@@ -24,30 +48,6 @@
         </li>
         <% end %>
       </ul>
-    </div>
-    <div class="col-9 header_next">
-      <div class="show_box_outer">
-        <div class="post_box">
-          <h4><%= @community.room.room_name %></h4>
-          <span class="tag_text">#<%= @community.community_all_tag %></span>
-          <p class="show_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
-          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
-          <p>開催場所：<%= @community.community_place %></p>
-          <p>参加費：<%= @community.community_money %></p>
-          <p>募集内容</p>
-          <p><%= @community.community_content %></p>
-          <h5 class="text-center">地図</h5>
-          <div id='map' class="show_map"></div>
-          <p class="post_date"><%= l @community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
-        </div>
-      </div>
-      <div class="post_message_link">
-        <% if @community_users.where(user_id: current_user.id).present? %>
-        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
-        <% else %>
-        <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

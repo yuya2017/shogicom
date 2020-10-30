@@ -1,6 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 d-none d-md-block header_next">
+    <div class="col-md-9 order-md-last header_next show_media">
+      <div class="show_box_outer">
+        <div class="post_box">
+          <h4><%= @tournament.room.room_name %></h4>
+          <span class="tag_text">#<%= @tournament.tournament_all_tag %></span>
+          <p class="show_date">開催日時：<%= l @tournament.tournament_limit, format: '%-m月%-d日(%a)' %></p>
+          <p class="show_date">応募期間：<%= l @tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p>対戦したいアプリ：<%= @tournament.tournament_app %></p>
+          <p>棋力：<%= @tournament.tournament_chess %></p>
+          <p>持ち時間：<%= @tournament.tournament_time %></p>
+          <p>開催人数：<%= @tournament.tournament_number_of_people %></p>
+          <p>募集内容</p>
+          <p><%= @tournament.tournament_content %></p>
+          <p class="post_date"><%= l @tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      </div>
+      <div class="post_message_link">
+        <% if @tournament_users.where(user_id: current_user.id).present? %>
+        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
+        <% else %>
+        <%= link_to '大会に参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn btn-primary buttonConfirm", method: :post %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3 header_next">
       <p class="text-center">投稿者</p>
       <div class="prifile_img text-center">
         <% if @tournament.user.user_image? %>
@@ -24,30 +48,6 @@
         </li>
         <% end %>
       </ul>
-    </div>
-    <div class="col-9 header_next">
-      <div class="show_box_outer">
-        <div class="post_box">
-          <h4><%= @tournament.room.room_name %></h4>
-          <span class="tag_text">#<%= @tournament.tournament_all_tag %></span>
-          <p class="show_date">開催日時：<%= l @tournament.tournament_limit, format: '%-m月%-d日(%a)' %></p>
-          <p class="show_date">応募期間：<%= l @tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %></p>
-          <p>対戦したいアプリ：<%= @tournament.tournament_app %></p>
-          <p>棋力：<%= @tournament.tournament_chess %></p>
-          <p>持ち時間：<%= @tournament.tournament_time %></p>
-          <p>開催人数：<%= @tournament.tournament_number_of_people %></p>
-          <p>募集内容</p>
-          <p><%= @tournament.tournament_content %></p>
-          <p class="post_date"><%= l @tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
-        </div>
-      </div>
-      <div class="post_message_link">
-        <% if @tournament_users.where(user_id: current_user.id).present? %>
-        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
-        <% else %>
-        <%= link_to '大会に参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn btn-primary buttonConfirm", method: :post %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

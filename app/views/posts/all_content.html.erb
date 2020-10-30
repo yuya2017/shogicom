@@ -2,6 +2,11 @@
   <div class="row">
     <%= render "post_search_bar" %>
 		<main class="col-md-9 px-4 ml-sm-auto header_next">
+      <select onChange="location.href=value;" class="search_media">
+        <option value="/posts/all_content">対戦相手を探す</option>
+        <option value="/tournaments/all_content">大会を探す</option>
+        <option value="/communities/all_content">イベントを探す</option>
+      </select>
 			<div class="heading">
 				<h2>オンライン対戦</h2>
 			</div>
