@@ -68,7 +68,7 @@ document.addEventListener('turbolinks:load', () => {
     }
   }
 
-  const footer = document.getElementById('fixed-bottom')
+  const footer = document.getElementById('fixed_bottom')
   let footerHeight = footer.scrollHeight
   let newFooterHeight, footerHeightDiff
 

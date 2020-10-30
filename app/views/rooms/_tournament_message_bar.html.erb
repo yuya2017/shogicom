@@ -1,38 +1,36 @@
-<nav class="col-md-3 d-none d-md-block bg-light sidebar">
-  <ul class="nav flex-column">
-    <% @tournament_messages.each do |message| %>
-      <li class="nav-item message_bar">
-				<a href="/rooms/<%="#{message.room_id}" %>">
-          <div class="d-flex">
-            <% if message.room.tournament.user.user_image? %>
-              <img src='<%= message.room.tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
-            <% else %>
-              <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
-            <% end %>
-            <div class="messagebar_message_right ml-4">
-              <p class="mypage_message_text"><%= message.room.room_name %></p>
-              <p class="mypage_message_text"><%= message.message_content %></p>
-            </div>
+<ul class="nav flex-column">
+  <% @tournament_messages.each do |message| %>
+    <li class="nav-item message_bar">
+			<a href="/rooms/<%="#{message.room_id}" %>">
+        <div class="d-flex">
+          <% if message.room.tournament.user.user_image? %>
+            <img src='<%= message.room.tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
+          <% else %>
+            <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+          <% end %>
+          <div class="messagebar_message_right ml-4">
+            <p class="mypage_message_text"><%= message.room.room_name %></p>
+            <p class="mypage_message_text"><%= message.message_content %></p>
           </div>
-          <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
-        </a>
-      </li>
-		<% end %>
-    <% @tournament_no_messages.each do |tournament| %>
-      <li class="nav-item message_bar">
-				<a href="/rooms/<%="#{tournament.room.id}" %>">
-          <div class="d-flex">
-            <% if tournament.user.user_image? %>
-              <img src='<%= tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
-            <% else %>
-              <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
-            <% end %>
-            <div class="messagebar_right ml-4">
-              <p class="mypage_message_user"><%= tournament.room.room_name %></p>
-            </div>
+        </div>
+        <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
+      </a>
+    </li>
+	<% end %>
+  <% @tournament_no_messages.each do |tournament| %>
+    <li class="nav-item message_bar">
+			<a href="/rooms/<%="#{tournament.room.id}" %>">
+        <div class="d-flex">
+          <% if tournament.user.user_image? %>
+            <img src='<%= tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
+          <% else %>
+            <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+          <% end %>
+          <div class="messagebar_right ml-4">
+            <p class="mypage_message_user"><%= tournament.room.room_name %></p>
           </div>
-				</a>
-      </li>
-    <% end %>
-  </ul>
-</nav>
+        </div>
+			</a>
+    </li>
+  <% end %>
+</ul>
