@@ -1,7 +1,7 @@
 <ul class="nav flex-column">
   <% @post_messages.each do |message| %>
     <li class="nav-item message_bar">
-			<a href="/rooms/<%="#{message.room_id}" %>">
+      <%= link_to "/rooms/#{message.room_id}" do %>
         <div class="d-flex">
           <% if message.room.post.user.user_image? %>
             <img src='<%= current_user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -14,7 +14,7 @@
           </div>
         </div>
         <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
-      </a>
+      <% end %>
     </li>
 	<% end %>
 </ul>

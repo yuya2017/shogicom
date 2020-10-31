@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="post_box_outer">
-      <a href="/communities/<%="#{community.id}" %>" style="text-decoration:none;">
+      <%= link_to "/communities/#{community.id}", data: {"turbolinks" => false} do %>
         <div class="post_box">
           <h4><%= community.room.room_name %></h4>
           <span class="tag_text">#<%= community.community_all_tag %></span>
@@ -41,7 +41,7 @@
           <p class="card-text"><%= community.community_content %></p>
           <p class="post_date"><%= l community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -22,9 +22,9 @@
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
-          <a href="/posts/index">
+          <%= link_to posts_path do %>
             <span class="button-text">対戦相手を探す</span>
-          </a>
+          <% end %>
         </button>
       </div>
       <div class="view-more my-4">
@@ -32,9 +32,9 @@
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
-          <a href="/tournaments/index">
+          <%= link_to tournaments_path do %>
             <span class="button-text">大会を探す</span>
-          </a>
+          <% end %>
         </button>
       </div>
       <div class="view-more my-4">
@@ -42,9 +42,9 @@
           <span class="circle" aria-hidden="true">
             <span class="icon arrow"></span>
           </span>
-          <a href="/communities/index">
+          <%= link_to communities_path ,data: {"turbolinks" => false} do %>
             <span class="button-text">イベントを探す</span>
-          </a>
+          <% end %>
         </button>
       </div>
     </div>

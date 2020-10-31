@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="post_box_outer">
-      <a href="/tournaments/<%="#{tournament.id}" %>">
+      <%= link_to "/tournaments/#{tournament.id}" do %>
         <div class="post_box">
           <h4><%= tournament.room.room_name %></h4>
           <span class="tag_text">#<%= tournament.tournament_all_tag %></span>
@@ -43,7 +43,7 @@
           <p><%= tournament.tournament_number_of_people %></p>
           <p class="post_date"><%= l tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
 <% end %>

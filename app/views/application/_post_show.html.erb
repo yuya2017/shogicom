@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="post_box_outer">
-      <a href="/posts/<%="#{post.id}" %>">
+      <%= link_to "/posts/#{post.id}" do %>
         <div class="post_box">
           <h4><%= post.room.room_name %></h4>
           <span class="tag_text">#<%= post.post_all_tag %></span>
@@ -40,7 +40,7 @@
           <p><%= post.post_content %></p>
           <p class="post_date"><%= l post.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
         </div>
-      </a>
+      <% end %>
     </div>
   </div>
 <% end %>

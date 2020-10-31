@@ -1,4 +1,5 @@
 class CommunitiesController < ApplicationController
+  layout 'maps'
 
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :community_participation]
   before_action :set_target_community, only: [:show, :edit, :update, :destroy]
