@@ -3,7 +3,7 @@ class CommunitiesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :community_participation]
   before_action :set_target_community, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
-  before_action :set_search, only: [:all_content]
+  before_action :set_search, only: [:index]
 
   def new
     @community = Community.new
@@ -21,7 +21,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  def all_content
+  def index
     @communities = Community.page(params[:page]).includes(:room).order(updated_at: "DESC")
     gon.user = current_user
     gon.communities = Community.all
