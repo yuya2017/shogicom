@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show]
   before_action :set_target_tournament, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
-  before_action :set_search, only: [:all_content]
+  before_action :set_search, only: [:index]
 
   def new
     @tournament = Tournament.new
@@ -20,7 +20,7 @@ class TournamentsController < ApplicationController
     end
   end
 
-  def all_content
+  def index
     @tournaments = Tournament.page(params[:page]).includes(:room).order(updated_at: "DESC")
   end
 
