@@ -11,9 +11,9 @@
           <i class="fas fa-edit fa-2x mx-4"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="DropdownMenuLink">
-          <a class="dropdown-item" href="/posts/new">オンライン対戦</a>
-          <a class="dropdown-item" href="/tournaments/new">大会開催</a>
-          <a class="dropdown-item" href="/communities/new">コミュニティ</a>
+          <%= link_to "オンライン対戦", new_post_path, class:"dropdown-item" %>
+          <%= link_to "大会開催", new_tournament_path, class:"dropdown-item" %>
+          <%= link_to "イベント開催", new_community_path, class:"dropdown-item" %>
         </div>
       </div>
       <% if user_signed_in? %>

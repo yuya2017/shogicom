@@ -512,7 +512,6 @@ a {
 
 .index_map {
   height: 800px;
-  width: 800px;
 }
 
 .show_map {
@@ -695,4 +694,6 @@ a {
   #fixed_bottom { width: 100%;
                   bottom: $footer_menu_height; }
   .show_media { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1); }
+  .sidebar { background-color: #FFF; }
+  .index_map { height: 600px; }
   }

@@ -21,6 +21,11 @@
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
     <%= yield %>
-    <%= render 'footer_menu' %>
+    <% unless controller.action_name == 'show' || controller.action_name == 'index' %>
+      <%= render 'footer_menu' %>
+    <% end %>
+    <% if controller.action_name == 'show' || controller.action_name == 'index' %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>" async defer></script>
+    <% end %>
   </body>
 </html>

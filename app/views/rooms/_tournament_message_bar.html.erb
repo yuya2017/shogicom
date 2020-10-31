@@ -1,7 +1,7 @@
 <ul class="nav flex-column">
   <% @tournament_messages.each do |message| %>
     <li class="nav-item message_bar">
-			<a href="/rooms/<%="#{message.room_id}" %>">
+      <%= link_to "/rooms/#{message.room_id}" do %>
         <div class="d-flex">
           <% if message.room.tournament.user.user_image? %>
             <img src='<%= message.room.tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -14,12 +14,12 @@
           </div>
         </div>
         <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
-      </a>
+      <% end %>
     </li>
 	<% end %>
   <% @tournament_no_messages.each do |tournament| %>
     <li class="nav-item message_bar">
-			<a href="/rooms/<%="#{tournament.room.id}" %>">
+      <%= link_to "/rooms/#{tournament.room.id}" do %>
         <div class="d-flex">
           <% if tournament.user.user_image? %>
             <img src='<%= tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -30,7 +30,7 @@
             <p class="mypage_message_user"><%= tournament.room.room_name %></p>
           </div>
         </div>
-			</a>
+			<% end %>
     </li>
   <% end %>
 </ul>
