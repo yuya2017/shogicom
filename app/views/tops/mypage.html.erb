@@ -2,18 +2,12 @@
   <div class="row">
     <%= render "sidebar" %>
 		<main class="col-md-9 px-4 ml-sm-auto header_next">
-		  <div class="card_summary d-flex my-4">
-			  <div class="prifile_img">
+		  <div class="card_summary my-4 mypage_icon">
+			  <div class="mypage_img">
 				  <% if @user.user_image? %>
 				    <img src='<%= @user.user_image %>' class="icon_no_link" alt="ユーザーアイコン">
-				    <figcaption class="balloon-name-description">
-				  	  <p><%= @user.user_name %></p>
-				    </figcaption>
 				  <% else %>
 				    <img src="/assets/profile.jpg" class="icon_no_link" alt="ユーザーアイコン">
-					  <figcaption class="balloon-name-description">
-						  <p><%= @user.user_name %></p>
-					  </figcaption>
 					<% end %>
 				</div>
   			<div class="card mx-1">
@@ -30,18 +24,24 @@
   				</div>
           <% if @user == current_user %>
             <%= link_to 'アカウント編集', edit_user_registration_path, class: "btn btn-primary buttonConfirm" %>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <p class="logout"><sapn class="px-4"><i class="fas fa-sign-out-alt"></i></sapn>ログアウト</p>
+            <% end %>
           <% end %>
 			  </div>
       </div>
+      <div class="heading">
+        <h2>投稿履歴</h2>
+      </div>
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">オンライン対戦</a>
+          <a class="active mypage_post" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">対戦</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">大会</a>
+          <a class="mypage_post" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">大会</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">コミュニティ開催</a>
+          <a class="mypage_post" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">イベント</a>
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">

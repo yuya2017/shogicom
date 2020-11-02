@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      post: オンライン投稿
+      post: 投稿
       room: 部屋
       tournament: 大会投稿
     attributes:

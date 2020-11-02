@@ -19,29 +19,44 @@
     <% end %>
 		<main class="col-md-9 ml-sm-auto room_header">
       <% if @room.private_id.present? %>
-        <%= link_to rooms_private_message_path do %>
+        <%= link_to rooms_private_message_path, class:"d-block d-md-none" do %>
           <div class="nav-link room_top">
-            <p class="room_top_font"><span><i class="fas fa-comments"></i></span>チャットルーム</p>
+            <p class="room_top_font"><span><i class="fas fa-chevron-left Back_btn"></i></span><span class="px-4"><i class="fas fa-comments"></i></span><%= user_search %></p>
           </div>
         <% end %>
+        <div class="nav-link room_top d-none d-md-block">
+          <p class="room_top_font"><span class="px-4"><i class="fas fa-comments"></i></span><%= user_search %></p>
+        </div>
       <% elsif @room.tournament_id.present? %>
-        <%= link_to rooms_participating_tournament_path do %>
+        <%= link_to rooms_participating_tournament_path, class:"d-block d-md-none" do %>
           <div class="nav-link room_top">
-            <p class="room_top_font"><span><i class="fas fa-chess"></i><span>参加済みの大会</p>
+            <p class="room_top_font"><span><i class="fas fa-chevron-left Back_btn"></i></span><span class="px-4"><i class="fas fa-chess"></i></span><%= @room.room_name %></p>
           </div>
         <% end %>
+        <div class="nav-link room_top d-none d-md-block">
+          <p class="room_top_font"><span class="px-4"><i class="fas fa-chess"></i></span><%= @room.room_name %></p>
+        </div>
+        <%= link_to "詳細", "/tournaments/#{@room.tournament_id}", class: "d-inline-block room_show" %>
       <% elsif @room.community_id.present? %>
-        <%= link_to rooms_participating_community_path do %>
+        <%= link_to rooms_participating_community_path, class:"d-block d-md-none" do %>
           <div class="nav-link room_top">
-            <p class="room_top_font"><span><i class="fas fa-users"></i><span>参加済みのイベント</p>
+            <p class="room_top_font"><span><i class="fas fa-chevron-left Back_btn"></i></span><span class="px-4"><i class="fas fa-users"></i></span><%= @room.room_name %></p>
           </div>
         <% end %>
+        <div class="nav-link room_top d-none d-md-block">
+          <p class="room_top_font"><span class="px-4"><i class="fas fa-users"></i></span><%= @room.room_name %></p>
+        </div>
+        <%= link_to "詳細", "/communities/#{@room.community_id}", class: "d-inline-block room_show", data: {"turbolinks" => false}  %>
       <% else %>
-        <%= link_to rooms_participating_post_path do %>
+        <%= link_to rooms_participating_post_path, class:"d-block d-md-none" do %>
           <div class="nav-link room_top">
-            <p class="room_top_font"><span><i class="fas fa-globe-asia"></i><span>参加済みの対戦</p>
+            <p class="room_top_font"><span><i class="fas fa-chevron-left Back_btn"></i></span><span class="px-4"><i class="fas fa-globe-asia"></i></span><%= @room.room_name %></p>
           </div>
         <% end %>
+        <div class="nav-link room_top d-none d-md-block">
+          <p class="room_top_font"><span class="px-4"><i class="fas fa-globe-asia"></i></span><%= @room.room_name %></p>
+        </div>
+        <%= link_to "詳細", "/posts/#{@room.post_id}", class: "d-inline-block room_show" %>
       <% end %>
       <div id="message-container">
         <div id='messages' data-room_id="<%= @room.id %>">

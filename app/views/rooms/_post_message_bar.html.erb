@@ -1,10 +1,13 @@
 <ul class="nav flex-column">
+  <div class="nav-link sidebar_top">
+    <p class="sidebar_font">参加済みの対戦</p>
+  </div>
   <% @post_messages.each do |message| %>
     <li class="nav-item message_bar">
       <%= link_to "/rooms/#{message.room_id}" do %>
         <div class="d-flex">
           <% if message.room.post.user.user_image? %>
-            <img src='<%= current_user.user_image %>' class="header_image" alt="ユーザーアイコン">
+            <img src='<%= message.room.post.user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <% else %>
             <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>

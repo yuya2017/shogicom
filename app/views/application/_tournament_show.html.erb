@@ -1,7 +1,7 @@
 <% @tournaments.each do |tournament| %>
-  <div class="card_summary d-flex my-4">
+  <div class="card_summary d-md-flex my-4 d-block">
     <div class="profile_main mx-2">
-      <div class="prifile_img">
+      <div class="profile_img">
         <% if tournament.user.user_image? %>
           <img src='<%= tournament.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="tournament-<%= tournament.id %>">
           <figcaption class="balloon-name-description">
@@ -23,7 +23,7 @@
           <p class="card-text"><%= tournament.user.user_content %></p>
           <% unless tournament.user == current_user %>
             <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link profile_btn" %>
-            <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
+            <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
           <% end %>
         </div>
       </div>

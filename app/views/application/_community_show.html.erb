@@ -1,7 +1,7 @@
 <% @communities.each do |community| %>
-  <div class="card_summary d-flex my-4">
+  <div class="card_summary d-md-flex my-4 d-block">
     <div class="profile_main mx-2">
-      <div class="prifile_img">
+      <div class="profile_img">
         <% if community.user.user_image? %>
           <img src='<%= community.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="community-<%= community.id %>">
           <figcaption class="balloon-name-description">
@@ -23,7 +23,7 @@
           <p class="card-text"><%= community.user.user_content %></p>
           <% unless community.user == current_user %>
             <%= link_to "プロフィール", "/tops/#{community.user_id}", class:"card-link profile_btn" %>
-            <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => community.user_id), class: "card-link profile_btn", method: :post  %>
+            <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => community.user_id), class: "card-link profile_btn", method: :post  %>
           <% end %>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <h4><%= community.room.room_name %></h4>
           <span class="tag_text">#<%= community.community_all_tag %></span>
           <p class="tournament_date">開催日時：<%= l community.community_limit, format: '%-m月%-d日(%a)' %></p>
-          <p class="tournament_date">応募期間：><%= l community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p class="tournament_date">応募期間：<%= l community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
           <p>開催場所：<%= community.community_place %></p>
           <p>参加費：<%= community.community_money %></p>
           <p>募集内容</p>

@@ -1,4 +1,7 @@
 <ul class="nav flex-column">
+  <div class="nav-link sidebar_top">
+    <p class="sidebar_font">参加済みのイベント</p>
+  </div>
   <% @community_messages.each do |message| %>
     <li class="nav-item message_bar">
       <%= link_to "/rooms/#{message.room_id}" do %>

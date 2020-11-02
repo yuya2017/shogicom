@@ -4,6 +4,16 @@ class RoomsController < ApplicationController
   before_action :private_room_confirmation, only: [:show]
   before_action :tournament_room_confirmation, only: [:show]
 
+  helper_method :user_search
+
+  def user_search
+    if @room.private_id == current_user.id
+      User.find(@room.user_id).user_name
+    else
+      User.find(@room.private_id).user_name
+    end
+  end
+
   def show
     @messages = @room.messages
     @message = current_user.messages.build
