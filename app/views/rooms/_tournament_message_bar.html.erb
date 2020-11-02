@@ -1,4 +1,7 @@
-<ul class="nav flex-column">
+<ul class="nav flex-column sidebar_main">
+  <div class="nav-link sidebar_top">
+    <p class="sidebar_font">参加済みの大会</p>
+  </div>
   <% @tournament_messages.each do |message| %>
     <li class="nav-item message_bar">
       <%= link_to "/rooms/#{message.room_id}" do %>
@@ -9,7 +12,7 @@
             <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>
           <div class="messagebar_message_right ml-4">
-            <p class="mypage_message_text"><%= message.room.room_name %></p>
+            <p class="mypage_message_user"><%= message.room.room_name %></p>
             <p class="mypage_message_text"><%= message.message_content %></p>
           </div>
         </div>

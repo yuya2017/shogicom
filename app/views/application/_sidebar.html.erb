@@ -1,4 +1,4 @@
-<nav class="col-md-3 d-none d-md-block bg-light sidebar">
+<nav class="col-md-3 d-none d-md-block bg-light pt-4 sidebar">
     <ul class="nav flex-column">
       <li class="nav-item">
         <%= link_to root_path do %>
@@ -41,13 +41,10 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
         <%= link_to new_post_path do %>
           <div class="nav-link sidebar_item sidebar_post">
             <span><i class="fas fa-globe-asia mr-1"></i><i class="fas fa-edit"></i><span>
-            <p class="sidebar_font">オンライン対戦投稿</p>
+            <p class="sidebar_font">対戦相手募集</p>
           </div>
         <% end %>
       </li>

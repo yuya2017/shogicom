@@ -2,14 +2,23 @@
   <div class="row">
     <%= render "tournament_search_bar" %>
 		<main class="col-md-9 px-4 ml-sm-auto header_next">
-      <select onChange="location.href=value;" class="search_media">
-        <option value="/tournaments">大会を探す</option>
-        <option value="/posts">対戦相手を探す</option>
-        <option value="/communities">イベントを探す</option>
-      </select>
 			<div class="heading">
 				<h2>大会</h2>
 			</div>
+      <fieldset class="d-block d-md-none">
+        <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="/posts" onclick="location.href=this.value"/>
+        <label class="radio-inline__label" for="item-1">
+            対戦
+        </label>
+        <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" onclick="location.href=this.value" value="/tournaments" checked="checked"/>
+        <label class="radio-inline__label" for="item-2">
+            大会
+        </label>
+        <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="/communities" onclick="location.href=this.value"/>
+        <label class="radio-inline__label" for="item-3">
+            イベント
+        </label>
+        </fieldset>
       <%= render 'tournament_show' %>
 			<%= paginate @tournaments %>
 		</main>

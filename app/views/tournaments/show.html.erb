@@ -41,13 +41,22 @@
       </div>
       <% end %>
       <p class="text-center">この大会に参加するユーザー</p>
-      <ul class="nav flex-column">
-        <% @users.each do |user| %>
-        <li class="nav-item my-2">
-          <p><%= user.user_name %></p>
-        </li>
-        <% end %>
-      </ul>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">人数</th>
+            <th scope="col">名前</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each_with_index do |user, i| %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= user.user_name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
