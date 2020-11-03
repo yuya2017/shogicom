@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   devise_for :users, controllers: {
-    registrations: "users/registrations"
+    registrations: "users/registrations",
+    passwords: 'users/passwords'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'users/sessions#new_guest'
+  end
   root to: 'tops#index'
   get 'tops/:id' => 'tops#mypage'
   get 'rooms/private_message'

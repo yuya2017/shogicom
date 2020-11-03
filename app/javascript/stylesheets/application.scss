@@ -387,6 +387,24 @@ a {
   border-radius: 30px;
 }
 
+.buttonguest {
+  display: block;
+  margin: 30px auto;
+  width: 260px;
+  height: 60px;
+  background-color: $btn_color;
+  text-align: center;
+  border: 1px $btn_color solid;
+  line-height: 50px;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  border-radius: 30px;
+  color: #FFF;
+  &:hover {
+    color: #FFF;
+  }
+}
+
 .btn-circle-3d {
   display: inline-block;
   text-decoration: none;

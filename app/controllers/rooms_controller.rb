@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_target_room, only: [:show]
-  before_action :private_room_confirmation, only: [:show]
-  before_action :tournament_room_confirmation, only: [:show]
+  before_action :set_target_room, only: :show
+  before_action :private_room_confirmation, only: :show
+  before_action :tournament_room_confirmation, only: :show
 
   helper_method :user_search
 
