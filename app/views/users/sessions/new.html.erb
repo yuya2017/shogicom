@@ -30,11 +30,13 @@
       <%= render "users/shared/links" %>
       <p class="login_title notlogin_text">まだご登録がお済みでないユーザー</p>
       <div>
-        <p>登録していただくと、投稿機能、マイページなどとて便利にお使いいただけます。</p>
+        <p>登録していただくと、投稿機能、マイページ機能などとても便利にお使いいただけます。</p>
+        <p>簡易的な使用であればゲストログインを活用してください。</p>
       </div>
-      <div class="actions guestContainer">
+      <div class="guestContainer">
         <%= link_to "新規登録", new_registration_path(resource_name), class: "btn buttonConfirm btn-info" %>
-      </div>
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, class:"btn buttonguest btn-warning", method: :post %>
+    </div>
     </main>
   </div>
 </div>

@@ -23,7 +23,9 @@
   					<p class="card-text"><%= @user.user_content %></p>
   				</div>
           <% if @user == current_user %>
-            <%= link_to 'アカウント編集', edit_user_registration_path, class: "btn btn-primary buttonConfirm" %>
+            <% unless @user.email == 'guest@example.com' %>
+              <%= link_to 'アカウント編集', edit_user_registration_path, class: "btn btn-primary buttonConfirm" %>
+            <% end %>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <p class="logout"><sapn class="px-4"><i class="fas fa-sign-out-alt"></i></sapn>ログアウト</p>
             <% end %>
