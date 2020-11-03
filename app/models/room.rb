@@ -7,7 +7,7 @@ class Room < ApplicationRecord
   has_many :messages, dependent: :destroy
 
 
-  validates :room_name, presence: true
+  validates :room_name, presence: true, length: { maximum: 10 }
 
   def self.enterRoom(user_id, private_id)
     if Room.where(user_id: user_id).where(private_id: private_id).present?
