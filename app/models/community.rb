@@ -11,6 +11,8 @@ class Community < ApplicationRecord
   validates :community_limit, presence: true
   validates :community_money, presence: true
   validates :user_id, presence: true
+  validates :community_all_tag, length: { maximum: 30 }
+  validates :community_content, length: { maximum: 100 }
 
   geocoded_by :community_place do |obj, results|
     unless results.first

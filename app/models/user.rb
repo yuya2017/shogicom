@@ -14,11 +14,12 @@ class User < ApplicationRecord
   has_many :communities, dependent: :destroy
   has_many :community_users, dependent: :destroy
 
-  validates :user_name, presence: true, uniqueness: true
-  validates :user_chess, presence: true
-  validates :user_app, presence: true
-  validates :user_time, presence: true
+  validates :user_name, presence: true, uniqueness: true, length: { maximum: 10 }
+  validates :user_chess, presence: true, length: { maximum: 10 }
+  validates :user_app, presence: true, length: { maximum: 20 }
+  validates :user_time, presence: true, length: { maximum: 15 }
   validates :user_pref, presence: true
+  validates :user_content, length: { maximum: 50 }
 
   def remember_me
     true

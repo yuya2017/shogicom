@@ -5,12 +5,14 @@ class Tournament < ApplicationRecord
   has_one :room, dependent: :destroy
   accepts_nested_attributes_for :room
 
-  validates :tournament_chess, presence: true
-  validates :tournament_app, presence: true
-  validates :tournament_time, presence: true
+  validates :tournament_chess, presence: true, length: { maximum: 10 }
+  validates :tournament_app, presence: true, length: { maximum: 20 }
+  validates :tournament_time, presence: true, length: { maximum: 15 }
   validates :tournament_limit, presence: true
   validates :tournament_date, presence: true
   validates :user_id, presence: true
+  validates :tournament_all_tag, length: { maximum: 30 }
+  validates :tournament_content, length: { maximum: 100 }
 
   def self.tournament_user_create(user_id, tournament_id)
     user = TournamentUser.new(
