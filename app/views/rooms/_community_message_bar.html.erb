@@ -4,7 +4,7 @@
   </div>
   <% @community_messages.each do |message| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{message.room_id}" do %>
+      <%= link_to "/rooms/#{message.room_id}/community" do %>
         <div class="d-flex">
           <% if message.room.community.user.user_image? %>
             <img src='<%= message.room.community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -22,7 +22,7 @@
 	<% end %>
 	<% @community_no_messages.each do |community| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{community.room.id}" do %>
+      <%= link_to "/rooms/#{community.room.id}/community" do %>
         <div class="d-flex">
           <% if community.user.user_image? %>
             <img src='<%= community.user.user_image %>' class="header_image" alt="ユーザーアイコン">

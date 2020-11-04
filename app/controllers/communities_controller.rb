@@ -14,7 +14,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = current_user.communities.new(community_params)
     if @community.save
-      flash[:notice] = "#{@community.user.user_name}がイベントーを応募しました。"
+      flash[:notice] = "#{@community.user.user_name}がイベントを応募しました。"
       Community.community_user_create(current_user.id, @community.id)
       redirect_to("/")
     else
@@ -70,7 +70,7 @@ class CommunitiesController < ApplicationController
   #イベント参加用
   def community_participation
     room = Community.enterCommunity(current_user.id, params[:community].to_i)
-    redirect_to("/rooms/#{room.id}")
+    redirect_to("/rooms/#{room.id}/community")
   end
 
   private

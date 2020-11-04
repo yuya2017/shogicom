@@ -18,7 +18,7 @@
       </div>
       <div class="post_message_link">
         <% if @community_users.where(user_id: current_user.id).present? %>
-        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}", class: "btn btn-primary buttonConfirm" %>
+        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}/community", class: "btn btn-primary buttonConfirm" %>
         <% else %>
         <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
         <% end %>

@@ -4,7 +4,7 @@
   </div>
   <% @tournament_messages.each do |message| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{message.room_id}" do %>
+      <%= link_to "/rooms/#{message.room_id}/tournament" do %>
         <div class="d-flex">
           <% if message.room.tournament.user.user_image? %>
             <img src='<%= message.room.tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -22,7 +22,7 @@
 	<% end %>
   <% @tournament_no_messages.each do |tournament| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{tournament.room.id}" do %>
+      <%= link_to "/rooms/#{tournament.room.id}/tournament" do %>
         <div class="d-flex">
           <% if tournament.user.user_image? %>
             <img src='<%= tournament.user.user_image %>' class="header_image" alt="ユーザーアイコン">

@@ -4,7 +4,7 @@
   </div>
   <% @private_messages.zip(@message_users) do |message, user| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{message.room_id}" do %>
+      <%= link_to "/rooms/#{message.room_id}/private" do %>
         <div class="d-flex">
           <% if user.user_image? %>
             <img src='<%= user.user_image %>' class="header_image" alt="ユーザーアイコン">
@@ -22,7 +22,7 @@
 	<% end %>
 	<% @no_messages.zip(@no_message_users) do |room, user| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{room.id}" do %>
+      <%= link_to "/rooms/#{room.id}/private" do %>
         <div class="d-flex">
           <% if user.user_image? %>
             <img src='<%= user.user_image %>' class="header_image" alt="ユーザーアイコン">

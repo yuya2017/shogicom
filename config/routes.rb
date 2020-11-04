@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   get 'rooms/participating_post'
   get 'rooms/participating_tournament'
   get 'rooms/participating_community'
+  get 'rooms/:id/post' => 'rooms#post_show'
+  get 'rooms/:id/tournament' => 'rooms#tournament_show'
+  get 'rooms/:id/community' => 'rooms#community_show'
+  get 'rooms/:id/private' => 'rooms#private_show'
   get 'posts/search_post'
   get 'tournaments/search_tournament'
   get 'communities/search_community'
@@ -25,7 +29,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :tournaments
   resources :communities
-  resources :rooms, :only => [:show]
   resources :messages, :only => [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

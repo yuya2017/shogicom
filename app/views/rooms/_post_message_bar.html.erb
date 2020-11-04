@@ -4,7 +4,7 @@
   </div>
   <% @post_messages.each do |message| %>
     <li class="nav-item message_bar">
-      <%= link_to "/rooms/#{message.room_id}" do %>
+      <%= link_to "/rooms/#{message.room_id}/post" do %>
         <div class="d-flex">
           <% if message.room.post.user.user_image? %>
             <img src='<%= message.room.post.user.user_image %>' class="header_image" alt="ユーザーアイコン">
