@@ -6,7 +6,7 @@
           <h4><%= @community.room.room_name %></h4>
           <span class="tag_text">#<%= @community.community_all_tag %></span>
           <p class="show_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
-          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
+          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a)' %></p>
           <p>開催場所：<%= @community.community_place %></p>
           <p>参加費：<%= @community.community_money %></p>
           <p>募集内容</p>

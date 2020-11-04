@@ -70,7 +70,7 @@ class TournamentsController < ApplicationController
   private
 
   def tournament_params
-    params.require(:tournament).permit(:tournament_chess, :tournament_app, :tournament_time, :tournament_all_tag, :tournament_content, :tournament_limit, :tournament_number_of_people, :tournament_date, room_attributes:[:id, :room_name])
+    params.require(:tournament).permit(:tournament_chess, :tournament_app, :tournament_time, :tournament_all_tag, :tournament_content, :tournament_limit, :tournament_number_of_people, :tournament_at_date, :tournament_at_hour, :tournament_at_minute, room_attributes:[:id, :room_name])
   end
 
   def set_target_tournament
