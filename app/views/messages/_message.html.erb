@@ -20,8 +20,6 @@
           <p class="card-text">よく使うアプリ：<%= message.user.user_app %></p>
           <p class="card-text">棋力：<%= message.user.user_chess %></p>
           <p class="card-text">よく対戦する持ち時間：<%= message.user.user_time %></p>
-          <p class="card-text">自己紹介</p>
-          <p class="card-text"><%= message.user.user_content %></p>
           <%= link_to "プロフィール", "/tops/#{message.user_id}", class:"card-link profile_btn" %>
           <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => message.user_id), class: "card-link profile_btn", method: :post  %>
         </div>

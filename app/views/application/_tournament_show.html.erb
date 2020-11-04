@@ -19,8 +19,6 @@
           <p class="card-text">よく使うアプリ：<%= tournament.user.user_app %></p>
           <p class="card-text">棋力：<%= tournament.user.user_chess %></p>
           <p class="card-text">よく対戦する持ち時間：<%= tournament.user.user_time %></p>
-          <p class="card-text">自己紹介</p>
-          <p class="card-text"><%= tournament.user.user_content %></p>
           <% unless tournament.user == current_user %>
             <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link profile_btn" %>
             <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>

@@ -72,21 +72,40 @@
 				</div>
 				<div class="form-group">
 					<%= f.label :tournament_number_of_people, '応募人数' %>
-					<%= f.number_field :tournament_number_of_people, class: 'form-control'%>
+					<%= f.number_field :tournament_number_of_people, class: 'form-control  form_select_nobtn'%>
 					<small class="form-text text-muted">
 						応募人数を入力してください。
 					</small>
 				</div>
 				<div class="form-group">
-					<%= f.label :tournament_limit, '応募期間' %>
-					<%= f.date_select :tournament_limit, class: 'form-control'%>
-					<small class="form-text text-muted">
-						応募の期日を入力してください。
-					</small>
-				</div>
+          <div id="datetimepicker0" data-target-input="nearest">
+  					<%= f.label :tournament_limit, '応募期間' %>
+            <div class="d-flex">
+              <%= f.text_field :tournament_limit, class: 'form-control form_select', 'data-target': "#datetimepicker0", 'data-toggle': "datetimepicker" %>
+              <span class="input-group-append" data-target="#datetimepicker0" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </span>
+            </div>
+  					<small class="form-text text-muted">
+  						応募の期日を入力してください。
+  					</small>
+				  </div>
+        </div>
 				<div class="form-group">
 					<%= f.label :tournament_date, '開催日時' %>
-					<%= f.datetime_select :tournament_date, class: 'form-control'%>
+          <div class="calendar_date">
+            <div id="datetimepicker1" data-target-input="nearest" class="tournament_date">
+              <div class="d-flex">
+                <%= f.text_field :tournament_at_date, class: 'form-control form_select', 'data-target': "#datetimepicker1", 'data-toggle': "datetimepicker" %>
+                <span class="input-group-append pr-4" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </span>
+              <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select' %>
+              <span class="time_between">：</span>
+              <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select' %>
+            </div>
+          </div>
+        </div>
 					<small class="form-text text-muted">
 						開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
 					</small>

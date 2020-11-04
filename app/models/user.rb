@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :user_app, presence: true, length: { maximum: 20 }
   validates :user_time, presence: true, length: { maximum: 15 }
   validates :user_pref, presence: true
-  validates :user_content, length: { maximum: 50 }
+  validates :user_content, length: { maximum: 100 }
 
   def remember_me
     true
