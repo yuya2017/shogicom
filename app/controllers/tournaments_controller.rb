@@ -64,7 +64,7 @@ class TournamentsController < ApplicationController
   #大会参加用
   def tournament_participation
     room = Tournament.enterTournament(current_user.id, params[:tournament].to_i)
-    redirect_to("/rooms/#{room.id}")
+    redirect_to("/rooms/#{room.id}/tournament")
   end
 
   private
