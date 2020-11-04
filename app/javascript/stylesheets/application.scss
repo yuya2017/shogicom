@@ -14,6 +14,8 @@
 *= require_self
 */
 @import '~bootstrap/scss/bootstrap';
+@import "~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4";
+
 $header-height: 60px;
 $interval: 60px;
 $main_color: #FFFF80;
@@ -246,6 +248,7 @@ a {
 }
 .profile_main {
   position: relative;
+  width: 10%;
 }
 
 .profile_body:before {
@@ -820,6 +823,26 @@ color: #A4A8B1;
   font-size: 20px;
 }
 
+.form_select {
+  max-width: 300px;
+}
+
+.form_select_nobtn {
+  max-width: 336px;
+}
+
+.tournament_date {
+  width: 100%;
+}
+
+.form_time_select {
+  max-width: 100px;
+}
+
+.time_between {
+  line-height: 36px;
+}
+
 @media screen and (max-width: 767px) {
   .header_top_left { padding-top: 0; padding-bottom: 0; }
   .header_top_right { padding-top: 0; padding-bottom: 0; }
@@ -843,4 +866,5 @@ color: #A4A8B1;
   .profile_link { width: 21rem; }
   .show_map { height: 300px; }
   .logout { font-size: 17px; }
+  .profile_main { width: 100%; }
   }

@@ -31,7 +31,7 @@
 						</small>
 					</div>
 				<% end %>
-				<div class="form-group">
+        <div class="form-group">
 					<%= f.label :community_place, '開催場所*' %>
 					<%= f.text_field :community_place, class: 'form-control' %>
 					<small class="form-text text-muted">
@@ -40,18 +40,32 @@
 					</small>
 				</div>
 				<div class="form-group">
-					<%= f.label :community_date, '開催日時*' %>
-					<%= f.date_select :community_date, class: 'form-control'%>
-					<small class="form-text text-muted">
-				  	開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
-					</small>
+          <div id="datetimepicker0" data-target-input="nearest">
+  					<%= f.label :community_date, '開催日時*' %>
+            <div class="d-flex">
+    					<%= f.text_field :community_date, class: 'form-control form_select', 'data-target': "#datetimepicker0", 'data-toggle': "datetimepicker" %>
+              <span class="input-group-append" data-target="#datetimepicker0" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </span>
+            </div>
+  					<small class="form-text text-muted">
+  				  	開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
+  					</small>
+          </div>
 				</div>
 				<div class="form-group">
-					<%= f.label :community_limit, '応募期間*' %>
-					<%= f.date_select :community_limit, class: 'form-control' %>
-					<small class="form-text text-muted">
-						応募の期日を入力してください。
-					</small>
+          <div id="datetimepicker1" data-target-input="nearest">
+					  <%= f.label :community_limit, '応募期間*' %>
+            <div class="d-flex">
+					    <%= f.text_field :community_limit, class: 'form-control form_select', 'data-target': "#datetimepicker1", 'data-toggle': "datetimepicker" %>
+              <span class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </span>
+            </div>
+					  <small class="form-text text-muted">
+						  応募の期日を入力してください。
+					  </small>
+          </div>
 				</div>
 				<div class="form-group">
 					<%= f.label :community_money, '参加費*' %>
