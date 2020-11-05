@@ -53,12 +53,12 @@ class RoomsController < ApplicationController
   def create_private_room
     room_key = Room.enterRoom(current_user.id, params[:user_id].to_i)
     if room_key.class == Integer
-      redirect_to("/rooms/#{room_key}/private")
+      redirect_to "/rooms/#{room_key}/private"
     else
       if room_key.save!
-        redirect_to("/rooms/#{room_key.id}/private")
+        redirect_to "/rooms/#{room_key.id}/private"
       else
-        redirect_to("/")
+        redirect_t root_path
       end
     end
   end
@@ -93,8 +93,7 @@ class RoomsController < ApplicationController
   def private_room_confirmation
     if @room.private_id.present?
       unless @room.user_id == current_user.id || @room.private_id == current_user.id
-        flash[:notice] = "このチャットルームへは入れません。"
-        redirect_to("/")
+        redirect_to root_path, notice: "このチャットルームへは入れません。"
       end
     end
   end
@@ -108,8 +107,7 @@ class RoomsController < ApplicationController
         user_key.push(i.user_id)
       end
       unless user_key.include?(current_user.id)
-        flash[:notice] = "大会へ参加してください。"
-        redirect_to("/")
+        redirect_to root_path, notice: "大会へ参加してください。"
       end
     end
   end
@@ -123,8 +121,7 @@ class RoomsController < ApplicationController
         user_key.push(i.user_id)
       end
       unless user_key.include?(current_user.id)
-        flash[:notice] = "イベントへ参加してください。"
-        redirect_to("/")
+        redirect_to root_path, notice: "イベントへ参加してください。"
       end
     end
   end

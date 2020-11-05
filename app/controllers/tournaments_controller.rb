@@ -12,11 +12,10 @@ class TournamentsController < ApplicationController
   def create
     @tournament = current_user.tournaments.new(tournament_params)
     if @tournament.save
-      flash[:notice] = "#{@tournament.user.user_name}が大会を応募しました。"
       Tournament.tournament_user_create(current_user.id, @tournament.id,)
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@tournament.room.room_name}を応募しました。"
     else
-      render("tournaments/new")
+      render "tournaments/new"
     end
   end
 
@@ -39,19 +38,17 @@ class TournamentsController < ApplicationController
 
   def update
     if @tournament.update(tournament_params)
-      flash[:notice] = "更新しました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "更新しました。"
     else
-      render("tournaments/edit")
+      render "tournaments/edit"
     end
   end
 
   def destroy
     if @tournament.destroy
-      flash[:notice] = "「#{@tournament.room.room_name}」が削除されました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@tournament.room.room_name}を削除しました。"
     else
-      render("tournaments/edit")
+      render "tournaments/edit"
     end
   end
 
@@ -64,7 +61,7 @@ class TournamentsController < ApplicationController
   #大会参加用
   def tournament_participation
     room = Tournament.enterTournament(current_user.id, params[:tournament].to_i)
-    redirect_to("/rooms/#{room.id}/tournament")
+    redirect_to "/rooms/#{room.id}/tournament", notice: "大会へ参加しました。"
   end
 
   private
@@ -79,8 +76,7 @@ class TournamentsController < ApplicationController
 
   def account_confirmation
     unless current_user.id == @tournament.user_id
-    flash[:notice] = "このアカウントは操作できません。"
-      redirect_to("/")
+      redirect_to root_path, notice: "このアカウントは操作できません。"
     end
   end
 

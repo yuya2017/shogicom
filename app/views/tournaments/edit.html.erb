@@ -96,9 +96,9 @@
                 <span class="input-group-append pr-4" data-target="#datetimepicker1" data-toggle="datetimepicker">
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </span>
-              <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, { include_blank: "#{@tournament.tournament_date.strftime("%H")}" }, class: 'form-control form_time_select', autocomplete: 'off' %>
+              <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, { selected: "#{@tournament.tournament_date.strftime("%H")}" }, class: 'form-control form_time_select', autocomplete: 'off' %>
               <span class="time_between">：</span>
-              <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, { include_blank: "#{@tournament.tournament_date.strftime("%M")}" }, class: 'form-control form_time_select', value: "#{@tournament.tournament_date}", autocomplete: 'off' %>
+              <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, { selected: "#{@tournament.tournament_date.strftime("%M")}" }, class: 'form-control form_time_select', value: "#{@tournament.tournament_date}", autocomplete: 'off' %>
             </div>
           </div>
         </div>

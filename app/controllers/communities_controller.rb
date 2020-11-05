@@ -14,11 +14,10 @@ class CommunitiesController < ApplicationController
   def create
     @community = current_user.communities.new(community_params)
     if @community.save
-      flash[:notice] = "#{@community.user.user_name}がイベントを応募しました。"
       Community.community_user_create(current_user.id, @community.id)
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@community.room.room_name}を応募しました。"
     else
-      render("communities/new")
+      render "communities/new"
     end
   end
 
@@ -45,19 +44,17 @@ class CommunitiesController < ApplicationController
 
   def update
     if @community.update(community_params)
-      flash[:notice] = "更新しました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "更新しました。"
     else
-      render("communities/edit")
+      render "communities/edit"
     end
   end
 
   def destroy
     if @community.destroy
-      flash[:notice] = "「#{@community.room.room_name}」が削除されました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@community.room.room_name}を削除しました。"
     else
-      render("communities/edit")
+      render "communities/edit"
     end
   end
 
@@ -70,7 +67,7 @@ class CommunitiesController < ApplicationController
   #イベント参加用
   def community_participation
     room = Community.enterCommunity(current_user.id, params[:community].to_i)
-    redirect_to("/rooms/#{room.id}/community")
+    redirect_to "/rooms/#{room.id}/community", notice: "参加しました。"
   end
 
   private
@@ -85,8 +82,7 @@ class CommunitiesController < ApplicationController
 
   def account_confirmation
     unless current_user.id == @community.user_id
-    flash[:notice] = "このアカウントは操作できません。"
-      redirect_to("/")
+      redirect_to root_path, notice: "このアカウントは操作できません。"
     end
   end
 
