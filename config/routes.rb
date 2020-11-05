@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
   devise_scope :user do
     post 'users/guest_sign_in' => 'users/sessions#new_guest'
+    post 'users/password_change' => 'users/registrations#password_change'
   end
   root to: 'tops#index'
   get 'tops/:id' => 'tops#mypage'

@@ -29,6 +29,9 @@
             <%= link_to destroy_user_session_path, method: :delete do %>
               <p class="logout"><sapn class="px-4"><i class="fas fa-sign-out-alt"></i></sapn>ログアウト</p>
             <% end %>
+            <%= link_to users_password_change_path, data: { confirm: "パスワード変更にはメール認証が必要ですがよろしいですか？" } , method: :post do %>
+              <p class="password_change"><sapn class="px-4"><i class="fas fa-user-edit"></i></sapn>パスワード変更</p>
+            <% end %>
           <% end %>
 			  </div>
       </div>

@@ -649,8 +649,12 @@ a {
   padding-bottom: 30px;
 }
 
+.devise_menu {
+  color: #005FFF;
+}
+
 .notlogin_text {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .guestContainer {
@@ -821,6 +825,14 @@ color: #A4A8B1;
   text-align: right;
   color: $font_main_color;
   font-size: 20px;
+  padding-right: 54px;
+}
+
+.password_change {
+  text-align: right;
+  color: red;
+  font-size: 20px;
+  padding-right: 10px;
 }
 
 .form_select {
@@ -892,6 +904,7 @@ color: #A4A8B1;
   .balloon-name-description{ padding: 10px 0 0 10px; font-size: 20px; text-align: center; }
   .profile_link { width: 21rem; }
   .show_map { height: 300px; }
-  .logout { font-size: 17px; }
+  .logout { font-size: 17px; padding-right: 47px; }
+  .password_change { font-size: 17px }
   .profile_main { width: 100%; }
   }
