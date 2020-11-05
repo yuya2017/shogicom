@@ -843,6 +843,33 @@ color: #A4A8B1;
   line-height: 36px;
 }
 
+.gmap_info_window_date {
+    color: $font_main_color;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.gmap_info_window_limit {
+  font-size: 16px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.gmap_info_window_money {
+  font-size: 16px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.gmap_info_window_address {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 767px) {
   .header_top_left { padding-top: 0; padding-bottom: 0; }
   .header_top_right { padding-top: 0; padding-bottom: 0; }
