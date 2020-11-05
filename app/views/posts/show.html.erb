@@ -4,7 +4,10 @@
       <div class="show_box_outer">
         <div class="post_box">
           <h4><%= @post.room.room_name %></h4>
-          <span class="tag_text">#<%= @post.post_all_tag %></span>
+          <% all_tags = @post.post_all_tag.split(",") %>
+          <% all_tags.each do |all_tag| %>
+            <span class="tag_text">#<%= all_tag %></span>
+          <% end %>
           <p>対戦したいアプリ：<%= @post.post_app %></p>
           <p>棋力：<%= @post.post_chess %></p>
           <p>持ち時間：<%= @post.post_time %></p>

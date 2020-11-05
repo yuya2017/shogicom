@@ -5,6 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   before_action :check_guest, only: [:destroy, :update, :edit]
 
+  def password_change
+    sign_out
+    redirect_to new_user_password_path, notice: 'メールアドレスを入力してください。'
+  end
+
   # GET /resource/sign_up
   # def new
   #   super

@@ -4,7 +4,10 @@
       <div class="show_box_outer">
         <div class="post_box">
           <h4><%= @tournament.room.room_name %></h4>
-          <span class="tag_text">#<%= @tournament.tournament_all_tag %></span>
+          <% all_tags = @tournament.tournament_all_tag.split(",") %>
+          <% all_tags.each do |all_tag| %>
+            <span class="tag_text">#<%= all_tag %></span>
+          <% end %>
           <p class="show_date">開催日時：<%= l @tournament.tournament_limit, format: '%-m月%-d日(%a)' %></p>
           <p class="show_date">応募期間：<%= l @tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %></p>
           <p>対戦したいアプリ：<%= @tournament.tournament_app %></p>
