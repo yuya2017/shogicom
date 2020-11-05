@@ -11,10 +11,9 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      flash[:notice] = "#{@post.user.user_name}が#{@post.room.room_name}を作成しました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@post.room.room_name}を作成しました。"
     else
-      render("posts/new")
+      render "posts/new"
     end
   end
 
@@ -33,23 +32,20 @@ class PostsController < ApplicationController
   def update
     #要テスト
     unless @post.room.id == params[:post][:room_attributes][:id].to_i
-      flash[:notice] = "room_idは変更できません。"
-      redirect_to("/")
+      redirect_to root_path, notice: "room_idは変更できません。"
     end
     if @post.update(post_params)
-      flash[:notice] = "更新しました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "更新しました。"
     else
-      render("posts/edit")
+      render "posts/edit"
     end
   end
 
   def destroy
     if @post.destroy
-      flash[:notice] = "「#{@post.room.room_name}」が削除されました。"
-      redirect_to("/")
+      redirect_to root_path, notice: "#{@post.room.room_name}を削除しました。"
     else
-      render("posts/edit")
+      render "posts/edit"
     end
   end
 
@@ -71,8 +67,7 @@ class PostsController < ApplicationController
 
   def account_confirmation
     unless current_user.id == @post.user_id
-    flash[:notice] = "このアカウントは操作できません。"
-      redirect_to("/")
+      redirect_to root_path, notice: "このアカウントは操作できません。"
     end
   end
 
