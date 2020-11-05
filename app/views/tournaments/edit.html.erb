@@ -52,6 +52,13 @@
 						希望する対戦時間を入力してください。
 					</small>
 				</div>
+        <div class="form-group">
+          <%= f.label :tournament_all_tag, 'タグ' %>
+          <%= f.text_field :tournament_all_tag, class: 'form-control' %>
+          <small class="form-text text-muted">
+            好きなタグをつけることができます。
+          </small>
+        </div>
 				<div class="form-group">
 					<%= f.label :tournament_content, '募集内容' %>
 					<%= f.text_area :tournament_content, class: 'form-control'%>

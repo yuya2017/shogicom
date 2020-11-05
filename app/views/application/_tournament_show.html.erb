@@ -30,7 +30,10 @@
       <%= link_to "/tournaments/#{tournament.id}" do %>
         <div class="post_box">
           <h4><%= tournament.room.room_name %></h4>
-          <span class="tag_text">#<%= tournament.tournament_all_tag %></span>
+          <% all_tags = tournament.tournament_all_tag.split(",") %>
+          <% all_tags.each do |all_tag| %>
+            <span class="tag_text">#<%= all_tag %></span>
+          <% end %>
           <p class="tournament_date">開催日時：<%= l tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %>〜</p>
           <p class="tournament_date">応募期間：<%= l tournament.tournament_limit, format: '%-m月%-d日(%a)' %>まで</p>
           <p>アプリ：<%= tournament.tournament_app %></p>
