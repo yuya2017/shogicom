@@ -30,7 +30,10 @@
       <%= link_to "/communities/#{community.id}", data: {"turbolinks" => false} do %>
         <div class="post_box">
           <h4><%= community.room.room_name %></h4>
-          <span class="tag_text">#<%= community.community_all_tag %></span>
+          <% all_tags = community.community_all_tag.split(",") %>
+          <% all_tags.each do |all_tag| %>
+            <span class="tag_text">#<%= all_tag %></span>
+          <% end %>
           <p class="tournament_date">開催日時：<%= l community.community_limit, format: '%-m月%-d日(%a)' %></p>
           <p class="tournament_date">応募期間：<%= l community.community_date, format: '%-m月%-d日(%a) %H:%M' %></p>
           <p>開催場所：<%= community.community_place %></p>
