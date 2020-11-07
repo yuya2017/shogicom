@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'rooms/create_private_room'
   post 'tournaments/tournament_participation'
   post 'communities/community_participation'
+  post 'tournaments/tournament_exit'
+  post 'communities/community_exit'
 
   resources :posts
   resources :tournaments

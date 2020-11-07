@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("javascript/top")
 require("javascript/calendar")
+require("javascript/user_image")
 require("moment/locale/ja")
 require("tempusdominus-bootstrap-4")
 

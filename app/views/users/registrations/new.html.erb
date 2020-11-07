@@ -41,8 +41,8 @@
 		      <%= f.text_field :user_time, autocomplete: "user_time", class: 'form-control tagsinput' %>
 		    </div>
 		    <div class="field form-group">
-		      <%= f.label :user_pref, '所在地' %><br>
-		      <%= f.select :user_pref, User.user_prefs.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+		      <%= f.label :user_pref, '所在地*' %><br>
+		      <%= f.select :user_pref, User.user_prefs.keys, {prompt: '選択してください'}, class: 'form-control btn address_bar' %>
 		    </div>
 		    <div class="field form_group">
 		      <%= f.label :user_content, '自己紹介' %>
@@ -59,10 +59,13 @@
 		      <%= f.label :password_confirmation, 'パスワード確認用*' %>
 		      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'  %>
 		    </div>
-		    <div class="field form_group">
-		    	<%= f.label :user_image, 'プロフィール画像' %><br>
-		    	<%= f.file_field :user_image, class: 'form-control' %>
-		    </div>
+        <div class="field form_group">
+          <div class="d-flex mt-2">
+  				  <%= f.label :user_image, 'プロフィール画像', class:"image_prof" %><br>
+            <img src="/assets/profile.jpg" class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
+          </div>
+          <%= f.file_field :user_image, class: 'form-control', id: 'user_img' %>
+				</div>
 		    <div class="actions buttonContainer">
 		      <%= f.submit " 登録", class:"btn buttonguest btn-warning" %>
 		    </div>

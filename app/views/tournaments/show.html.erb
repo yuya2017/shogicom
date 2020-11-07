@@ -38,11 +38,13 @@
               <p><%= @tournament.user.user_name %></p>
         <% end %>
       </div>
-      <% if user_signed_in? && @tournament.user_id == current_user.id %>
       <div class="side_user_edit">
-			  <%= link_to '編集',"/tournaments/#{@tournament.id}/edit", class: "btn-circle-3d", style:"background:#FF3366;" %>
+        <% if user_signed_in? && @tournament.user_id == current_user.id %>
+  			  <%= link_to '編集',"/tournaments/#{@tournament.id}/edit", class: "btn-circle-3d" %>
+        <% elsif @tournament_users.where(user_id: current_user.id).present? %>
+        	<%= link_to '退出', tournaments_tournament_exit_path(:tournament => @tournament.id), class: "btn-circle-3d exit_color", method: :post, data: {confirm: "本当に抜けますか？"}  %>
+        <% end %>
       </div>
-      <% end %>
       <p class="text-center">この大会に参加するユーザー</p>
       <table class="table table-striped">
         <thead>

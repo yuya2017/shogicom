@@ -32,13 +32,20 @@
 		      <%= f.label :usr_content, '自己紹介*' %>
 		      <%= f.text_area :user_content, autocomplete: "user_content", class: 'form-control'%>
 		    </div>
-		    <div class="field form-group">
-		      <%= f.label :user_pref, '所在地' %><br>
-		      <%= f.select :user_pref, User.user_prefs.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
-		    </div>
+        <div class="field form-group">
+          <%= f.label :user_pref, '所在地*' %><br>
+          <%= f.select :user_pref, User.user_prefs.keys, {prompt: '選択してください'}, class: 'form-control btn address_bar' %>
+        </div>
 				<div class="field form_group">
-					<%= f.label :user_image, 'プロフィール画像' %><br>
-					<%= f.file_field :user_image, class: 'form-control' %>
+          <div class="d-flex">
+  				  <%= f.label :user_image, 'プロフィール画像', class:"image_prof" %><br>
+            <% if current_user.user_image? %>
+            	<img src='<%= current_user.user_image %>' class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
+            <% else %>
+            	<img src="/assets/profile.jpg" class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
+            <% end %>
+          </div>
+          <%= f.file_field :user_image, class: 'form-control', id: 'user_img' %>
 				</div>
 		    <div class="actions buttonContainer">
 		      <%= f.submit "変更", class: "btn btn-primary buttonConfirm" %>
