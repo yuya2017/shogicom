@@ -13,7 +13,7 @@
           <% end %>
           <div class="messagebar_message_right ml-4">
             <p class="mypage_message_user"><%= user.user_name %></p>
-            <p class="mypage_message_text"><%= message.message_content %></p>
+            <p class="mypage_message_text"><%= message.message_content[0,16] %></p>
           </div>
         </div>
         <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
