@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9 order-md-last header_next show_media">
+    <div class="col-lg-9 order-lg-last header_next show_media">
       <div class="show_box_outer">
         <div class="post_box">
           <h4><%= @community.room.room_name %></h4>
@@ -27,7 +27,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-3 header_next">
+    <div class="col-lg-3 header_next">
       <p class="text-center">投稿者</p>
       <div class="prifile_img text-center">
         <% if @community.user.user_image? %>
@@ -63,7 +63,7 @@
     </div>
   </div>
 </div>
-<nav class="nav nav-pills nav-justified footer_menu_body d-md-none">
+<nav class="nav nav-pills nav-justified footer_menu_body d-lg-none">
   <a class="nav-item nav-link" href="/posts">
     <i class="fas fa-list"></i>
     <figcaption class="footer_munu_font">

@@ -577,6 +577,14 @@ a {
   width: 100%;
 }
 
+.mypage_message_date {
+  color: $font_main_color;
+}
+
+.mypage_message_user {
+  font-weight: bold;
+}
+
 .messagebar_right {
   line-height: 60px;
 }
@@ -882,7 +890,7 @@ color: #A4A8B1;
     font-weight: bold;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .header_top_left { padding-top: 0; padding-bottom: 0; }
   .header_top_right { padding-top: 0; padding-bottom: 0; }
   .header_comment { text-align: center; }

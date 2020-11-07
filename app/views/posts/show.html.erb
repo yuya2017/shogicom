@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9 order-md-last header_next show_media">
+    <div class="col-lg-9 order-lg-last header_next show_media">
       <div class="show_box_outer">
         <div class="post_box">
           <h4><%= @post.room.room_name %></h4>
@@ -20,7 +20,7 @@
         <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}/post", class: "btn btn-primary buttonConfirm" %>
       </div>
     </div>
-    <div class="col-md-3 pull-md-9 header_next">
+    <div class="col-lg-3 header_next">
       <p class="text-center">投稿者</p>
       <div class="prifile_img text-center">
         <% if @post.user.user_image? %>

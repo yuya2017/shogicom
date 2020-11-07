@@ -12,8 +12,9 @@
             <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>
           <div class="messagebar_message_right ml-4">
+            <p class="mypage_message_date">開催日：<%= l message.room.community.community_date, format: '%m月%-d日(%a)' %>
             <p class="mypage_message_user"><%= message.room.room_name %></p>
-            <p class="mypage_message_text"><%= message.message_content %></p>
+            <p class="mypage_message_text"><%= message.message_content[0,16] %></p>
           </div>
         </div>
         <span class="messagebar_date"><%= l message.created_at, format: '%m月%-d日(%a) %H:%M' %></span>
@@ -30,6 +31,7 @@
             <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>
           <div class="messagebar_right ml-4">
+            <p class="mypage_message_date">開催日：<%= l community.community_date, format: '%m月%-d日(%a)' %>
             <p class="mypage_message_user"><%= community.room.room_name %></p>
           </div>
         </div>

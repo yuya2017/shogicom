@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "sidebar" %>
-		<main class="col-md-9 px-4 ml-sm-auto header_next">
+		<main class="col-lg-9 px-4 ml-auto header_next">
       <h1 class="heading">パスワードの再設定</h1>
       <div class="login_group">
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
