@@ -142,7 +142,31 @@ a {
   object-fit: cover;
   cursor: pointer;
   margin-top: 5px;
-  margin-bottom: 5
+  margin-bottom: 5px;
+}
+
+#img_prev {
+  width: 130px;
+  width: 130px;
+  height: 130px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.image_prof {
+  line-height: 130px;
+  padding-right: 20px;
+}
+
+.address_bar {
+  color: #FFF;
+  background-color: $btn_color;
+  border-color: $btn_color;
+  &:focus {
+    color: #FFF;
+    background-color: $btn_color;
+    border-color: $btn_color;
+  }
 }
 
 .header_icon {
@@ -411,7 +435,7 @@ a {
 .btn-circle-3d {
   display: inline-block;
   text-decoration: none;
-  background: #FFCC99;
+  background: #FF3366;
   color: #FFF;
   width: 120px;
   height: 120px;
@@ -431,6 +455,10 @@ a {
   transform: translateY(2px);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   border-bottom: none;
+}
+
+.exit_color {
+  background-color: $btn_color;
 }
 
 .balloon {

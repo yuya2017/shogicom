@@ -70,6 +70,13 @@ class CommunitiesController < ApplicationController
     redirect_to "/rooms/#{room.id}/community", notice: "参加しました。"
   end
 
+  #脱退
+  def community_exit
+    user = CommunityUser.find_by(community_id: params[:community].to_i, user_id: current_user.id)
+    user.destroy
+    redirect_to root_path, notice: "イベントから抜けました。"
+  end
+
   private
 
   def community_params

@@ -64,6 +64,13 @@ class TournamentsController < ApplicationController
     redirect_to "/rooms/#{room.id}/tournament", notice: "大会へ参加しました。"
   end
 
+  #脱退
+  def tournament_exit
+    user = TournamentUser.find_by(tournament_id: params[:tournament].to_i, user_id: current_user.id)
+    user.destroy
+    redirect_to root_path, notice: "大会から抜けました。"
+  end
+
   private
 
   def tournament_params
