@@ -10,6 +10,7 @@ require("channels")
 require("javascript/top")
 require("javascript/calendar")
 require("javascript/user_image")
+require("javascript/jquery.tagsinput.min")
 require("moment/locale/ja")
 require("tempusdominus-bootstrap-4")
 

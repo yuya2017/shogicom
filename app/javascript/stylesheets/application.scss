@@ -15,6 +15,7 @@
 */
 @import '~bootstrap/scss/bootstrap';
 @import "~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4";
+@import 'jquery.tagsinput.min';
 
 $header-height: 60px;
 $interval: 60px;
@@ -63,6 +64,10 @@ a {
   color: #0c5460;
   background-color: #d1ecf1;
   border-color: #bee5eb;
+}
+
+.form-control {
+  height: 46px;
 }
 
 .icon_image {
@@ -882,7 +887,6 @@ color: #A4A8B1;
 
 .tournament_date, .community_date {
   color: $font_main_color!important;
-  margin-top: 20px;
 }
 
 .form_time_select {

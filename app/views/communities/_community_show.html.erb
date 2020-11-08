@@ -41,7 +41,7 @@
               <p>応募人数：<%= community.community_number_of_people %>人</p>
             <% end %>
             <p>開催場所：<%= community.community_place %></p>
-            <p>参加費：<%= community.community_money %></p>
+            <p>参加費：<%= number_to_currency(community.community_money, :locale => 'jp') %></p>
             <p>募集内容</p>
             <p class="card-text"><%= community.community_content %></p>
             <p class="post_date"><%= l community.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>

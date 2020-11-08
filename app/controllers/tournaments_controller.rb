@@ -13,7 +13,7 @@ class TournamentsController < ApplicationController
     @tournament = current_user.tournaments.new(tournament_params)
     if @tournament.save
       Tournament.tournament_user_create(current_user.id, @tournament.id,)
-      redirect_to root_path, notice: "#{@tournament.room.room_name}を応募しました。"
+      redirect_to root_path, notice: "#{@tournament.room.room_name}を応募しました。やむを得ず中止する場合は必ずチャットルームへ一言連絡を入れてください。"
     else
       render "tournaments/new"
     end
