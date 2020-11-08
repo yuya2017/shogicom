@@ -22,13 +22,12 @@ class CommunitiesController < ApplicationController
   end
 
   def index
-    @communities = Community.page(params[:page]).includes(:room).order(updated_at: "DESC")
+    @communities = Community.where("community_limit >= ?", Date.today).page(params[:page]).includes(:room).order(updated_at: "DESC")
     gon.user = current_user
     gon.communities = Community.all
   end
 
   def show
-    @communities = Community.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @community.room
     @community_users = @community.community_users.all
     @users = []
@@ -80,7 +79,7 @@ class CommunitiesController < ApplicationController
   private
 
   def community_params
-    params.require(:community).permit(:community_place, :community_date, :community_limit, :community_money, :community_all_tag, :community_content, room_attributes:[:id, :room_name])
+    params.require(:community).permit(:community_place, :community_date, :community_limit, :community_money, :community_number_of_people, :community_all_tag, :community_content, room_attributes:[:id, :room_name])
   end
 
   def set_target_community

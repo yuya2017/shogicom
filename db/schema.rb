@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_044245) do
+ActiveRecord::Schema.define(version: 2020_11_07_113544) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_044245) do
     t.date "community_date", null: false
     t.date "community_limit", null: false
     t.integer "community_money", null: false
+    t.integer "community_number_of_people"
     t.string "community_all_tag"
     t.string "community_content"
     t.bigint "user_id", null: false
@@ -100,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_044245) do
     t.string "tournament_time", null: false
     t.string "tournament_all_tag"
     t.string "tournament_content"
-    t.string "tournament_number_of_people"
+    t.integer "tournament_number_of_people"
     t.date "tournament_limit", null: false
     t.datetime "tournament_date", null: false
     t.bigint "user_id", null: false

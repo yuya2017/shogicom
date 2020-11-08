@@ -8,8 +8,11 @@
           <% all_tags.each do |all_tag| %>
             <span class="tag_text">#<%= all_tag %></span>
           <% end %>
-          <p class="show_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
-          <p class="show_date">応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a)' %></p>
+          <p class="community_date">開催日時：<%= l @community.community_limit, format: '%-m月%-d日(%a)' %></p>
+          <p>応募期間：<%= l @community.community_date, format: '%-m月%-d日(%a)' %></p>
+          <% if @community.community_number_of_people? %>
+            <p>応募人数：<%= @community.community_number_of_people %>人</p>
+          <% end %>
           <p>開催場所：<%= @community.community_place %></p>
           <p>参加費：<%= @community.community_money %></p>
           <p>募集内容</p>
@@ -21,9 +24,9 @@
       </div>
       <div class="post_message_link">
         <% if @community_users.where(user_id: current_user.id).present? %>
-        <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}/community", class: "btn btn-primary buttonConfirm" %>
+          <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}/community", class: "btn btn-primary buttonConfirm" %>
         <% else %>
-        <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
+          <%= link_to 'イベントに参加', communities_community_participation_path(:community => @community.id), class: "btn btn-primary buttonConfirm", method: :post %>
         <% end %>
       </div>
     </div>
@@ -41,7 +44,7 @@
       <div class="side_user_edit">
         <% if user_signed_in? && @community.user_id == current_user.id %>
           <%= link_to '編集',"/communities/#{@community.id}/edit", class: "btn-circle-3d" %>
-          <% elsif @community_users.where(user_id: current_user.id).present? %>
+        <% elsif @community_users.where(user_id: current_user.id).present? %>
           <%= link_to '退出', communities_community_exit_path(:community => @community.id), class: "btn-circle-3d exit_color", method: :post, data: {confirm: "本当に抜けますか？"}  %>
         <% end %>
       </div>
@@ -55,10 +58,10 @@
         </thead>
         <tbody>
           <% @users.each_with_index do |user, i| %>
-          <tr>
-            <th scope="row"><%= i + 1 %></th>
-            <td><%= user.user_name %></td>
-          </tr>
+            <tr>
+              <th scope="row"><%= i + 1 %></th>
+              <td><%= user.user_name %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

@@ -32,9 +32,9 @@
         <% end %>
       </div>
       <% if user_signed_in? && @post.user_id == current_user.id %>
-      <div class="side_user_edit">
-        <%= link_to '編集',"/posts/#{@post.id}/edit", class: "btn-circle-3d" %>
-      </div>
+        <div class="side_user_edit">
+          <%= link_to '編集',"/posts/#{@post.id}/edit", class: "btn-circle-3d" %>
+        </div>
       <% end %>
     </div>
   </div>

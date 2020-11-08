@@ -270,6 +270,11 @@ a {
   z-index: 1;
   width: 30rem;
 }
+
+.profile_img {
+  text-align: center;
+}
+
 .profile_main {
   position: relative;
   width: 10%;
@@ -712,6 +717,10 @@ a {
   padding: 25px 40px;
   box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
+
+.post_box > p, h4 {
+  color: #000;
+}
 .show_box_outer{
   width: 100%;
   border: solid 1px silver;
@@ -719,10 +728,6 @@ a {
   margin-bottom: 20px;
   padding: 25px 40px;
   box-shadow: 0 0 3px rgba(0,0,0,0.2);
-}
-
-.post_box > p, h4 {
-  color: $font_text_color;
 }
 
 .post_date {
@@ -743,10 +748,6 @@ a {
   padding-right: 0.75em;
   white-space: nowrap;
   margin-bottom: 10px;
-}
-
-.show_date {
-  color: #FF0000!important;
 }
 
 .side_user_edit {
@@ -879,8 +880,9 @@ color: #A4A8B1;
   max-width: 336px;
 }
 
-.tournament_date {
-  width: 100%;
+.tournament_date, .community_date {
+  color: $font_main_color!important;
+  margin-top: 20px;
 }
 
 .form_time_select {
@@ -932,8 +934,8 @@ color: #A4A8B1;
   .show_media { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1); }
   .sidebar { background-color: #FFF; margin-bottom: $footer_menu_height; position: relative; }
   .index_map { height: 600px; }
-  .icon_image {   width: 50px; height: 50px; }
-  .profile_img{ text-align: center; display: flex; }
+  .icon_image { width: 50px; height: 50px; }
+  .profile_img{ display: flex; }
   .mypage_img { text-align: center; }
   .mypage_icon { display: block; }
   .post_box_outer { width: 100%; }
@@ -943,4 +945,4 @@ color: #A4A8B1;
   .logout { font-size: 17px; padding-right: 47px; }
   .password_change { font-size: 17px }
   .profile_main { width: 100%; }
-  }
+}
