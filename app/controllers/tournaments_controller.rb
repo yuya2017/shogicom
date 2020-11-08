@@ -20,11 +20,10 @@ class TournamentsController < ApplicationController
   end
 
   def index
-    @tournaments = Tournament.page(params[:page]).includes(:room).order(updated_at: "DESC")
+    @tournaments = Tournament.where("tournament_limit >= ?", Date.today).page(params[:page]).includes(:room).order(updated_at: "DESC")
   end
 
   def show
-    @tournaments = Tournament.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @tournament.room
     @tournament_users = @tournament.tournament_users.all
     @users = []

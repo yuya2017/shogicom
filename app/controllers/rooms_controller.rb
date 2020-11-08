@@ -5,16 +5,6 @@ class RoomsController < ApplicationController
   before_action :tournament_room_confirmation, only: [:private_show, :post_show, :tournament_show, :community_show]
   before_action :community_room_confirmation, only: [:private_show, :post_show, :tournament_show, :community_show]
 
-  helper_method :user_search
-
-  def user_search
-    if @room.private_id == current_user.id
-      User.find(@room.user_id).user_name
-    else
-      User.find(@room.private_id).user_name
-    end
-  end
-
   def private_show
     @messages = @room.messages.includes(:user)
     @message = current_user.messages.build

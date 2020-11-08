@@ -107,15 +107,15 @@
                 <span class="input-group-append pr-4" data-target="#datetimepicker1" data-toggle="datetimepicker">
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </span>
-              <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
-              <span class="time_between">：</span>
-              <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+                <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+                <span class="time_between">：</span>
+                <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+              </div>
             </div>
           </div>
-        </div>
-					<small class="form-text text-muted">
-						開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
-					</small>
+				  <small class="form-text text-muted">
+					  開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
+				  </small>
 				</div>
 				<div class="buttonContainer">
 					<%= f.submit '投稿', class: 'btn buttonguest btn-warning' %>

@@ -85,6 +85,13 @@
 						参加費を入力してください。
 					</small>
 				</div>
+        <div class="form-group">
+          <%= f.label :community_number_of_people, '応募人数' %>
+          <%= f.number_field :community_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
+          <small class="form-text text-muted">
+            応募人数を入力してください。
+          </small>
+        </div>
 				<div class="form-group">
 					<%= f.label :community_all_tag, 'タグ' %>
 					<%= f.text_field :community_all_tag, class: 'form-control'%>
