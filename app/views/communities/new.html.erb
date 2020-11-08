@@ -9,8 +9,9 @@
         </h2>
         <div class="explanation_body">
           <ul class="explanation_show">
-            <li>１．開催場所は分かる範囲で書いてください。存在しない場所を設定するとエラーが出ます。</li>
-            <li>２．参加費についても分かる範囲で書いてください。人数決定後、詳細なことについてはチャットルームで決定してください。</li>
+            <li>１．開催場所は分かる範囲で書いてください。存在しない場所は設定できません。</li>
+            <li>２．応募期間、応募人数は超えた時点で参加を制限します。</li>
+            <li>３．やむを得ず中止する場合は必ずチャットルームへ一言連絡を入れてください。</li>
           </ul>
         </div>
       </div>
@@ -51,6 +52,30 @@
 					</small>
 				</div>
         <div class="form-group">
+          <%= f.label :community_money, '参加費*' %>
+          <div class="d-flex">
+            <%= f.number_field :community_money, class: 'form-control form_select_nobtn', autocomplete: 'off' %>
+            <span class="input-group-append">
+              <span class="input-group-text">円</span>
+            </span>
+          </div>
+          <small class="form-text text-muted">
+            参加費を入力してください。
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label :community_number_of_people, '応募人数' %>
+          <div class="d-flex">
+            <%= f.number_field :community_number_of_people, class: 'form-control form_select_nobtn', autocomplete: 'off' %>
+            <span class="input-group-append">
+              <span class="input-group-text">人</span>
+            </span>
+          </div>
+          <small class="form-text text-muted">
+            応募人数を入力してください。
+          </small>
+        </div>
+        <div class="form-group">
           <div id="datetimepicker1" data-target-input="nearest">
             <%= f.label :community_limit, '応募期間*' %>
             <div class="d-flex">
@@ -79,22 +104,8 @@
           </div>
 				</div>
 				<div class="form-group">
-					<%= f.label :community_money, '参加費*' %>
-					<%= f.text_field :community_money, class: 'form-control', autocomplete: 'off' %>
-					<small class="form-text text-muted">
-						参加費を入力してください。
-					</small>
-				</div>
-        <div class="form-group">
-          <%= f.label :community_number_of_people, '応募人数' %>
-          <%= f.number_field :community_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
-          <small class="form-text text-muted">
-            応募人数を入力してください。
-          </small>
-        </div>
-				<div class="form-group">
 					<%= f.label :community_all_tag, 'タグ' %>
-					<%= f.text_field :community_all_tag, class: 'form-control'%>
+					<%= f.text_field :community_all_tag, class: 'form-control tagsinput'%>
 					<small class="form-text text-muted">
 						好きなタグをつけることができます。
 					</small>

@@ -15,7 +15,7 @@ class CommunitiesController < ApplicationController
     @community = current_user.communities.new(community_params)
     if @community.save
       Community.community_user_create(current_user.id, @community.id)
-      redirect_to root_path, notice: "#{@community.room.room_name}を応募しました。"
+      redirect_to root_path, notice: "#{@community.room.room_name}を応募しました。やむを得ず中止する場合は必ずチャットルームへ一言連絡を入れてください。"
     else
       render "communities/new"
     end

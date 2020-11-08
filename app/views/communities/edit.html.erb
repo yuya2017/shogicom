@@ -40,6 +40,30 @@
 					</small>
 				</div>
         <div class="form-group">
+          <%= f.label :community_money, '参加費*' %>
+          <div class="d-flex">
+            <%= f.number_field :community_money, class: 'form-control form_select_nobtn', autocomplete: 'off' %>
+            <span class="input-group-append">
+              <span class="input-group-text">円</span>
+            </span>
+          </div>
+          <small class="form-text text-muted">
+            参加費を入力してください。
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label :community_number_of_people, '応募人数' %>
+          <div class="d-flex">
+            <%= f.number_field :community_number_of_people, class: 'form-control form_select_nobtn', autocomplete: 'off' %>
+            <span class="input-group-append">
+              <span class="input-group-text">人</span>
+            </span>
+          </div>
+          <small class="form-text text-muted">
+            応募人数を入力してください。
+          </small>
+        </div>
+        <div class="form-group">
           <div id="datetimepicker1" data-target-input="nearest">
             <%= f.label :community_limit, '応募期間*' %>
             <div class="d-flex">
@@ -68,22 +92,8 @@
           </div>
 				</div>
 				<div class="form-group">
-					<%= f.label :community_money, '参加費*' %>
-					<%= f.text_field :community_money, class: 'form-control', autocomplete: 'off' %>
-					<small class="form-text text-muted">
-						参加費を入力してください。
-					</small>
-				</div>
-        <div class="form-group">
-          <%= f.label :community_number_of_people, '応募人数' %>
-          <%= f.number_field :community_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
-          <small class="form-text text-muted">
-            応募人数を入力してください。
-          </small>
-        </div>
-				<div class="form-group">
 					<%= f.label :community_all_tag, 'タグ' %>
-					<%= f.text_field :community_all_tag, class: 'form-control'%>
+					<%= f.text_field :community_all_tag, class: 'form-control tagsinput'%>
 					<small class="form-text text-muted">
 						好きなタグをつけることができます。
 					</small>

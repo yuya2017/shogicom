@@ -11,6 +11,8 @@
           <ul class="explanation_show">
             <li>１．使用するアプリ名は正式名を入力していただくと検索にかかりやすいです。</li>
             <li>２．棋力は開催したい大会のレベルに合わせて設定してください。</li>
+            <li>３．応募期間、応募人数は超えた時点で参加を制限します。</li>
+            <li>４．やむを得ず中止する場合は必ずチャットルームへ一言連絡を入れてください。</li>
           </ul>
         </div>
       </div>
@@ -44,42 +46,33 @@
 				<% end %>
 				<div class="form-group">
 					<%= f.label :tournament_chess, '棋力*' %>
-					<%= f.text_field :tournament_chess, class: 'form-control',value: current_user.user_chess %>
+					<%= f.text_field :tournament_chess, class: 'form-control tagsinput',value: current_user.user_chess %>
 					<small class="form-text text-muted">
 						募集したい方の棋力を入力してください。
 					</small>
 				</div>
 				<div class="form-group">
 					<%= f.label :tournament_app, '使用するアプリ*' %>
-					<%= f.text_field :tournament_app, class: 'form-control',value: current_user.user_app %>
+					<%= f.text_field :tournament_app, class: 'form-control tagsinput',value: current_user.user_app %>
 					<small class="form-text text-muted">
 						希望するアプリを入力してください。
 					</small>
 				</div>
 				<div class="form-group">
 					<%= f.label :tournament_time, '対戦時間*' %>
-					<%= f.text_field :tournament_time, class: 'form-control',value: current_user.user_time %>
+					<%= f.text_field :tournament_time, class: 'form-control tagsinput',value: current_user.user_time %>
 					<small class="form-text text-muted">
 						希望する対戦時間を入力してください。
 					</small>
 				</div>
 				<div class="form-group">
-					<%= f.label :tournament_all_tag, 'タグ' %>
-					<%= f.text_field :tournament_all_tag, class: 'form-control' %>
-					<small class="form-text text-muted">
-						好きなタグをつけることができます。
-					</small>
-				</div>
-				<div class="form-group">
-					<%= f.label :tournament_content, '募集内容' %>
-					<%= f.text_area :tournament_content, class: 'form-control'%>
-					<small class="form-text text-muted">
-						募集内容を入力してください。
-					</small>
-				</div>
-				<div class="form-group">
 					<%= f.label :tournament_number_of_people, '応募人数' %>
-					<%= f.number_field :tournament_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
+          <div class="d-flex">
+            <%= f.number_field :tournament_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
+            <span class="input-group-append">
+              <span class="input-group-text">人</span>
+            </span>
+          </div>
 					<small class="form-text text-muted">
 						応募人数を入力してください。
 					</small>
@@ -117,6 +110,20 @@
 					  開催時間を入力してください。もし変更する場合は必要に応じてチャットルームでアナウンスをお願いします。
 				  </small>
 				</div>
+        <div class="form-group">
+          <%= f.label :tournament_all_tag, 'タグ' %>
+          <%= f.text_field :tournament_all_tag, class: 'form-control tagsinput' %>
+          <small class="form-text text-muted">
+            好きなタグをつけることができます。
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label :tournament_content, '募集内容' %>
+          <%= f.text_area :tournament_content, class: 'form-control'%>
+          <small class="form-text text-muted">
+            募集内容を入力してください。
+          </small>
+        </div>
 				<div class="buttonContainer">
 					<%= f.submit '投稿', class: 'btn buttonguest btn-warning' %>
 				</div>
