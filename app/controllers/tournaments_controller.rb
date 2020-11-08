@@ -54,13 +54,17 @@ class TournamentsController < ApplicationController
   def search_tournament
     @q = Tournament.ransack(params[:q])
     grouping_hash = params[:q][:tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_cont: word })}
-    @tournaments = Tournament.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
+    @tournaments = Tournament.ransack({ combinator: 'and', groupings: grouping_hash }).result.where("tournament_limit >= ?", Date.today).includes(:room).order(updated_at: "DESC").page(params[:page])
   end
 
   #大会参加用
   def tournament_participation
-    room = Tournament.enterTournament(current_user.id, params[:tournament].to_i)
-    redirect_to "/rooms/#{room.id}/tournament", notice: "大会へ参加しました。"
+    tournament = Tournament.enterTournament(current_user.id, params[:tournament].to_i)
+    unless tournament == nil
+      redirect_to "/rooms/#{tournament.room.id}/tournament", notice: "大会へ参加しました。"
+    else
+      redirect_to "/", notice: "大会の応募が終了しているため参加できませんでした。"
+    end
   end
 
   #脱退

@@ -21,30 +21,24 @@ class Community < ApplicationRecord
   end
 
   def self.community_user_create(user_id, community_id)
-    user = CommunityUser.new(
+    CommunityUser.create(
       user_id: user_id,
       community_id: community_id
     )
-    user.save
   end
 
   def self.enterCommunity(user_id, community_id)
-    room = Room.find_by(community_id: community_id)
-    user_key = []
-    users = CommunityUser.where(community_id: community_id)
-    users.each do |user|
-      user_key.push(user.user_id)
+    community = Community.find(community_id)
+    community_users = community.community_users.all
+      if community.community_limit >= Date.today && community.community_number_of_people > community_users.count && community_users.find_by(user_id: user_id).blank?
+        CommunityUser.create(
+          user_id: user_id,
+          community_id: community_id
+        )
+        return community
+      else
+        return nil
+      end
     end
-    if user_key.include?(user_id)
-      return room
-    else
-      community_key = CommunityUser.new(
-        user_id: user_id,
-        community_id: community_id
-      )
-      community_key.save
-      return room
-    end
-  end
 
 end

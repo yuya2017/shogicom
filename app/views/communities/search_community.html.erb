@@ -2,6 +2,7 @@
   <div class="row">
     <%= render "community_search_bar" %>
 		<main class="col-lg-9 px-4 ml-auto header_next">
+      <div id='map' class="index_map"></div>
 			<div class="heading">
 				<h2>イベントの検索結果</h2>
 			</div>
@@ -10,3 +11,37 @@
 		</main>
 	</div>
 </div>
+<nav class="nav nav-pills nav-justified footer_menu_body d-lg-none">
+  <a class="nav-item nav-link" href="/posts">
+    <i class="fas fa-list"></i>
+    <figcaption class="footer_munu_font">
+      <p>投稿一覧</p>
+    </figcaption>
+  </a>
+  <a class="nav-item nav-link" href="/rooms/private_message">
+    <i class="fas fa-comments"></i>
+    <figcaption class="footer_munu_font">
+      <p>チャット</p>
+    </figcaption>
+  </a>
+  <a class="nav-item nav-link" href="/rooms/participating_post">
+    <i class="fas fa-globe-asia"></i>
+    <figcaption class="footer_munu_font">
+      <p>対戦相手</p>
+    </figcaption>
+  </a>
+  <a class="nav-item nav-link" href="/rooms/participating_tournament">
+    <i class="fas fa-chess"></i>
+    <figcaption class="footer_munu_font">
+      <p>大会</p>
+    </figcaption>
+  </a>
+  <a class="nav-item nav-link" href="/rooms/participating_community">
+    <i class="fas fa-users"></i>
+    <figcaption class="footer_munu_font">
+      <p>イベント</p>
+    </figcaption>
+  </a>
+</nav>
+
+<%= javascript_pack_tag 'maps_index' %>
