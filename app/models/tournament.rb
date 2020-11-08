@@ -37,29 +37,23 @@ class Tournament < ApplicationRecord
   end
 
   def self.tournament_user_create(user_id, tournament_id)
-    user = TournamentUser.new(
+    TournamentUser.create(
       user_id: user_id,
       tournament_id: tournament_id
     )
-    user.save
   end
 
   def self.enterTournament(user_id, tournament_id)
-    room = Room.find_by(tournament_id: tournament_id)
-    user_key = []
-    users = TournamentUser.where(tournament_id: tournament_id)
-    users.each do |user|
-      user_key.push(user.user_id)
-    end
-    if user_key.include?(user_id)
-      return room
-    else
-      tournament_key = TournamentUser.new(
+    tournament = Tournament.find(tournament_id)
+    tournament_users = tournament.tournament_users.all
+    if tournament.tournament_limit >= Date.today && tournament.tournament_number_of_people > tournament_users.count && tournament_users.find_by(user_id: user_id).blank?
+      TournamentUser.create(
         user_id: user_id,
         tournament_id: tournament_id
       )
-      tournament_key.save
-      return room
+      return tournament
+    else
+      return nil
     end
   end
 

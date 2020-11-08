@@ -1,0 +1,52 @@
+<% @tournaments.each do |tournament| %>
+  <div class="card_summary d-lg-flex my-4 d-block">
+    <div class="profile_main mx-2">
+      <div class="profile_img">
+        <% if tournament.user.user_image? %>
+          <img src='<%= tournament.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="tournament-<%= tournament.id %>">
+          <figcaption class="balloon-name-description">
+            <p><%= tournament.user.user_name %></p>
+          </figcaption>
+        <% else %>
+          <img src="/assets/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="tournament-<%= tournament.id %>">
+            <figcaption class="balloon-name-description">
+              <p><%= tournament.user.user_name %></p>
+            </figcaption>
+        <% end %>
+      </div>
+      <div class="card profile_link profile-tournament-<%= tournament.id %>">
+        <div class="card-body profile_body">
+          <p class="card-text">よく使うアプリ：<%= tournament.user.user_app %></p>
+          <p class="card-text">棋力：<%= tournament.user.user_chess %></p>
+          <p class="card-text">よく対戦する持ち時間：<%= tournament.user.user_time %></p>
+          <% unless tournament.user == current_user %>
+            <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link profile_btn" %>
+            <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="post_box_outer">
+      <%= link_to "/tournaments/#{tournament.id}" do %>
+        <div class="post_box">
+          <h4><%= tournament.room.room_name %></h4>
+          <% all_tags = tournament.tournament_all_tag.split(",") %>
+          <% all_tags.each do |all_tag| %>
+            <span class="tag_text">#<%= all_tag %></span>
+          <% end %>
+          <p class="tournament_date">開催日時：<%= l tournament.tournament_date, format: '%-m月%-d日(%a) %H:%M' %>〜</p>
+          <p>応募期間：<%= l tournament.tournament_limit, format: '%-m月%-d日(%a)' %>まで</p>
+          <% if tournament.tournament_number_of_people? %>
+            <p>応募人数：<%= tournament.tournament_number_of_people %>人</p>
+          <% end %>
+          <p>アプリ：<%= tournament.tournament_app %></p>
+          <p>棋力：<%= tournament.tournament_chess %></p>
+          <p>持ち時間：<%= tournament.tournament_time %></p>
+          <p>募集内容</p>
+          <p><%= tournament.tournament_content %></p>
+          <p class="post_date"><%= l tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

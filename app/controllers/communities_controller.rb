@@ -24,7 +24,7 @@ class CommunitiesController < ApplicationController
   def index
     @communities = Community.where("community_limit >= ?", Date.today).page(params[:page]).includes(:room).order(updated_at: "DESC")
     gon.user = current_user
-    gon.communities = Community.all
+    gon.communities = @communities
   end
 
   def show
@@ -60,13 +60,20 @@ class CommunitiesController < ApplicationController
   def search_community
     @q = Community.ransack(params[:q])
     grouping_hash = params[:q][:community_place_or_community_date_or_community_limit_or_community_money_or_community_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { community_place_or_community_date_or_community_limit_or_community_money_or_community_all_tag_cont: word })}
-    @communities = Community.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
+    @communities = Community.ransack({ combinator: 'and', groupings: grouping_hash }).result.where("community_limit >= ?", Date.today).includes(:room).order(updated_at: "DESC").page(params[:page])
+
+    gon.user = current_user
+    gon.communities = @communities
   end
 
   #イベント参加用
   def community_participation
-    room = Community.enterCommunity(current_user.id, params[:community].to_i)
-    redirect_to "/rooms/#{room.id}/community", notice: "参加しました。"
+    community = Community.enterCommunity(current_user.id, params[:community].to_i)
+    unless community == nil
+      redirect_to "/rooms/#{community.room.id}/community", notice: "イベントへ参加しました。"
+    else
+      redirect_to "/", notice: "イベントの応募が終了しているため参加できませんでした。"
+    end
   end
 
   #脱退
