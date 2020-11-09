@@ -2,8 +2,8 @@ document.addEventListener("turbolinks:load", function(){
 $('.container-fluid').on('click',function() {
     if($('div').hasClass('profile_link') && $('div').hasClass('d-block')){
       $('.profile_link').removeClass('d-block');
-    }
-  })
+    };
+  });
 });
 
 document.addEventListener("turbolinks:load", function(){
@@ -13,12 +13,8 @@ document.addEventListener("turbolinks:load", function(){
     if(!$(profile_id).hasClass("d-block")) {
       $(profile_id).addClass('d-block');
       if($('.profile_link.d-block').length < 2){
-      return false;
-      }
-    }
-  })
-});
-
-document.addEventListener("turbolinks:load", function(){
-  $('.tagsinput').tagsInput();
+        return false;
+      };
+    };
+  });
 });

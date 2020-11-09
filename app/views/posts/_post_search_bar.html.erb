@@ -1,8 +1,17 @@
-<div class="col-lg-3 sidebar">
+<div class="col-lg-3 search_sidebar order-2">
   <%= search_form_for @q, url: posts_search_post_path, class:"ml-4 w-75 d-inline center-block" do |f| %>
     <div class="input-group header_top">
-      <%= f.search_field :post_chess_or_post_app_or_post_time_or_post_all_tag_cont, placeholder: '何でも検索...', class: 'form-control', id: 'tags_top'%>
+      <%= f.search_field :post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont, class: 'tagsinput tags_search', id: "tags_search" %>
       <%= f.submit ("🔍"), class: 'btn btn-secondary' %>
     </div>
   <% end %>
+  <div class="search_tag">
+    <span class="search_tag_text">#将棋ウォーズ</span>
+    <span class="search_tag_text">#将棋オンライン</span>
+    <span class="search_tag_text">#ぴよ将棋</span>
+    <span class="search_tag_text">#将棋クエスト</span>
+    <span class="search_tag_text">#将棋倶楽部24</span>
+    <span class="search_tag_text">#どうぶつ将棋ウォーズ</span>
+    <span class="search_tag_text">#ぬこしょうぎ</span>
+  </div>
 </div>
