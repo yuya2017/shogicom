@@ -51,7 +51,7 @@ class PostsController < ApplicationController
 
   def search_post
     @q = Post.ransack(params[:q])
-    grouping_hash = params[:q][:post_chess_or_post_app_or_post_time_or_post_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { post_chess_or_post_app_or_post_time_or_post_all_tag_cont: word })}
+    grouping_hash = params[:q][:post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont].split(",").reduce({}){|hash, word| hash.merge(word => { post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont: word })}
     @posts = Post.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
   end
 

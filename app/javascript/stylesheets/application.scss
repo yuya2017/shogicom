@@ -206,7 +206,18 @@ a {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   z-index: 1;
   margin-top: $header-height;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 991px) {
+    height: 100%;
+  }
+}
+
+.search_sidebar {
+  position: fixed;
+  overflow:auto;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  z-index: 1;
+  padding-top: $header-height;
+  @media screen and (min-width: 991px) {
     height: 100%;
   }
 }
@@ -668,7 +679,7 @@ a {
   font-size: 34px;
   line-height: 40px;
   margin-bottom: 50px;
-  padding-top: 50px;
+  padding-top: $header-height + 30px;
   color: $font_main_color;
 }
 
@@ -737,6 +748,28 @@ a {
 
 .post_date {
   float:right;
+}
+
+.search_tag {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.search_tag_text {
+  align-items: center;
+  background-color: whitesmoke;
+  border-radius: 4px;
+  color: $font_tag_color;
+  display: inline-flex;
+  font-size: 0.75rem;
+  height: 3em;
+  justify-content: center;
+  line-height: 1.5;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .tag_text {
@@ -924,6 +957,20 @@ color: #A4A8B1;
     font-weight: bold;
 }
 
+.tags_top_tagsinput {
+  width: 75%!important;
+}
+
+.tagsinput {
+  width: 100%;
+}
+
+#default_text {
+  line-height: 36px;
+  color: gray;
+  position: absolute;
+}
+
 @media screen and (max-width: 991px) {
   .header_top_left { padding-top: 0; padding-bottom: 0; }
   .header_top_right { padding-top: 0; padding-bottom: 0; }
@@ -937,6 +984,7 @@ color: #A4A8B1;
                   bottom: $footer_menu_height; }
   .show_media { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1); }
   .sidebar { background-color: #FFF; margin-bottom: $footer_menu_height; position: relative; }
+  .search_sidebar { background-color: #FFF; position: relative; margin-top: 0 }
   .index_map { height: 600px; }
   .icon_image { width: 50px; height: 50px; }
   .profile_img{ display: flex; }
@@ -949,4 +997,10 @@ color: #A4A8B1;
   .logout { font-size: 17px; padding-right: 47px; }
   .password_change { font-size: 17px }
   .profile_main { width: 100%; }
+  .search_tag { padding-right: 60px; }
+  .tags_top_tagsinput { width: 90%!important; }
+}
+
+@media screen and (max-width: 575px) {
+  .tags_top_tagsinput { width: 75%!important; }
 }
