@@ -1,14 +1,33 @@
 <div class="container-fluid">
   <div class="row">
     <%= render "community_search_bar" %>
-		<main class="col-lg-9 px-4 ml-auto">
-      <div id='map' class="index_map"></div>
+		<div class="col-lg-9 px-4 ml-auto order-1">
 			<div class="heading">
-				<h2>イベントの検索結果</h2>
+				<h2>検索結果</h2>
 			</div>
+      <fieldset class="d-block d-lg-none post_choice">
+        <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="/posts" onclick="location.href=this.value"/>
+        <label class="radio-inline__label" for="item-1">
+            対戦
+        </label>
+        <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" onclick="location.href=this.value" value="/tournaments"/>
+        <label class="radio-inline__label" for="item-2">
+            大会
+        </label>
+        <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="/communities" onclick="location.href=this.value" checked="checked"/>
+        <label class="radio-inline__label" for="item-3">
+            イベント
+        </label>
+      </fieldset>
+    </div>
+		<div class="col-lg-9 px-4 ml-auto order-3">
+      <div id='map' class="index_map"></div>
+      <div class="heading">
+        <h2>一覧</h2>
+      </div>
       <%= render 'community_show' %>
 			<%= paginate @communities %>
-		</main>
+		</div>
 	</div>
 </div>
 <nav class="nav nav-pills nav-justified footer_menu_body d-lg-none">

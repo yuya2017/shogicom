@@ -6,19 +6,21 @@ class Tournament < ApplicationRecord
   accepts_nested_attributes_for :room
 
   attr_writer :tournament_at_date, :tournament_at_hour, :tournament_at_minute
-
   before_validation :set_date
+
   validates :tournament_chess, presence: true, length: { maximum: 10 }
   validates :tournament_app, presence: true, length: { maximum: 20 }
   validates :tournament_time, presence: true, length: { maximum: 15 }
   validates :tournament_limit, presence: true
   validates :tournament_date, presence: true
   validates :user_id, presence: true
-  validates :tournament_all_tag, length: { maximum: 30 }
+  validates :tournament_all_tag, length: { maximum: 50 }
   validates :tournament_content, length: { maximum: 100 }
   validates :tournament_at_date, presence: true
   validates :tournament_at_hour, presence: true
   validates :tournament_at_minute, presence: true
+  validate :limit_not_before_today
+  validate :date_not_before_limit
 
 
   def tournament_at_date
@@ -54,6 +56,24 @@ class Tournament < ApplicationRecord
       return tournament
     else
       return nil
+    end
+  end
+
+  private
+
+  def limit_not_before_today
+    if tournament_limit.present?
+      if tournament_limit < Date.today
+        errors.add(:tournament_limit, "は今日以降にしてください。")
+      end
+    end
+  end
+
+  def date_not_before_limit
+    if tournament_date.present? && tournament_limit.present?
+      if tournament_date < tournament_limit
+        errors.add(:tournament_date, "は応募期間より後にしてください")
+      end
     end
   end
 

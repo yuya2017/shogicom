@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show]
   before_action :set_target_post, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
-  before_action :set_search, only: :index
+  before_action :set_search, only: [:index, :search_post]
   def new
     @post = Post.new
     @post.build_room
@@ -50,7 +50,6 @@ class PostsController < ApplicationController
   end
 
   def search_post
-    @q = Post.ransack(params[:q])
     grouping_hash = params[:q][:post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont].split(",").reduce({}){|hash, word| hash.merge(word => { post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont: word })}
     @posts = Post.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
   end

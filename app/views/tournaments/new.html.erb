@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<%= f.label :tournament_number_of_people, '応募人数' %>
           <div class="d-flex">
-            <%= f.number_field :tournament_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off' %>
+            <%= f.number_field :tournament_number_of_people, class: 'form-control  form_select_nobtn', autocomplete: 'off', min:0, max:1000 %>
             <span class="input-group-append">
               <span class="input-group-text">人</span>
             </span>
@@ -95,14 +95,18 @@
 					<%= f.label :tournament_date, '開催日時' %>
           <div class="calendar_date">
             <div id="datetimepicker1" data-target-input="nearest" class="tournament_date">
-              <div class="d-flex">
-                <%= f.text_field :tournament_at_date, class: 'form-control form_select', 'data-target': "#datetimepicker1", 'data-toggle': "datetimepicker", autocomplete: 'off' %>
-                <span class="input-group-append pr-4" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </span>
-                <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
-                <span class="time_between">：</span>
-                <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+              <div class="d-md-flex">
+                <div class="d-flex">
+                  <%= f.text_field :tournament_at_date, class: 'form-control form_select', 'data-target': "#datetimepicker1", 'data-toggle': "datetimepicker", autocomplete: 'off' %>
+                  <span class="input-group-append pr-md-4" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </span>
+                </div>
+                <div class="d-flex w-100">
+                  <%= f.select :tournament_at_hour, (0..23).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+                  <span class="time_between">：</span>
+                  <%= f.select :tournament_at_minute, (0..59).to_a.map { |v| "%02d" % v }, {}, class: 'form-control form_time_select', autocomplete: 'off' %>
+                </div>
               </div>
             </div>
           </div>
