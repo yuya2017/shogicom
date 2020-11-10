@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   validates :post_app, presence: true, length: { maximum: 20 }
   validates :post_time, presence: true, length: { maximum: 15 }
   validates :user_id, presence: true
-  validates :post_all_tag, length: { maximum: 30 }
+  validates :post_all_tag, length: { maximum: 50 }
   validates :post_content, length: { maximum: 100 }
 
 end

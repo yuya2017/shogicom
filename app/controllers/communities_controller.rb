@@ -17,7 +17,12 @@ class CommunitiesController < ApplicationController
       Community.community_user_create(current_user.id, @community.id)
       redirect_to root_path, notice: "#{@community.room.room_name}を応募しました。やむを得ず中止する場合は必ずチャットルームへ一言連絡を入れてください。"
     else
-      render "communities/new"
+      if @community.community_place == "存在しません"
+        @community.community_place = nil
+        render "communities/new"
+      else
+        render "communities/new"
+      end
     end
   end
 
@@ -59,8 +64,8 @@ class CommunitiesController < ApplicationController
 
   def search_community
     @q = Community.ransack(params[:q])
-    grouping_hash = params[:q][:community_place_or_community_date_or_community_limit_or_community_money_or_community_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { community_place_or_community_date_or_community_limit_or_community_money_or_community_all_tag_cont: word })}
-    @communities = Community.ransack({ combinator: 'and', groupings: grouping_hash }).result.where("community_limit >= ?", Date.today).includes(:room).order(updated_at: "DESC").page(params[:page])
+    grouping_hash = params[:q][:community_place_or_community_all_tag_cont].split(",").reduce({}){|hash, word| hash.merge(word => { community_place_or_community_all_tag_cont: word })}
+    @communities = Community.ransack({ combinator: 'and', groupings: grouping_hash }).result.where(community_date:params[:q][:community_date_start].to_time.beginning_of_day..params[:q][:community_date_end].to_time.end_of_day).includes(:room).order(updated_at: "DESC").page(params[:page])
 
     gon.user = current_user
     gon.communities = @communities
@@ -101,6 +106,12 @@ class CommunitiesController < ApplicationController
 
   def set_search
     @q = Community.ransack(params[:q])
+  end
+
+  def date_confirmation
+    if params[:q][:community_date_start].blank? || params[:q][:community_date_end].blank?
+      redirect_to communities_path, notice: "日付を入力してください。"
+    end
   end
 
 end

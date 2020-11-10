@@ -1,17 +1,21 @@
 <div class="col-lg-3 search_sidebar order-2">
-  <%= search_form_for @q, url: tournaments_search_tournament_path, class:"ml-4 w-75 d-inline center-block" do |f| %>
-    <div class="input-group header_top">
-      <%= f.search_field :tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_cont, class: 'tagsinput tags_search', id: "tags_search" %>
-      <%= f.submit ("🔍"), class: 'btn btn-secondary' %>
+  <h2 class="heading d-none d-lg-block">キーワード検索</h2>
+  <%= search_form_for @q, url: tournaments_search_tournament_path, class:"w-75 d-inline center-block" do |f| %>
+    <%= f.label :tournament_date, '開催日時', class:"date_form_title" %></br>
+    <div class="date_form_group">
+      <%= f.date_field :tournament_date_start, value: Date.today, class: "form-control date_form" %><span class="date_form_span">〜</span>
+      <%= f.date_field :tournament_date_end, value: Date.today >> 3, class: "form-control date_form" %>
     </div>
+    <%= f.search_field :tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont, class: 'tagsinput tags_search', id: "tags_search" %>
+    <%= f.submit '検索する', class:"btn buttonguest btn-warning"  %>
   <% end %>
   <div class="search_tag">
-    <span class="search_tag_text">#将棋ウォーズ</span>
-    <span class="search_tag_text">#将棋オンライン</span>
-    <span class="search_tag_text">#ぴよ将棋</span>
-    <span class="search_tag_text">#将棋クエスト</span>
-    <span class="search_tag_text">#将棋倶楽部24</span>
-    <span class="search_tag_text">#どうぶつ将棋ウォーズ</span>
-    <span class="search_tag_text">#ぬこしょうぎ</span>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=将棋ウォーズ&commit=検索する"><span class="search_tag_text">#将棋ウォーズ</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=将棋オンライン&commit=検索する"><span class="search_tag_text">#将棋オンライン</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=ぴよ将棋&commit=検索する"><span class="search_tag_text">#ぴよ将棋</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=将棋クエスト&commit=検索する"><span class="search_tag_text">#将棋クエスト</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=将棋倶楽部24&commit=検索する"><span class="search_tag_text">#将棋倶楽部24</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=どうぶつ将棋ウォーズ&commit=検索する"><span class="search_tag_text">#どうぶつ将棋ウォーズ</span></a>
+    <a href="/tournaments/search_tournament?q%5Btournament_date_gteq%5D=2020-11-10&q%5Btournament_date_lteq%5D=2021-02-10&q%5Btournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont%5D=ねこ将棋&commit=検索する"><span class="search_tag_text">#ねこ将棋</span></a>
   </div>
 </div>

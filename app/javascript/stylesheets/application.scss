@@ -49,12 +49,17 @@ header {
   background-color: $main_color;
   line-height: $header-height;
 }
+
 a {
   text-decoration: none;
   color: #000;
   &:hover {
     text-decoration: none;
   }
+}
+
+li {
+  list-style: none;
 }
 
 .alert, .notice {
@@ -216,7 +221,6 @@ a {
   overflow:auto;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   z-index: 1;
-  padding-top: $header-height;
   @media screen and (min-width: 991px) {
     height: 100%;
   }
@@ -910,12 +914,8 @@ color: #A4A8B1;
   padding-right: 10px;
 }
 
-.form_select {
-  max-width: 300px;
-}
-
-.form_select_nobtn {
-  max-width: 336px;
+.form_select, .form_select_nobtn {
+  width: 300px;
 }
 
 .tournament_date, .community_date {
@@ -927,7 +927,8 @@ color: #A4A8B1;
 }
 
 .time_between {
-  line-height: 36px;
+  line-height: 46px;
+  color: #000;
 }
 
 .gmap_info_window_date {
@@ -957,10 +958,6 @@ color: #A4A8B1;
     font-weight: bold;
 }
 
-.tags_top_tagsinput {
-  width: 75%!important;
-}
-
 .tagsinput {
   width: 100%;
 }
@@ -969,6 +966,32 @@ color: #A4A8B1;
   line-height: 36px;
   color: gray;
   position: absolute;
+}
+
+.post_choice {
+  margin-bottom: 30px;
+}
+
+.date_form {
+  width: auto;
+  margin: 0 auto;
+}
+
+.date_form_span {
+  line-height: 46px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.date_form_group {
+  margin-bottom: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+.date_form_title {
+  width: 100%;
+  text-align: center;
 }
 
 @media screen and (max-width: 991px) {
@@ -998,9 +1021,11 @@ color: #A4A8B1;
   .password_change { font-size: 17px }
   .profile_main { width: 100%; }
   .search_tag { padding-right: 60px; }
-  .tags_top_tagsinput { width: 90%!important; }
+  .date_form_group { display: flex; }
+  .date_form{ margin: 0; }
 }
 
-@media screen and (max-width: 575px) {
-  .tags_top_tagsinput { width: 75%!important; }
+@media screen and (max-width: 500px) {
+  .date_form_group { display: block; }
+  .date_form { margin: 0 auto; }
 }

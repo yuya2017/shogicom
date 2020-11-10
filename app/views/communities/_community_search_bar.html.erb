@@ -1,17 +1,12 @@
 <div class="col-lg-3 search_sidebar order-2">
-  <%= search_form_for @q, url: communities_search_community_path, class:"ml-4 w-75 d-inline center-block" do |f| %>
-    <div class="input-group header_top">
-      <%= f.search_field :community_place_or_community_date_or_community_limit_or_community_money_or_community_all_tag_cont, class: 'tagsinput tags_search', id: "tags_search" %>
-      <%= f.submit ("🔍"), class: 'btn btn-secondary' %>
+  <h2 class="heading d-none d-lg-block">キーワード検索</h2>
+  <%= search_form_for @q, url: communities_search_community_path, class:"w-75 d-inline center-block" do |f| %>
+    <%= f.label :community_date, '開催日時', class:"date_form_title" %></br>
+    <div class="date_form_group">
+      <%= f.date_field :community_date_start, value: Date.today, class: "form-control date_form" %><span class="date_form_span">〜</span>
+      <%= f.date_field :community_date_end, value: Date.today >> 3, class: "form-control date_form" %>
     </div>
+    <%= f.search_field :community_place_or_community_all_tag_cont, class: 'tagsinput tags_search', id: "tags_search" %>
+    <%= f.submit '検索する', class:"btn buttonguest btn-warning"  %>
   <% end %>
-  <div class="search_tag">
-    <span class="search_tag_text">#将棋ウォーズ</span>
-    <span class="search_tag_text">#将棋オンライン</span>
-    <span class="search_tag_text">#ぴよ将棋</span>
-    <span class="search_tag_text">#将棋クエスト</span>
-    <span class="search_tag_text">#将棋倶楽部24</span>
-    <span class="search_tag_text">#どうぶつ将棋ウォーズ</span>
-    <span class="search_tag_text">#ぬこしょうぎ</span>
-  </div>
 </div>
