@@ -46,6 +46,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'letter_opener_web'
   gem 'rubocop', require: false
+  gem 'bullet'
 end
 
 group :test do
