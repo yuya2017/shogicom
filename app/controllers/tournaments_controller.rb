@@ -21,7 +21,7 @@ class TournamentsController < ApplicationController
   end
 
   def index
-    @tournaments = Tournament.where("tournament_limit >= ?", Date.today).page(params[:page]).includes(:room).order(updated_at: "DESC")
+    @tournaments = Tournament.where("tournament_limit >= ?", Date.today).page(params[:page]).includes(:room, :user).order(updated_at: "DESC")
   end
 
   def show
@@ -54,7 +54,7 @@ class TournamentsController < ApplicationController
 
   def search_tournament
     grouping_hash = params[:q][:tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont].split(",").reduce({}){|hash, word| hash.merge(word => { tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont: word })}
-    @tournaments = Tournament.ransack({ combinator: 'and', groupings: grouping_hash }).result.where(tournament_date:params[:q][:tournament_date_start].to_time.beginning_of_day..params[:q][:tournament_date_end].to_time.end_of_day).includes(:room).order(updated_at: "DESC").page(params[:page])
+    @tournaments = Tournament.ransack({ combinator: 'and', groupings: grouping_hash }).result.where(tournament_date:params[:q][:tournament_date_start].to_time.beginning_of_day..params[:q][:tournament_date_end].to_time.end_of_day).includes(:room, :user).order(updated_at: "DESC").page(params[:page])
   end
 
   #大会参加用

@@ -18,11 +18,10 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).includes(:room).order(updated_at: "DESC")
+    @posts = Post.page(params[:page]).includes(:room, :user).order(updated_at: "DESC")
   end
 
   def show
-    @posts = Post.page(params[:page]).includes(:room).order(updated_at: "DESC")
     @room = @post.room
   end
 
@@ -51,7 +50,7 @@ class PostsController < ApplicationController
 
   def search_post
     grouping_hash = params[:q][:post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont].split(",").reduce({}){|hash, word| hash.merge(word => { post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont: word })}
-    @posts = Post.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room).order(updated_at: "DESC").page(params[:page])
+    @posts = Post.ransack({ combinator: 'and', groupings: grouping_hash }).result.includes(:room, :user).order(updated_at: "DESC").page(params[:page])
   end
 
   private

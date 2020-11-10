@@ -26,7 +26,7 @@
         <% if @tournament_users.where(user_id: current_user.id).present? %>
         <%= link_to 'チャットルームへ移動',"/rooms/#{@room.id}/tournament", class: "btn btn-primary buttonConfirm" %>
         <% else %>
-        <%= link_to '大会に参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn btn-primary buttonConfirm", method: :post %>
+        <%= link_to '大会に参加', tournaments_tournament_participation_path(:tournament => @tournament.id), class: "btn buttonguest btn-warning", method: :post %>
         <% end %>
       </div>
     </div>
