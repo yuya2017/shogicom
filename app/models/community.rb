@@ -10,6 +10,7 @@ class Community < ApplicationRecord
   validates :community_limit, presence: true
   validates :community_date, presence: true
   validates :community_money, presence: true
+  validates :community_number_of_people, numericality: { greater_than: 1 }, allow_nil: true
   validates :user_id, presence: true
   validates :community_all_tag, length: { maximum: 50 }
   validates :community_content, length: { maximum: 100 }
@@ -18,7 +19,7 @@ class Community < ApplicationRecord
   validate  :date_not_before_limit
 
   geocoded_by :community_place do |obj, results|
-    if obj.community_place == ""
+    if obj.community_place == "" || obj.community_place == nil
       obj.community_place == nil
     elsif results.first.nil?
       obj.community_place = "存在しません"
@@ -63,7 +64,7 @@ class Community < ApplicationRecord
   def date_not_before_limit
     if community_date.present? && community_limit.present?
       if community_date < community_limit
-        errors.add(:community_limit, "は応募期間より後にしてください")
+        errors.add(:community_date, "は応募期間より後にしてください")
       end
     end
   end

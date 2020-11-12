@@ -4,6 +4,8 @@ class Message < ApplicationRecord
   belongs_to :room
 
   validates :message_content, presence: true, length: { maximum: 100 }
+  validates :user_id, presence: true
+  validates :room_id, presence: true
 
   def self.message_error(message)
     room = Room.find(message.room_id)
