@@ -13,6 +13,7 @@ class Tournament < ApplicationRecord
   validates :tournament_time, presence: true, length: { maximum: 15 }
   validates :tournament_limit, presence: true
   validates :tournament_date, presence: true
+  validates :tournament_number_of_people, numericality: { greater_than: 1 }, allow_nil: true
   validates :user_id, presence: true
   validates :tournament_all_tag, length: { maximum: 50 }
   validates :tournament_content, length: { maximum: 100 }
@@ -71,7 +72,7 @@ class Tournament < ApplicationRecord
 
   def date_not_before_limit
     if tournament_date.present? && tournament_limit.present?
-      if tournament_date < tournament_limit
+      if tournament_date + 60*60*9 < tournament_limit
         errors.add(:tournament_date, "は応募期間より後にしてください")
       end
     end

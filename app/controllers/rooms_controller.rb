@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
     @messages = @room.messages.includes(:user)
     @message = current_user.messages.build
     session[:room_id] = @room.id
-      tournament_users = current_user.tournament_users.all
+    tournament_users = current_user.tournament_users.all
     @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users)
   end
 
@@ -42,15 +42,7 @@ class RoomsController < ApplicationController
   #個人用チャット(2人しか入れないチャットルームを作成)
   def create_private_room
     room_key = Room.enterRoom(current_user.id, params[:user_id].to_i)
-    if room_key.class == Integer
-      redirect_to "/rooms/#{room_key}/private"
-    else
-      if room_key.save!
-        redirect_to "/rooms/#{room_key.id}/private"
-      else
-        redirect_t root_path
-      end
-    end
+    redirect_to "/rooms/#{room_key}/private"
   end
 
   def private_message

@@ -16,11 +16,12 @@ class Room < ApplicationRecord
       if Room.where(private_id: user_id).where(user_id: private_id).present?
         Room.where(private_id: user_id).where(user_id: private_id)[0].id
       else
-        Room.new(
+        room = Room.create(
           room_name: "個人用チャットルーム",
           user_id: user_id,
           private_id: private_id
         )
+        room.id
       end
     end
   end
