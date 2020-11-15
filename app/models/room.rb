@@ -12,17 +12,15 @@ class Room < ApplicationRecord
   def self.enterRoom(user_id, private_id)
     if Room.where(user_id: user_id).where(private_id: private_id).present?
       Room.where(user_id: user_id).where(private_id: private_id)[0].id
+    elsif Room.where(private_id: user_id).where(user_id: private_id).present?
+      Room.where(private_id: user_id).where(user_id: private_id)[0].id
     else
-      if Room.where(private_id: user_id).where(user_id: private_id).present?
-        Room.where(private_id: user_id).where(user_id: private_id)[0].id
-      else
-        room = Room.create(
-          room_name: "個人用チャットルーム",
-          user_id: user_id,
-          private_id: private_id
-        )
-        room.id
-      end
+      room = Room.create(
+        room_name: "個人用チャットルーム",
+        user_id: user_id,
+        private_id: private_id
+      )
+      room.id
     end
   end
 
@@ -56,21 +54,32 @@ class Room < ApplicationRecord
     return private_messages, message_users, no_messages, no_message_users
   end
 
-  def self.my_post_room(messages)
-    private_rooms = []
+  def self.my_post_room(messages, posts)
+    post_rooms = []
     post_messages = []
+    no_message_posts = []
     messages.each do |message|
       next if message.id == nil
-      unless private_rooms.include?(Room.find(message.room_id))
-        private_rooms.push(Room.find(message.room_id))
+      unless post_rooms.include?(Room.find(message.room_id))
+        post_rooms.push(Room.find(message.room_id))
       end
     end
-    private_rooms.each do |room|
+    posts.each do |post|
+      unless post_rooms.include?(Room.find(post.room.id))
+        if Message.where(room_id: post.room.id).present?
+          post_rooms.push(Room.find(post.room.id))
+        else
+          no_message_posts.unshift(post)
+        end
+      end
+    end
+    post_rooms.each do |room|
       if room.post_id.present?
         post_messages.push(Message.where(room_id: room.id).last(1)[0])
       end
     end
     post_messages = post_messages.sort.reverse
+    return post_messages, no_message_posts
   end
 
   def self.my_tournament_room(tournament_users)

@@ -36,7 +36,9 @@ class Tournament < ApplicationRecord
   end
 
   def set_date
-    self.tournament_date = Time.zone.parse("#{@tournament_at_date} #{@tournament_at_hour}:#{@tournament_at_minute}:00")
+    if tournament_at_date.present? && tournament_at_hour.present? && tournament_at_date.present?
+      self.tournament_date = Time.zone.parse("#{@tournament_at_date} #{@tournament_at_hour}:#{@tournament_at_minute}:00")
+    end
   end
 
   def self.tournament_user_create(user_id, tournament_id)

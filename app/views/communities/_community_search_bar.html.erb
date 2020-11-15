@@ -6,7 +6,7 @@
       <%= f.date_field :community_date_start, value: Date.today, class: "form-control date_form" %><span class="date_form_span">〜</span>
       <%= f.date_field :community_date_end, value: Date.today >> 3, class: "form-control date_form" %>
     </div>
-    <%= f.search_field :community_place_or_community_all_tag_cont, class: 'tagsinput tags_search', id: "tags_search" %>
+    <%= f.search_field :community_place_or_community_all_tag_or_room_room_name_cont, class: 'tagsinput tags_search', id: "tags_search" %>
     <%= f.submit '検索する', class:"btn buttonguest btn-warning"  %>
   <% end %>
 </div>

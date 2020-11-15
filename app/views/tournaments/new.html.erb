@@ -79,7 +79,7 @@
 				</div>
 				<div class="form-group">
           <div id="datetimepicker0" data-target-input="nearest">
-  					<%= f.label :tournament_limit, '応募期間' %>
+  					<%= f.label :tournament_limit, '応募期間*' %>
             <div class="d-flex">
               <%= f.text_field :tournament_limit, class: 'form-control form_select', 'data-target': "#datetimepicker0", 'data-toggle': "datetimepicker", autocomplete: 'off' %>
               <span class="input-group-append" data-target="#datetimepicker0" data-toggle="datetimepicker">
@@ -92,7 +92,7 @@
 				  </div>
         </div>
 				<div class="form-group">
-					<%= f.label :tournament_date, '開催日時' %>
+					<%= f.label :tournament_date, '開催日時*' %>
           <div class="calendar_date">
             <div id="datetimepicker1" data-target-input="nearest" class="tournament_date">
               <div class="d-md-flex">

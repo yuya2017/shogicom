@@ -24,7 +24,7 @@
 				<% end %>
 				<%= f.fields_for :room do |i| %>
 					<div class="form-group">
-						<%= i.label :room_name, '部屋名*' %>
+						<%= i.label :room_name, 'イベント名*' %>
 						<%= i.text_field :room_name, class: 'form-control'%>
 						<small class="form-text text-muted">
 							イベントの名前を入力してください。

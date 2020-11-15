@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="post_box_outer">
-      <%= link_to "/posts/#{post.id}" do %>
+      <%= link_to "/posts/#{post.id}", class: "post-#{post.id}" do %>
         <div class="post_box">
           <h4><%= post.room.room_name %></h4>
           <% all_tags = post.post_all_tag.split(",") %>

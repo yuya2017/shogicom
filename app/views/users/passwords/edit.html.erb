@@ -11,7 +11,7 @@
             <div class="field form_group login_content">
               <%= f.label :password, "新しいパスワード" %>
               <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                <em>(<%= @minimum_password_length %>文字以上)</em><br />
               <% end %>
               <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
             </div>
