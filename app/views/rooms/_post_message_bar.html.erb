@@ -20,4 +20,20 @@
       <% end %>
     </li>
 	<% end %>
+  <% @no_message_posts.each do |post| %>
+  <li class="nav-item message_bar">
+    <%= link_to "/rooms/#{post.room.id}/post" do %>
+      <div class="d-flex">
+        <% if post.user.user_image? %>
+          <img src='<%= post.user.user_image %>' class="header_image" alt="ユーザーアイコン">
+        <% else %>
+          <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+        <% end %>
+        <div class="messagebar_message_right ml-4">
+          <p class="mypage_message_user"><%= post.room.room_name %></p>
+        </div>
+      </div>
+    <% end %>
+  </li>
+<% end %>
 </ul>

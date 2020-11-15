@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="post_box_outer">
-        <%= link_to "/communities/#{community.id}", data: {"turbolinks" => false} do %>
+        <%= link_to "/communities/#{community.id}", data: {"turbolinks" => false}, class: "community-#{community.id}"  do %>
           <div class="post_box">
             <h4><%= community.room.room_name %></h4>
             <% all_tags = community.community_all_tag.split(",") %>

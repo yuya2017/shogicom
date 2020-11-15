@@ -19,7 +19,8 @@ class RoomsController < ApplicationController
     @message = current_user.messages.build
     session[:room_id] = @room.id
     messages = current_user.messages
-    @post_messages = Room.my_post_room(messages)
+    posts = current_user.posts.includes(:room)
+    @post_messages, @no_message_posts = Room.my_post_room(messages, posts)
   end
 
   def tournament_show
@@ -41,8 +42,12 @@ class RoomsController < ApplicationController
 
   #個人用チャット(2人しか入れないチャットルームを作成)
   def create_private_room
-    room_key = Room.enterRoom(current_user.id, params[:user_id].to_i)
-    redirect_to "/rooms/#{room_key}/private"
+    if current_user.id == params[:user_id].to_i
+      redirect_to root_path, notice: "自分だけの部屋は作成できません・"
+    else
+      room_key = Room.enterRoom(current_user.id, params[:user_id].to_i)
+      redirect_to "/rooms/#{room_key}/private"
+    end
   end
 
   def private_message
@@ -52,7 +57,8 @@ class RoomsController < ApplicationController
 
   def participating_post
     messages = current_user.messages
-    @post_messages = Room.my_post_room(messages)
+    posts = current_user.posts.includes(:room)
+    @post_messages, @no_message_posts = Room.my_post_room(messages, posts)
   end
 
   def participating_tournament
