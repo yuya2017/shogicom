@@ -1,10 +1,11 @@
 class CommunitiesController < ApplicationController
   layout 'maps'
 
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :community_participation]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :community_participation, :community_exit, :edit]
   before_action :set_target_community, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
   before_action :set_search, only: :index
+  before_action :date_confirmation, only: :search_community
 
   def new
     @community = Community.new

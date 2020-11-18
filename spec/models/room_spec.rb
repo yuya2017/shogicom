@@ -96,13 +96,24 @@ RSpec.describe Room, type: :model do
         end
       end
     end
-    context "my_post_roomメソッドで部屋が増えること" do
-      it "my_post_roomでメッセージを送信した" do
+    context "my_post_roomメソッドで部屋がありメッセージもある場合" do
+      it "post_messagesが増える" do
         post_room = create(:room, :post_room, user: @user)
         create(:message, room: post_room, user: @user)
         messages = @user.messages
-        post_messages = Room.my_post_room(messages)
+        posts = @user.posts
+        post_messages,no_message_posts = Room.my_post_room(messages, posts)
         expect(post_messages.size).to eq 1
+      end
+    end
+    context "my_post_roomメソッドで部屋がありメッセージがない場合" do
+      it "no_message_postsが増える" do
+        post = create(:post, user: @user)
+        post_room = create(:room, :post_room, post: post)
+        messages = @user.messages
+        posts = @user.posts
+        post_messages,no_message_posts = Room.my_post_room(messages, posts)
+        expect(no_message_posts.size).to eq 1
       end
     end
     context "my_tournament_roomメソッドで部屋がありメッセージもある場合" do

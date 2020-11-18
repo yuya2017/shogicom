@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :tournament do
     tournament_chess { "30級" }
-    tournament_app { "将棋" }
+    tournament_app { "将棋ウォーズ" }
     tournament_time { "10分" }
     tournament_limit { "2022/02/22".to_time }
     tournament_at_date { "2022/02/25" }
@@ -12,6 +12,15 @@ FactoryBot.define do
     tournament_content { "宜しくお願いいたします。" }
     association :user
 
+    trait :with_room do
+      room_attributes { attributes_for(:room, :tournament_room) }
+    end
+    trait :with_room_update do
+      tournament_chess { "1級" }
+    end
+    trait :invalid do
+      tournament_chess { nil }
+    end
     trait :limit_before do
       tournament_limit { "2020/01/01".to_time }
     end

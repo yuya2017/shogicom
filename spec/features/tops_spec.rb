@@ -21,8 +21,6 @@ RSpec.feature "Tops", type: :feature do
     expect(page).to have_selector 'h4', text: "#{community_room.room_name}"
     click_link "ログアウト"
     click_link "ログイン"
-    puts user2.email
-    puts user2.password
     fill_in "Eメールアドレス*", with: user2.email
     fill_in "パスワード*", with: user2.password
     click_button "ログイン"

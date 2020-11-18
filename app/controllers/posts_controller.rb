@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :show, :edit]
   before_action :set_target_post, only: [:show, :edit, :update, :destroy]
   before_action :account_confirmation, only: [:edit, :update, :destroy]
   before_action :set_search, only: [:index, :search_post]
@@ -29,10 +29,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    #要テスト
-    unless @post.room.id == params[:post][:room_attributes][:id].to_i
-      redirect_to root_path, notice: "room_idは変更できません。"
-    end
     if @post.update(post_params)
       redirect_to root_path, notice: "更新しました。"
     else
