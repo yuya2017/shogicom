@@ -1,6 +1,6 @@
 <header>
   <div class="header_body">
-    <div class="headet-icon">
+    <div class="header-icon">
       <%= link_to root_path do %>
         <img src="/img/logo.jpg" alt="ノシ将棋" class="logo">
       <% end %>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <% if user_signed_in? %>
-        <%= link_to "/tops/#{current_user.id}" do %>
+        <%= link_to "/tops/#{current_user.id}", class: "tops_icon" do %>
           <% if current_user.user_image? %>
             <img src='<%= current_user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <% else %>

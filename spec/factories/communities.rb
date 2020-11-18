@@ -9,6 +9,15 @@ FactoryBot.define do
     community_content{ "宜しくお願いいたします。" }
     association :user
 
+    trait :with_room do
+      room_attributes { attributes_for(:room, :community_room) }
+    end
+    trait :with_room_update do
+      community_place { "静岡県" }
+    end
+    trait :invalid do
+      community_place { nil }
+    end
     trait :limit_before do
       community_limit { "2020/01/01".to_time }
     end
