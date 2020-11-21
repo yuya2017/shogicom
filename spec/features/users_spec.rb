@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
+  let(:user) { create(:user) }
+  background do
+    ActionMailer::Base.deliveries.clear
+  end
   scenario "ユーザー登録" do
     visit root_path
     click_link "新規登録"
@@ -18,10 +22,9 @@ RSpec.feature "Users", type: :feature do
       attach_file 'user[user_image]', "#{Rails.root}/spec/factories/profile_sample.jpg"
       expect { click_button '登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     }.to change(User, :count).by(1)
-    mail = ActionMailer::Base.deliveries.last
-    body = mail.body.encoded
-    url = body[/http[^"]+/]
-    visit url
+    user = User.last
+    token = user.confirmation_token
+    visit user_confirmation_path(confirmation_token: token)
     expect(page).to have_content 'メールアドレスが確認できました。'
     fill_in "メールアドレス*", with: "tester@example.com"
     fill_in "パスワード*", with: "password"
@@ -33,12 +36,8 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario "ユーザー編集" do
-    user = create(:user)
+    sign_in user
     visit root_path
-    click_link "ログイン"
-    fill_in "メールアドレス*", with: "#{user.email}"
-    fill_in "パスワード*", with: "#{user.password}"
-    click_button "ログイン"
     click_link "ユーザーアイコン"
     click_link "アカウント編集"
     fill_in "名前*", with: "鈴木二郎"
@@ -56,8 +55,7 @@ RSpec.feature "Users", type: :feature do
     fill_in "Eメールアドレス*", with: "#{user.email}"
     expect { click_button '送信' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     mail = ActionMailer::Base.deliveries.last
-    body = mail.body.encoded
-    url = body[/http[^"]+/]
+    url = extract_confirmation_url(mail)
     visit url
     fill_in "新しいパスワード", with: "newpassword"
     fill_in "パスワード確認用", with: "newpassword"
@@ -75,8 +73,7 @@ RSpec.feature "Users", type: :feature do
     fill_in "Eメールアドレス*", with: "#{user.email}"
     expect { click_button '送信' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     mail = ActionMailer::Base.deliveries.last
-    body = mail.body.encoded
-    url = body[/http[^"]+/]
+    url = extract_confirmation_url(mail)
     visit url
     fill_in "新しいパスワード", with: "newpassword"
     fill_in "パスワード確認用", with: "newpassword"
@@ -105,10 +102,9 @@ RSpec.feature "Users", type: :feature do
       fill_in "Eメールアドレス*", with: "tester@example.com"
       expect { click_button '送信' }.to change { ActionMailer::Base.deliveries.size }.by(1)
     }.to change(User, :count).by(1)
-    mail = ActionMailer::Base.deliveries.last
-    body = mail.body.encoded
-    url = body[/http[^"]+/]
-    visit url
+    user = User.last
+    token = user.confirmation_token
+    visit user_confirmation_path(confirmation_token: token)
     expect(page).to have_content 'メールアドレスが確認できました。'
   end
 
@@ -122,6 +118,11 @@ RSpec.feature "Users", type: :feature do
     click_link "ログアウト"
     click_link "ログイン"
     expect { click_link "ゲストログイン" }.to change(User, :count).by(0)
+  end
+
+  def extract_confirmation_url(mail)
+    body = mail.body.encoded
+    body[/http[^"]+/]
   end
 
 end

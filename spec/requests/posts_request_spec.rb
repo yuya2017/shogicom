@@ -1,191 +1,209 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
+  let(:user) { create(:user) }
+  let(:user2) { create(:user) }
+  let(:create_post) { create(:post, :with_room, user: user) }
+  let(:post_params) { attributes_for(:post, :with_room) }
+  let(:invalid_post_params) { attributes_for(:post, :invalid) }
+  let(:update_post_params) { attributes_for(:post, :with_update) }
+  
   context "ログインしている状態" do
     before do
-      @user = create(:user)
-      sign_in @user
+      sign_in user
     end
     describe "#new" do
-      it "正常なレスポンスを返すこと" do
+      it "リクエストが成功すること" do
         get new_post_path
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#create" do
       context "有効な属性値の場合" do
-        it "投稿を追加できること" do
-          post_params = attributes_for(:post, :with_room)
+        it "作成できること" do
           expect {
             post posts_path, params: { post: post_params }
-          }.to change(@user.posts, :count).by(1)
+          }.to change(user.posts, :count).by(1)
         end
       end
       context "無効な属性値の場合" do
-        it "投稿が追加できないこと" do
-          post_params = attributes_for(:post, :invalid)
-          expect {
-            post posts_path, params: { post: post_params }
-          }.not_to change(@user.posts, :count)
+        it "作成されないこと" do
+          aggregate_failures do
+            expect {
+              post posts_path, params: { post: invalid_post_params }
+            }.not_to change(user.posts, :count)
+            expect(response.body).to include "は保存されませんでした"
+          end
         end
       end
     end
     describe "#index" do
-      it "正常なレスポンスを返すこと" do
+      it "リクエストが成功すること" do
         get posts_path
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#show" do
-      it "正常なレスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        get post_path(post)
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+      it "リクエストが成功すること" do
+        get post_path(create_post)
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#edit" do
-      it " 正常なレスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        get edit_post_path(post)
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+      it " リクエストが成功すること" do
+        get edit_post_path(create_post)
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#update" do
       context "有効な属性値の場合" do
         it "正常に更新されること" do
-          post = create(:post, :with_room, user: @user)
-          post_params = attributes_for(:post, :with_room_update)
-          patch post_path(post), params: { post: post_params }
-          expect(post.reload.post_chess).to eq "1級"
+          patch post_path(create_post), params: { post: update_post_params }
+          expect(create_post.reload.post_chess).to eq "1級"
         end
       end
       context "無効な属性値の場合" do
         it "更新ができないこと" do
-          post = create(:post, :with_room, user: @user)
-          post_params = attributes_for(:post, :invalid)
-          patch post_path(post), params: { post: post_params }
-          expect(post.reload.post_chess).to eq "30級"
+          patch post_path(create_post), params: { post: invalid_post_params }
+          aggregate_failures do
+            expect(create_post.reload.post_chess).to eq "30級"
+            expect(response.body).to include "は保存されませんでした"
+          end
         end
       end
     end
     describe "#destroy" do
       it "正常に削除できること" do
-        post = create(:post, :with_room, user: @user)
-        expect { delete post_path(post) }.to change(@user.posts, :count).by(-1)
+        post_id = create_post.id
+        expect { delete post_path(create_post) }.to change(user.posts, :count).by(-1)
       end
     end
     describe "#posts_search_post" do
-      it "正常にレスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
+      it "リクエストが成功すること" do
+        post_id = create_post.id
         get posts_search_post_path, params: {"q"=>{"post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont"=>"将棋ウォーズ"}}
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
   end
-  context "ログインしていない状態" do
+  context "ログインしていないとき" do
     before do
-      @user = create(:user)
+      user
     end
     describe "#new" do
-      it "302レスポンスを返すこと" do
+      it "リダイレクトされること" do
         get new_post_path
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+        aggregate_failures do
+          expect(response.status).to eq 302
+          expect(response).to redirect_to new_user_session_path
+        end
       end
     end
     describe "#create" do
-      it "302レスポンスを返すこと" do
-        post_params = attributes_for(:post, :with_room)
+      it "作成されないこと" do
         expect {
           post posts_path, params: { post: post_params }
-        }.not_to change(@user.posts, :count)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+        }.not_to change(user.posts, :count)
       end
     end
     describe "#index" do
-      it "正常なレスポンスを返すこと" do
+      it "リクエストが成功すること" do
         get posts_path
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#show" do
-      it "302レスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        get post_path(post)
+      it "リダイレクトされること" do
+        get post_path(create_post)
         expect(response.status).to eq 302
         expect(response).to redirect_to new_user_session_path
       end
     end
     describe "#edit" do
-      it " 302レスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        get edit_post_path(post)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+      it " リダイレクトされること" do
+        get edit_post_path(create_post)
+        aggregate_failures do
+          expect(response.status).to eq 302
+          expect(response).to redirect_to new_user_session_path
+        end
       end
     end
     describe "#update" do
-      it "302レスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        post_params = attributes_for(:post, :with_room_update)
-        patch post_path(post), params: { post: post_params }
-        expect(post.reload.post_chess).not_to eq "1級"
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+      it " 更新されないこと" do
+        patch post_path(create_post), params: { post: update_post_params }
+        aggregate_failures do
+          expect(create_post.reload.post_chess).to eq "30級"
+          expect(response).to redirect_to new_user_session_path
+        end
       end
     end
     describe "#destroy" do
-      it "302レスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
-        expect { delete post_path(post) }.not_to change(@user.posts, :count)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+      it "削除されないこと" do
+        create_post
+        aggregate_failures do
+          expect { delete post_path(create_post) }.not_to change(user.posts, :count)
+          expect(response).to redirect_to new_user_session_path
+        end
       end
     end
     describe "#posts_search_post" do
-      it "正常にレスポンスを返すこと" do
-        post = create(:post, :with_room, user: @user)
+      it "リクエストが成功すること" do
+        create_post
         get posts_search_post_path, params: {"q"=>{"post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont"=>"将棋ウォーズ"}}
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
   end
   context "投稿者とログインユーザーが違う場合" do
     before do
-      @post = create(:post, :with_room)
-      @user = create(:user)
-      sign_in @user
+      sign_in user2
     end
     describe "#edit" do
-      it "302レスポンスを返すこと" do
-        get edit_post_path(@post)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to root_path
+      it "リダイレクトされること" do
+        get edit_post_path(create_post)
+        aggregate_failures do
+          expect(response.status).to eq 302
+          expect(response).to redirect_to root_path
+        end
       end
     end
     describe "#update" do
-      it "302レスポンスを返すこと" do
-        get edit_post_path(@post)
-        post_params = attributes_for(:post, :with_room_update)
-        patch post_path(@post), params: { post: post_params }
-        expect(@post.reload.post_chess).not_to eq "1級"
-        expect(response.status).to eq 302
-        expect(response).to redirect_to root_path
+      it "更新されないこと" do
+        patch post_path(create_post), params: { post: post_params }
+        aggregate_failures do
+          expect(create_post.reload.post_chess).to eq "30級"
+          expect(response).to redirect_to root_path
+        end
       end
     end
     describe "#destroy" do
-      it "302レスポンスを返すこと" do
-        expect { delete post_path(@post) }.not_to change(Post, :count)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to root_path
+      it "削除されないこと" do
+        create_post
+        aggregate_failures do
+          expect { delete post_path(create_post) }.not_to change(Post, :count)
+          expect(response).to redirect_to root_path
+        end
       end
     end
   end

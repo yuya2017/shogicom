@@ -295,11 +295,6 @@ li {
   text-align: center;
 }
 
-.profile_main {
-  position: relative;
-  width: 10%;
-}
-
 .profile_body:before {
   position: absolute;
   content: '';
@@ -505,13 +500,12 @@ li {
 .balloon-name-description {
   padding: 20px 0 0;
   font-size: 10px;
-  text-align: center;
 }
 
 .balloon-name-media {
   padding: 20px 0 0;
   font-size: 10px;
-  text-align: center;
+  padding-left: 30px;
 }
 
 .balloon-text-right,.balloon-text-left {
@@ -527,6 +521,8 @@ li {
 .balloon-text-left {
   border-color: #aaa;
   float: left;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .balloon-text-right {
@@ -758,7 +754,8 @@ li {
 }
 
 .post_date {
-  float:right;
+  text-align: right;
+  width: 100%;
 }
 
 .search_tag {
@@ -1020,13 +1017,14 @@ color: #A4A8B1;
   .profile_img{ display: flex; }
   .mypage_img { text-align: center; }
   .mypage_icon { display: block; }
+  .balloon-name-media { padding-left: 16px;}
+  .balloon-text-left { margin-top: 0; }
   .post_box_outer { width: 100%; }
   .balloon-name-description{ padding: 10px 0 0 10px; font-size: 20px; text-align: center; }
-  .profile_link { width: 21rem; }
+  .profile_link { width: 21rem; left: 10px; }
   .show_map { height: 300px; }
   .logout { font-size: 17px; padding-right: 47px; }
   .password_change { font-size: 17px }
-  .profile_main { width: 100%; }
   .search_tag { padding-right: 60px; }
   .date_form_group { display: flex; }
   .date_form{ margin: 0; }

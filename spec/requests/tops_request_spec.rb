@@ -1,42 +1,51 @@
 require 'rails_helper'
 
 RSpec.describe "Tops", type: :request do
-  context "ログイン状態" do
+  let(:user) { create(:user) }
+  
+  context "ログインしている状態" do
     before do
-      @user = create(:user)
-      sign_in @user
+      sign_in user
     end
     describe "#index" do
-      it "正常なレスポンスを返すこと" do
+      it "リクエストが成功すること" do
         get root_path
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#mypage" do
-      it "tops/mypageが正常なレスポンスを返すこと" do
-        get "/tops/#{@user.id}"
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+      it "リクエストが成功すること" do
+        get "/tops/#{user.id}"
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
   end
   context "ログインしていない状態" do
     before do
-      @user = create(:user)
+      user
     end
     describe "#index" do
-      it "tops/indexが正常なレスポンスを返すこと" do
+      it "リクエストが成功すること" do
         get root_path
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
     describe "#mypage" do
-      it "tops/mypageが正常なレスポンスを返すこと" do
-        get "/tops/#{@user.id}"
-        expect(response).to be_successful
-        expect(response.status).to eq 200
+      it "リクエストが成功すること" do
+        get "/tops/#{user.id}"
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response.status).to eq 200
+        end
       end
     end
   end
