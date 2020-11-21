@@ -28,7 +28,7 @@ document.addEventListener('turbolinks:load', () => {
             position: results[0].geometry.location
           });
           let id = communities[i]['id']
-          let infoWindowContent = `<a href='/communities/${id}' data-turbolinks="false" ><p class="gmap_info_window_date">開催日：${communities[i].community_date}</p><p class="gmap_info_window_limit">応募期間：${communities[i].community_limit}</p><p class="gmap_info_window_money">参加費：${communities[i].community_money}</p><p class="gmap_info_window_address">${communities[i].community_place}</p></a>`;
+          let infoWindowContent = `<a href='/communities/${id}' data-turbolinks="false" class="marker-${id}" ><p class="gmap_info_window_date">開催日：${communities[i].community_date}</p><p class="gmap_info_window_limit">応募期間：${communities[i].community_limit}</p><p class="gmap_info_window_money">参加費：${communities[i].community_money}</p><p class="gmap_info_window_address">${communities[i].community_place}</p></a>`;
 
           infoWindow[i] = new google.maps.InfoWindow({
             content: infoWindowContent

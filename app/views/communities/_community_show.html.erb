@@ -22,7 +22,7 @@
             <p class="card-text">よく対戦する持ち時間：<%= community.user.user_time %></p>
             <% unless community.user == current_user %>
               <%= link_to "プロフィール", "/tops/#{community.user_id}", class:"card-link profile_btn" %>
-              <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => community.user_id), class: "card-link profile_btn", method: :post  %>
+              <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => community.user_id), class: "card-link profile_btn", method: :post  %>
             <% end %>
           </div>
         </div>

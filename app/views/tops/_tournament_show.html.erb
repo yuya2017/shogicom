@@ -21,7 +21,7 @@
           <p class="card-text">よく対戦する持ち時間：<%= tournament.user.user_time %></p>
           <% unless tournament.user == current_user %>
             <%= link_to "プロフィール", "/tops/#{tournament.user_id}", class:"card-link profile_btn" %>
-            <%= link_to 'チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
+            <%= link_to '個人用チャットルーム', rooms_create_private_room_path(:user_id => tournament.user_id), class: "card-link profile_btn", method: :post  %>
           <% end %>
         </div>
       </div>

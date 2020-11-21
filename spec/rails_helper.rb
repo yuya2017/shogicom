@@ -36,10 +36,17 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   config.after do |example|
     if example.metadata[:type] == :feature and example.exception.present? and example.metadata[:open_on_error] == true
       save_and_open_page
     end
+  end
+  config.before(:each) do
+    session = defined?(rspec_session) ? rspec_session : {}
+    session.class_eval { def destroy; nil; end }
+    config.add_setting(:session, :default => session)
+    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(RSpec.configuration.session)
   end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

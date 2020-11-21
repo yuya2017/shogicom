@@ -10,11 +10,14 @@ FactoryBot.define do
     trait :with_room do
       room_attributes { attributes_for(:room, :post_room) }
     end
-    trait :with_room_update do
+
+    trait :with_update do
       post_chess { "1級" }
     end
+
     trait :invalid do
       post_chess { nil }
     end
+
   end
 end

@@ -18,5 +18,6 @@ FactoryBot.define do
       association :community
       user { community.user }
     end
+    
   end
 end

@@ -1,42 +1,57 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_target_room, only: [:private_show, :post_show, :tournament_show, :community_show]
-  before_action :private_room_confirmation, only: [:private_show, :post_show, :tournament_show, :community_show]
-  before_action :tournament_room_confirmation, only: [:private_show, :post_show, :tournament_show, :community_show]
-  before_action :community_room_confirmation, only: [:private_show, :post_show, :tournament_show, :community_show]
+  before_action :private_room_confirmation, only: :private_show
+  before_action :tournament_room_confirmation, only: :tournament_show
+  before_action :community_room_confirmation, only: :community_show
 
   def private_show
-    @messages = @room.messages.includes(:user)
-    @message = current_user.messages.build
-    session[:room_id] = @room.id
-    rooms = Room.all
-    @private_messages, @message_users, @no_messages, @no_message_users = Room.my_private_room(rooms, current_user)
-
+    if @room.private_id.present?
+      @messages = @room.messages.includes(:user)
+      @message = current_user.messages.build
+      session[:room_id] = @room.id
+      rooms = Room.all
+      @private_messages, @message_users, @no_messages, @no_message_users = Room.my_private_room(rooms, current_user)
+    else
+      redirect_to root_path, notice: "個人用チャットルームへはアクセスできません。"
+    end
   end
 
   def post_show
-    @messages = @room.messages.includes(:user)
-    @message = current_user.messages.build
-    session[:room_id] = @room.id
-    messages = current_user.messages
-    posts = current_user.posts.includes(:room)
-    @post_messages, @no_message_posts = Room.my_post_room(messages, posts)
+    if @room.post_id.present?
+      @messages = @room.messages.includes(:user)
+      @message = current_user.messages.build
+      session[:room_id] = @room.id
+      messages = current_user.messages
+      posts = current_user.posts.includes(:room)
+      @post_messages, @no_message_posts = Room.my_post_room(messages, posts)
+    else
+      redirect_to root_path, notice: "オンライン対戦のチャットルームへはアクセスできません。"
+    end
   end
 
   def tournament_show
-    @messages = @room.messages.includes(:user)
-    @message = current_user.messages.build
-    session[:room_id] = @room.id
-    tournament_users = current_user.tournament_users.all
-    @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users)
+    if @room.tournament_id.present?
+      @messages = @room.messages.includes(:user)
+      @message = current_user.messages.build
+      session[:room_id] = @room.id
+      tournament_users = current_user.tournament_users.all
+      @tournament_messages, @tournament_no_messages = Room.my_tournament_room(tournament_users)
+    else
+      redirect_to root_path, notice: "大会のチャットルームへはアクセスできません。"
+    end
   end
 
   def community_show
-    @messages = @room.messages.includes(:user)
-    @message = current_user.messages.build
-    session[:room_id] = @room.id
-    community_users = current_user.community_users.all
-    @community_messages, @community_no_messages = Room.my_community_room(community_users)
+    if @room.community_id.present?
+      @messages = @room.messages.includes(:user)
+      @message = current_user.messages.build
+      session[:room_id] = @room.id
+      community_users = current_user.community_users.all
+      @community_messages, @community_no_messages = Room.my_community_room(community_users)
+    else
+      redirect_to root_path, notice: "イベントのチャットルームへはアクセルできません。"
+    end
   end
 
 
