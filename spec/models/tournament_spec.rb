@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Tournament, type: :model do
   let(:user) { create(:user) }
   let(:tournament) { create(:tournament) }
-  
+
   context "tournament_chess,tournament_app,tournament_time,tournament_limit,tournament_date,tournament_number_of_peopleが存在する場合" do
     it "有効な状態であること" do
       expect(tournament).to be_valid
@@ -156,7 +156,8 @@ RSpec.describe Tournament, type: :model do
     it "tournament_dateが生成されること" do
       tournament = build(:tournament)
       tournament.set_date
-      expect(tournament.tournament_date).to eq Time.local(2022, 02, 25, 12, 30, 00, 0)
+      dt = Date.today >> 2
+      expect(tournament.tournament_date).to eq Time.local(dt.year, dt.month, dt.day, 12, 30, 00, 0)
     end
   end
 

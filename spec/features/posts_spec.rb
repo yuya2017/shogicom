@@ -61,5 +61,7 @@ RSpec.feature "Posts", type: :feature do
     fill_in "q[post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont]", with: "将棋ウォーズ,30級,10分,誰でも,オンライン対戦部屋"
     click_button "検索する"
     expect(page).to have_selector 'h4', text: "オンライン対戦部屋"
+    click_button "#将棋ウォーズ"
+    expect(page).to have_selector 'h4', text: "オンライン対戦部屋"
   end
 end
