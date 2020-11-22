@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :community do
     community_place { "東京都" }
-    community_limit { "2022/02/22".to_time }
-    community_date { "2022/02/25".to_time }
+    community_limit { Date.today >> 1 }
+    community_date { Date.today >> 2 }
     community_money { 0 }
     community_number_of_people { 10 }
     community_all_tag{ "誰でも可" }
@@ -22,7 +22,7 @@ FactoryBot.define do
     end
 
     trait :limit_before do
-      community_limit { "2020/01/01".to_time }
+      community_limit { Date.today << 1 }
     end
 
     trait :limit_today do
@@ -30,18 +30,18 @@ FactoryBot.define do
     end
 
     trait :date_before do
-      community_limit { "2022/02/23".to_time }
-      community_date { "2022/02/20".to_time }
+      community_limit { Date.today >> 2 }
+      community_date { Date.today >> 1 }
     end
 
     trait :date_same_limit do
-      community_limit { "2022/02/22".to_time }
-      community_date { "2022/02/22".to_time }
+      community_limit { Date.today >> 2 }
+      community_date { Date.today >> 2 }
     end
 
     trait :limit_over do
-      community_limit { "2020/02/22".to_time }
-      community_date { "2022/02/25".to_date }
+      community_limit { Date.today << 1 }
+      community_date { Date.today >> 2 }
     end
 
   end

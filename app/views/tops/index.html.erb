@@ -18,34 +18,34 @@
         <p>将棋は年代問わず遊べて、<br>コミュニティを広げるのに最適です。<br>あなたが遊びたい形で<br>対戦相手を探して見ましょう。</p>
       </div>
       <div class="view-more my-4">
-        <button class="learn-more top_post_search">
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <%= link_to posts_path do %>
-            <span class="button-text">対戦相手を探す</span>
-          <% end %>
-        </button>
+        <%= link_to posts_path do %>
+          <button class="learn-more top_post_search">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+              <span class="button-text">対戦相手を探す</span>
+          </button>
+        <% end %>
       </div>
       <div class="view-more my-4">
-        <button class="learn-more top_tournament_search">
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <%= link_to tournaments_path do %>
-            <span class="button-text">大会を探す</span>
-          <% end %>
-        </button>
+        <%= link_to tournaments_path do %>
+          <button class="learn-more top_tournament_search">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+              <span class="button-text">大会を探す</span>
+          </button>
+        <% end %>
       </div>
       <div class="view-more my-4">
-        <button class="learn-more top_community_search">
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <%= link_to communities_path ,data: {"turbolinks" => false} do %>
-            <span class="button-text">イベントを探す</span>
-          <% end %>
-        </button>
+        <%= link_to communities_path ,data: {"turbolinks" => false} do %>
+          <button class="learn-more top_community_search">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+              <span class="button-text">イベントを探す</span>
+          </button>
+        <% end %>
       </div>
     </div>
   </div>

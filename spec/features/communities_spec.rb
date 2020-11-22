@@ -15,8 +15,8 @@ RSpec.feature "Communities", type: :feature do
       fill_in "開催場所*", with: "東京都"
       fill_in "参加費*", with: 0
       fill_in "応募人数",with: 3
-      fill_in "応募期間*", with: "2022/02/22"
-      fill_in "開催日時*", with: "2022/02/25"
+      fill_in "応募期間*", with: Date.today >> 1
+      fill_in "開催日時*", with: Date.today >> 2
       click_button "投稿"
     }.to change(user.communities, :count).by(1)
   end
@@ -63,8 +63,6 @@ RSpec.feature "Communities", type: :feature do
     sign_in user
     visit root_path
     click_link "イベントを探す"
-    fill_in "q[community_date_start]", with: "2022/01/01"
-    fill_in "q[community_date_end]", with: "2023/01/01"
     fill_in "q[community_place_or_community_all_tag_or_room_room_name_cont]", with: "東京,誰でも,イベント部屋"
     click_button "検索する"
     expect(page).to have_selector 'h4', text: "イベント部屋"

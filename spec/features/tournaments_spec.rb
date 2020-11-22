@@ -57,15 +57,15 @@ RSpec.feature "Tournaments", type: :feature do
     }.to change(user.tournaments, :count).by(-1)
   end
 
-  scenario "検索画面が表示される"  do
+  scenario "検索画面が表示される" do
     tournament_id = tournament.id
     sign_in user
     visit root_path
     click_link "大会を探す"
-    fill_in "q[tournament_date_start]", with: "2022/01/01"
-    fill_in "q[tournament_date_end]", with: "2023/01/01"
     fill_in "q[tournament_chess_or_tournament_app_or_tournament_time_or_tournament_all_tag_or_room_room_name_cont]", with: "将棋,10分,誰でも,大会部屋,30級"
     click_button "検索する"
+    expect(page).to have_selector 'h4', text: "大会部屋"
+    click_button "#将棋ウォーズ"
     expect(page).to have_selector 'h4', text: "大会部屋"
   end
 

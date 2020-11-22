@@ -3,8 +3,8 @@ FactoryBot.define do
     tournament_chess { "30級" }
     tournament_app { "将棋ウォーズ" }
     tournament_time { "10分" }
-    tournament_limit { "2022/02/22".to_time }
-    tournament_at_date { "2022/02/25" }
+    tournament_limit { Date.today >> 1 }
+    tournament_at_date { Date.today >> 2 }
     tournament_at_hour { "12" }
     tournament_at_minute { "30" }
     tournament_number_of_people { 10 }
@@ -25,7 +25,7 @@ FactoryBot.define do
     end
 
     trait :limit_before do
-      tournament_limit { "2020/01/01".to_time }
+      tournament_limit { Date.today << 1 }
     end
 
     trait :limit_today do
@@ -33,29 +33,29 @@ FactoryBot.define do
     end
 
     trait :date_before do
-      tournament_limit { "2022/02/23".to_time }
-      tournament_at_date { "2022/02/20" }
+      tournament_limit { Date.today >> 2 }
+      tournament_at_date { Date.today >> 1 }
       tournament_at_hour { "12" }
       tournament_at_minute { "30" }
     end
 
     trait :date_same_limit do
-      tournament_limit { "2022/02/22".to_time }
-      tournament_at_date { "2022/02/22" }
-      tournament_at_hour { "00" }
+      tournament_limit { Date.today >> 1 }
+      tournament_at_date { Date.today >> 1 }
+      tournament_at_hour { "09" }
       tournament_at_minute { "00" }
     end
 
     trait :different_time do
-      tournament_limit { "2022/02/22".to_time }
-      tournament_at_date { "2022/02/22" }
-      tournament_at_hour { "23" }
+      tournament_limit { Date.today >> 2 }
+      tournament_at_date { Date.today + 1 >> 2 }
+      tournament_at_hour { "08" }
       tournament_at_minute { "59" }
     end
 
     trait :limit_over do
-      tournament_limit { "2020/02/22".to_time }
-      tournament_date { "2022/02/25".to_date }
+      tournament_limit { Date.today << 1 }
+      tournament_date { Date.today >> 2 }
       tournament_at_date { nil }
       tournament_at_hour { nil }
       tournament_at_minute { nil }
