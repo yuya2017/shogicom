@@ -6,6 +6,12 @@ ActiveAdmin.register Post do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :post_chess, :post_app, :post_time, :post_all_tag, :post_content, :user_id
+
+  controller do
+    def scoped_collection
+      Post.includes(:user)
+    end
+  end
   #
   # or
   #

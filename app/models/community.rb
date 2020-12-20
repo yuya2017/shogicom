@@ -47,6 +47,18 @@ class Community < ApplicationRecord
     end
   end
 
+  def self.communityMap
+    communities =  Community.where("community_limit >= ?", Date.today)
+    communitues_map = []
+    communities.each do |community|
+      participant = community.community_users.all
+      if community.community_number_of_people.nil? || community.community_number_of_people > participant.count
+        communitues_map.push(community)
+      end
+    end
+    return communities
+  end
+
   private
 
   def community_place_reality

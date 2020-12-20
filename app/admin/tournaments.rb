@@ -6,6 +6,12 @@ ActiveAdmin.register Tournament do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :tournament_chess, :tournament_app, :tournament_time, :tournament_content, :tournament_number_of_people, :tournament_limit, :tournament_date, :user_id
+
+  controller do
+    def scoped_collection
+      Tournament.includes(:user)
+    end
+  end
   #
   # or
   #

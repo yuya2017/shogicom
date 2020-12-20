@@ -6,6 +6,12 @@ ActiveAdmin.register CommunityUser do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :user_id, :community_id
+
+  controller do
+    def scoped_collection
+      CommunityUser.includes(:user, :community)
+    end
+  end
   #
   # or
   #

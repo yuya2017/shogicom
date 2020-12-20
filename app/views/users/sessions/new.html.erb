@@ -33,7 +33,7 @@
         <p>登録していただくと、投稿機能、マイページ機能などとても便利にお使いいただけます。</p>
         <p>簡易的な使用であればゲストログインを活用してください。</p>
       </div>
-      <div class="guestContainer">
+      <div class="guestContainer d-block d-sm-flex">
         <%= link_to "新規登録", new_registration_path(resource_name), class: "btn buttonConfirm btn-info" %>
       <%= link_to 'ゲストログイン', users_guest_sign_in_path, class:"btn buttonguest btn-warning", method: :post %>
     </div>

@@ -6,6 +6,12 @@ ActiveAdmin.register Room do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :room_name, :user_id, :post_id, :tournament_id, :community_id, :private_id
+
+  controller do
+    def scoped_collection
+      Room.includes(:user, :post, :tournament, :community)
+    end
+  end
   #
   # or
   #
