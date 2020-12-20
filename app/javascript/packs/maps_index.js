@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', () => {
   let geocoder;
   let marker = [];
   let infoWindow = [];
-  const user = gon.user;
+  const user_pref = gon.user_pref;
   const communities = gon.communities;
 
 
@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
       zoom: 8.7
     });
 
-    geocoder.geocode( { 'address': user.user_pref }, function(results, status) {
+    geocoder.geocode( { 'address': user_pref }, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location)
       };

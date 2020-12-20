@@ -2,10 +2,13 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      post: 投稿
+      post: オンライン対戦
       room: 部屋
-      tournament: 投稿
-      community: 投稿
+      tournament: 大会
+      community: イベント
+      community_user: イベントの参加
+      tournament_user: 大会の参加
+      message: メッセージ
     attributes:
       user:
         user_name: ユーザー名

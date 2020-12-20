@@ -29,8 +29,12 @@ class CommunitiesController < ApplicationController
 
   def index
     @communities = Community.where("community_limit >= ?", Date.today).page(params[:page]).includes(:room, :user).order(updated_at: "DESC")
-    gon.user = current_user
-    gon.communities = @communities
+    if user_signed_in?
+      gon.user_pref = current_user.user_pref
+    else
+      gon.user_pref = "東京都"
+    end
+    gon.communities = Community.communityMap
   end
 
   def show
@@ -40,7 +44,6 @@ class CommunitiesController < ApplicationController
     @community_users.each do |users|
       @users.push(User.find(users.user_id))
     end
-    gon.user = current_user
     gon.community = @community
   end
 

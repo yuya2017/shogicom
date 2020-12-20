@@ -28,6 +28,8 @@ COPY ./Gemfile.lock /application/Gemfile.lock
 
 RUN bundle install --without test development
 
+RUN bundle exec rails webpacker:compile
+
 COPY . .
 
 COPY production-entrypoint.sh /usr/bin/

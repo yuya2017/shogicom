@@ -3,7 +3,6 @@ document.addEventListener('turbolinks:load', () => {
   let geocoder;
   let marker = [];
   let infoWindow = [];
-  const user = gon.user;
   const community = gon.community;
 
   function initMap(){

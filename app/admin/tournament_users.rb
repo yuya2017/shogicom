@@ -6,6 +6,12 @@ ActiveAdmin.register TournamentUser do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :user_id, :tournament_id
+
+  controller do
+    def scoped_collection
+      TournamentUser.includes(:user, :tournament)
+    end
+  end
   #
   # or
   #
