@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post 'communities/community_participation'
   post 'tournaments/tournament_exit'
   post 'communities/community_exit'
+  get 'healthchecks/index'
 
   resources :posts
   resources :tournaments

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Community, type: :model do
   let(:user) { create(:user) }
   let(:community) { create(:community) }
-  
+
   context "community_place,community_limit,community_date,community_money,community_number_of_peopleが存在する場合" do
     it "有効な状態であること" do
       expect(community).to be_valid
@@ -113,7 +113,7 @@ RSpec.describe Community, type: :model do
 
   describe "community_user_createメソッド" do
     it "CommunityUserが生成されること" do
-      expect{ Community.community_user_create(community.user.id, community.id) }.to change{ CommunityUser.count }.by (1)
+      expect{ Community.community_user_create(community.user.id, community.id) }.to change{ CommunityUser.count }.by(1)
     end
   end
 

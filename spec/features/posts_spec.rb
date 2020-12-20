@@ -54,7 +54,7 @@ RSpec.feature "Posts", type: :feature do
   end
 
   scenario "検索画面が表示される" do
-    post_id = post.id
+    post
     sign_in user
     visit root_path
     click_link "対戦相手を探す"

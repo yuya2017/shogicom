@@ -7,7 +7,7 @@ RSpec.describe "Posts", type: :request do
   let(:post_params) { attributes_for(:post, :with_room) }
   let(:invalid_post_params) { attributes_for(:post, :invalid) }
   let(:update_post_params) { attributes_for(:post, :with_update) }
-  
+
   context "ログインしている状態" do
     before do
       sign_in user
@@ -86,13 +86,13 @@ RSpec.describe "Posts", type: :request do
     end
     describe "#destroy" do
       it "正常に削除できること" do
-        post_id = create_post.id
+        create_post
         expect { delete post_path(create_post) }.to change(user.posts, :count).by(-1)
       end
     end
     describe "#posts_search_post" do
       it "リクエストが成功すること" do
-        post_id = create_post.id
+        create_post
         get posts_search_post_path, params: {"q"=>{"post_chess_or_post_app_or_post_time_or_post_all_tag_or_room_room_name_cont"=>"将棋ウォーズ"}}
         aggregate_failures do
           expect(response).to be_successful

@@ -8,7 +8,7 @@ RSpec.feature "Users", type: :feature do
   scenario "ユーザー登録" do
     visit root_path
     click_link "新規登録"
-    expect(page).to have_css "img[src*='assets/profile.jpg']"
+    expect(page).to have_css "img[src*='img/profile.jpg']"
     expect {
       fill_in "名前*", with: "鈴木太郎"
       fill_in "Eメールアドレス*", with: "tester@example.com"
@@ -84,7 +84,7 @@ RSpec.feature "Users", type: :feature do
   scenario "確認メールの再送信" do
     visit root_path
     click_link "新規登録"
-    expect(page).to have_css "img[src*='assets/profile.jpg']"
+    expect(page).to have_css "img[src*='img/profile.jpg']"
     expect {
       fill_in "名前*", with: "鈴木太郎"
       fill_in "Eメールアドレス*", with: "tester@example.com"

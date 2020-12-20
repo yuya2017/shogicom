@@ -157,13 +157,13 @@ RSpec.describe Tournament, type: :model do
       tournament = build(:tournament)
       tournament.set_date
       dt = Date.today >> 2
-      expect(tournament.tournament_date).to eq Time.local(dt.year, dt.month, dt.day, 12, 30, 00, 0)
+      expect(tournament.tournament_date).to eq Time.local(dt.year, dt.month, dt.day, 3, 30, 00, 0)
     end
   end
 
   describe "tournament_user_createメソッド" do
     it "TournamentUserが生成されること" do
-      expect{ Tournament.tournament_user_create(tournament.user.id, tournament.id) }.to change{ TournamentUser.count }.by (1)
+      expect{ Tournament.tournament_user_create(tournament.user.id, tournament.id) }.to change{ TournamentUser.count }.by(1)
     end
   end
 

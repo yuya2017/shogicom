@@ -1,0 +1,39 @@
+FROM ruby:2.5
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y --no-install-recommends build-essential nodejs curl git mariadb-client yarn sudo
+
+# AWS System Manager セッションマネージャ用のエージェントをインストール
+RUN curl https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northeast-1/latest/debian_amd64/amazon-ssm-agent.deb -o /tmp/amazon-ssm-agent.deb \
+    && dpkg -i /tmp/amazon-ssm-agent.deb \
+    && cp /etc/amazon/ssm/seelog.xml.template /etc/amazon/ssm/seelog.xml
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install
+
+RUN sudo curl -o /usr/local/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && sudo chmod +x /usr/local/bin/jq
+
+RUN gem install bundler
+
+ENV INSTALL_PATH /application
+
+RUN mkdir $INSTALL_PATH
+
+WORKDIR $INSTALL_PATH
+
+COPY ./Gemfile /application/Gemfile
+COPY ./Gemfile.lock /application/Gemfile.lock
+
+RUN bundle install --without test development
+
+COPY . .
+
+COPY production-entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/production-entrypoint.sh
+ENTRYPOINT ["production-entrypoint.sh"]
+
+EXPOSE 3000
+
+CMD ["bundle", "exec", "rails", "server", "-p", "3000", "-b", "0.0.0.0"]
