@@ -8,7 +8,7 @@ RSpec.describe Room, type: :model do
   let(:tournament_room) { create(:room, :tournament_room) }
   let(:community_room) { create(:room, :community_room) }
   let(:rooms) { Room.all }
-  
+
   context "room_name,user_id,private_idが存在する場合" do
     it "有効な状態であること" do
       expect(create(:room, private_id: user.id)).to be_valid
@@ -74,13 +74,13 @@ RSpec.describe Room, type: :model do
     context "部屋がありメッセージもある場合" do
       it "自分のprivate_messagesとmessage_usersが増える" do
         create(:message, user: user, room: private_room)
-        private_messages, message_users, no_messages, no_message_users = Room.my_private_room(rooms, user)
+        private_messages, message_users, _no_messages, _no_message_users = Room.my_private_room(rooms, user)
         expect(private_messages.size).to eq 1
         expect(message_users.size).to eq 1
       end
       it "相手のprivate_messagesとmessage_usersが増える" do
         create(:message, user: user, room: private_room)
-        private_messages, message_users, no_messages, no_message_users = Room.my_private_room(rooms, user2)
+        private_messages, message_users, _no_messages, _no_message_users = Room.my_private_room(rooms, user2)
         expect(private_messages.size).to eq 1
         expect(message_users.size).to eq 1
       end
@@ -88,13 +88,13 @@ RSpec.describe Room, type: :model do
     context "my_private_roomメソッドで部屋がありメッセージがない場合" do
       it "自分のno_messagesとno_message_usersが増える" do
         create(:room, user_id: user.id, private_id: user2.id)
-        private_messages, message_users, no_messages, no_message_users = Room.my_private_room(rooms, user)
+        _private_messages, _message_users, no_messages, no_message_users = Room.my_private_room(rooms, user)
         expect(no_messages.size).to eq 1
         expect(no_message_users.size).to eq 1
       end
       it "相手のno_messagesとno_message_usersが増える" do
         create(:room, user_id: user.id, private_id: user2.id)
-        private_messages, message_users, no_messages, no_message_users = Room.my_private_room(rooms, user2)
+        _private_messages, _message_users, no_messages, no_message_users = Room.my_private_room(rooms, user2)
         expect(no_messages.size).to eq 1
         expect(no_message_users.size).to eq 1
       end
@@ -107,7 +107,7 @@ RSpec.describe Room, type: :model do
         create(:message, room: post_room, user: User.first)
         messages = User.first.messages
         posts = User.first.posts
-        post_messages,no_message_posts = Room.my_post_room(messages, posts)
+        post_messages, _no_message_posts = Room.my_post_room(messages, posts)
         expect(post_messages.size).to eq 1
       end
     end
@@ -116,7 +116,7 @@ RSpec.describe Room, type: :model do
         create(:room, :post_room)
         messages = User.first.messages
         posts = User.first.posts
-        post_messages,no_message_posts = Room.my_post_room(messages, posts)
+        _post_messages,no_message_posts = Room.my_post_room(messages, posts)
         expect(no_message_posts.size).to eq 1
       end
     end
@@ -128,7 +128,7 @@ RSpec.describe Room, type: :model do
         create(:message, room: tournament_room, user: User.first)
         TournamentUser.create(user: User.first, tournament: tournament_room.tournament )
         tournament_users = User.first.tournament_users.all
-        tournament_messages, tournament_no_messages = Room.my_tournament_room(tournament_users)
+        tournament_messages, _tournament_no_messages = Room.my_tournament_room(tournament_users)
         expect(tournament_messages.size).to eq 1
       end
     end
@@ -137,7 +137,7 @@ RSpec.describe Room, type: :model do
         create(:room, :tournament_room)
         TournamentUser.create(user: User.first, tournament: Tournament.first )
         tournament_users = User.first.tournament_users.all
-        tournament_messages, tournament_no_messages = Room.my_tournament_room(tournament_users)
+        _tournament_messages, tournament_no_messages = Room.my_tournament_room(tournament_users)
         expect(tournament_no_messages.size).to eq 1
       end
     end
@@ -149,7 +149,7 @@ RSpec.describe Room, type: :model do
         create(:message, room: community_room, user: User.first)
         CommunityUser.create(user: User.first, community: community_room.community )
         community_users = User.first.community_users.all
-        community_messages, community_no_messages = Room.my_community_room(community_users)
+        community_messages, _community_no_messages = Room.my_community_room(community_users)
         expect(community_messages.size).to eq 1
       end
     end
@@ -158,7 +158,7 @@ RSpec.describe Room, type: :model do
         create(:room, :community_room)
         CommunityUser.create(user: User.first, community: Community.first )
         community_users = User.first.community_users.all
-        community_messages, community_no_messages = Room.my_community_room(community_users)
+        _community_messages, community_no_messages = Room.my_community_room(community_users)
         expect(community_no_messages.size).to eq 1
       end
     end

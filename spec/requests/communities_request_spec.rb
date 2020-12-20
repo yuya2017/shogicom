@@ -7,7 +7,7 @@ RSpec.describe "Communities", type: :request do
   let(:community_params) { attributes_for(:community, :with_room) }
   let(:invalid_community_params) { attributes_for(:community, :invalid) }
   let(:update_community_params) { attributes_for(:community, :with_update) }
-  
+
   context "ログインしている状態" do
     before do
       sign_in user
@@ -130,7 +130,7 @@ RSpec.describe "Communities", type: :request do
   end
   context "ログインしていない状態" do
     before do
-      user = create(:user)
+      create(:user)
     end
     describe "#new" do
       it "リダイレクトされること" do

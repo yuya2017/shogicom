@@ -103,7 +103,7 @@ RSpec.describe "Users", type: :request do
     end
     context "ログインしていない状態" do
       before do
-        user_id = user.id
+        user
       end
       context "email以外の変更の場合" do
         it "更新されないこと" do
@@ -134,7 +134,7 @@ RSpec.describe "Users", type: :request do
     end
     context "ログインしていない場合" do
       it "削除されないこと" do
-        user_id = user.id
+        user
         aggregate_failures do
           expect { delete user_registration_path }.not_to change(User, :count)
           expect(response).to redirect_to new_user_session_path

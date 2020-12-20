@@ -505,7 +505,7 @@ li {
 .balloon-name-media {
   padding: 20px 0 0;
   font-size: 10px;
-  padding-left: 30px;
+  text-align: center;
 }
 
 .balloon-text-right,.balloon-text-left {
@@ -621,7 +621,8 @@ li {
 }
 
 .message_bar {
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
   width: 100%;
 }
@@ -1020,7 +1021,6 @@ color: #A4A8B1;
   .profile_img{ display: flex; }
   .mypage_img { text-align: center; }
   .mypage_icon { display: block; }
-  .balloon-name-media { padding-left: 16px;}
   .balloon-text-left { margin-top: 0; }
   .post_box_outer { width: 100%; }
   .balloon-name-description{ padding: 10px 0 0 10px; font-size: 20px; text-align: center; }

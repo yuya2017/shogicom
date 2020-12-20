@@ -58,7 +58,7 @@ RSpec.feature "Communities", type: :feature do
   end
 
   scenario "検索画面が表示される" do
-    community_id = community.id
+    community
     visit root_path
     sign_in user
     visit root_path

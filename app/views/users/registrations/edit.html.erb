@@ -42,7 +42,7 @@
             <% if current_user.user_image? %>
             	<img src='<%= current_user.user_image %>' class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
             <% else %>
-            	<img src="/assets/profile.jpg" class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
+            	<img src="/img/profile.jpg" class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
             <% end %>
           </div>
           <%= f.file_field :user_image, class: 'form-control', id: 'user_img' %>

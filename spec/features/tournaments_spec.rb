@@ -58,7 +58,7 @@ RSpec.feature "Tournaments", type: :feature do
   end
 
   scenario "検索画面が表示される" do
-    tournament_id = tournament.id
+    tournament
     sign_in user
     visit root_path
     click_link "大会を探す"

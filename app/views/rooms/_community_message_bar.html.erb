@@ -9,7 +9,7 @@
           <% if message.room.community.user.user_image? %>
             <img src='<%= message.room.community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <% else %>
-            <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+            <img src="/img/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>
           <div class="messagebar_message_right ml-4">
             <p class="mypage_message_date">開催日：<%= l message.room.community.community_date, format: '%m月%-d日(%a)' %>
@@ -28,7 +28,7 @@
           <% if community.user.user_image? %>
             <img src='<%= community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <% else %>
-            <img src="/assets/profile.jpg" class="header_image" alt="ユーザーアイコン">
+            <img src="/img/profile.jpg" class="header_image" alt="ユーザーアイコン">
           <% end %>
           <div class="messagebar_right ml-4">
             <p class="mypage_message_date">開催日：<%= l community.community_date, format: '%m月%-d日(%a)' %>

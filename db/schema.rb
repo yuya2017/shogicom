@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2020_11_07_113544) do
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -26,21 +29,21 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "communities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "communities", force: :cascade do |t|
     t.string "community_place", null: false
     t.date "community_date", null: false
     t.date "community_limit", null: false
     t.integer "community_money", null: false
-    t.integer "community_number_of_people"
     t.string "community_all_tag"
     t.string "community_content"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "community_number_of_people"
     t.index ["user_id"], name: "index_communities_on_user_id"
   end
 
-  create_table "community_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "community_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "community_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["user_id"], name: "index_community_users_on_user_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "messages", force: :cascade do |t|
     t.text "message_content", null: false
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "post_chess", null: false
     t.string "post_app", null: false
     t.string "post_time", null: false
@@ -71,22 +74,22 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "rooms", force: :cascade do |t|
     t.string "room_name", null: false
     t.bigint "user_id"
     t.bigint "post_id"
-    t.bigint "tournament_id"
-    t.bigint "community_id"
     t.integer "private_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tournament_id"
+    t.bigint "community_id"
     t.index ["community_id"], name: "index_rooms_on_community_id"
     t.index ["post_id"], name: "index_rooms_on_post_id"
     t.index ["tournament_id"], name: "index_rooms_on_tournament_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
-  create_table "tournament_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tournament_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "tournament_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -95,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["user_id"], name: "index_tournament_users_on_user_id"
   end
 
-  create_table "tournaments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tournaments", force: :cascade do |t|
     t.string "tournament_chess", null: false
     t.string "tournament_app", null: false
     t.string "tournament_time", null: false
@@ -110,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
