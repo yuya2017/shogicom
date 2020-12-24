@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature "Communities", type: :feature do
+RSpec.describe "Communities", type: :system do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let(:community) { create(:community, :with_room, user: user) }
 
-  scenario "ユーザーが新しいイベント募集を行う" do
+  it "ユーザーが新しいイベント募集を行う" do
     sign_in user
     visit root_path
     expect {
@@ -21,7 +21,7 @@ RSpec.feature "Communities", type: :feature do
     }.to change(user.communities, :count).by(1)
   end
 
-  scenario "ユーザーは編集を行う" do
+  it "ユーザーは編集を行う" do
     community_id = community.id
     sign_in user
     visit root_path
@@ -35,7 +35,7 @@ RSpec.feature "Communities", type: :feature do
     expect(page).to have_selector 'h4', text: "編集後の投稿"
   end
 
-  scenario "投稿者以外は編集ボタンが表示されない" do
+  it "投稿者以外は編集ボタンが表示されない" do
     community_id = community.id
     sign_in user2
     visit root_path
@@ -44,7 +44,7 @@ RSpec.feature "Communities", type: :feature do
     expect(page).not_to have_selector 'a', text: "編集"
   end
 
-  scenario "ユーザーは削除を行う" do
+  it "ユーザーは削除を行う" do
     community_id = community.id
     sign_in user
     visit root_path
@@ -57,7 +57,7 @@ RSpec.feature "Communities", type: :feature do
     }.to change(Community, :count).by(-1)
   end
 
-  scenario "検索画面が表示される" do
+  it "検索画面が表示される" do
     community
     visit root_path
     sign_in user
@@ -68,7 +68,7 @@ RSpec.feature "Communities", type: :feature do
     expect(page).to have_selector 'h4', text: "イベント部屋"
   end
 
-  scenario "イベントに参加、退出ができること" do
+  it "イベントに参加、退出ができること" do
     community_id = community.id
     user = create(:user)
     sign_in user
@@ -82,15 +82,17 @@ RSpec.feature "Communities", type: :feature do
     expect(page).to have_content "イベントから抜けました。"
   end
 
-  scenario "google_map", js:true do
+  it "google_map", js:true do
     community_id = community.id
     sign_in user2
     visit root_path
     find(".top_community_search").click
-    expect(page).to have_css "img[src='https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png']"
-    find("area").click
+    sleep 5
+    pin = find("map#gmimap0 area", visible: false)
+    pin.click
     find(".marker-#{community_id}").click
-    expect(page).to have_css "img[src='https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png']"
+    expect(page).to have_css "img[src='https://maps.gstatic.com/mapfiles/transparent.png']"
+    expect(page).to have_selector 'area'
     expect{ click_link "イベントに参加" }.to change(user2.community_users, :count).by(1)
     expect(page).to have_content "イベントへ参加しました。"
     click_link "詳細"

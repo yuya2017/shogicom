@@ -36,12 +36,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
-  config.include Devise::Test::IntegrationHelpers, type: :feature
-  config.after do |example|
-    if example.metadata[:type] == :feature and example.exception.present? and example.metadata[:open_on_error] == true
-      save_and_open_page
-    end
-  end
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  
   config.before(:each) do
     session = defined?(rspec_session) ? rspec_session : {}
     session.class_eval { def destroy; nil; end }
@@ -75,4 +71,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
 end

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature "Messages", type: :feature do
+RSpec.describe "Messages", type: :system do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
 
-  scenario "メッセージが生成されること", js:true do
+  it "メッセージが生成されること", js:true do
     create(:room, user: user, private_id: user2.id)
     sign_in user
     visit root_path
