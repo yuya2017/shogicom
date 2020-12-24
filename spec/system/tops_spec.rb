@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Tops", type: :feature do
-  scenario "myページの投稿一覧に自分が投稿したものが表示される" do
+RSpec.describe "Tops", type: :system do
+  it "myページの投稿一覧に自分が投稿したものが表示される" do
     user = create(:user)
     user2 = create(:user)
     post = create(:post, :with_room, user: user)

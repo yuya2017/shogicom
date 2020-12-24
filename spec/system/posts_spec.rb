@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature "Posts", type: :feature do
+RSpec.describe "Posts", type: :system do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let(:post) { create(:post, :with_room, user: user) }
 
-  scenario "ユーザーが新しい対戦相手募集を行う" do
+  it "ユーザーが新しい対戦相手募集を行う" do
     sign_in user
     visit root_path
     find('.header_icon').click
@@ -17,7 +17,7 @@ RSpec.feature "Posts", type: :feature do
     }.to change(user.posts, :count).by(1)
   end
 
-  scenario "ユーザーは編集を行う" do
+  it "ユーザーは編集を行う" do
     post_id = post.id
     sign_in user
     visit root_path
@@ -31,7 +31,7 @@ RSpec.feature "Posts", type: :feature do
     expect(page).to have_selector 'h4', text: "編集後の投稿"
   end
 
-  scenario "投稿者以外は編集ボタンが表示されない" do
+  it "投稿者以外は編集ボタンが表示されない" do
     post_id = post.id
     sign_in user2
     visit root_path
@@ -40,7 +40,7 @@ RSpec.feature "Posts", type: :feature do
     expect(page).not_to have_selector 'a', text: "編集"
   end
 
-  scenario "ユーザーは削除を行う" do
+  it "ユーザーは削除を行う" do
     post_id = post.id
     sign_in user
     visit root_path
@@ -53,7 +53,7 @@ RSpec.feature "Posts", type: :feature do
     }.to change(user.posts, :count).by(-1)
   end
 
-  scenario "検索画面が表示される" do
+  it "検索画面が表示される" do
     post
     sign_in user
     visit root_path

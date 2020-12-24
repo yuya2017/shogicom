@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature "Users", type: :feature do
+RSpec.describe "Users", type: :system do
   let(:user) { create(:user) }
-  background do
+  before do
     ActionMailer::Base.deliveries.clear
   end
-  scenario "ユーザー登録" do
+  it "ユーザー登録" do
     visit root_path
     click_link "新規登録"
     expect(page).to have_css "img[src*='img/profile.jpg']"
@@ -35,7 +35,7 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_content "ログアウトしました"
   end
 
-  scenario "ユーザー編集" do
+  it "ユーザー編集" do
     sign_in user
     visit root_path
     click_link "ユーザーアイコン"
@@ -47,7 +47,7 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_selector 'h4', text: "鈴木二郎"
   end
 
-  scenario "パスワード変更" do
+  it "パスワード変更" do
     user = create(:user)
     visit root_path
     click_link "ログイン"
@@ -81,7 +81,7 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_content "パスワードが正しく変更されました。"
   end
 
-  scenario "確認メールの再送信" do
+  it "確認メールの再送信" do
     visit root_path
     click_link "新規登録"
     expect(page).to have_css "img[src*='img/profile.jpg']"
@@ -108,7 +108,7 @@ RSpec.feature "Users", type: :feature do
     expect(page).to have_content 'メールアドレスが確認できました。'
   end
 
-  scenario "ゲストログイン" do
+  it "ゲストログイン" do
     visit root_path
     click_link "ログイン"
     puts User.count

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Rooms", type: :feature do
+RSpec.describe "Rooms", type: :system do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let!(:post) { create(:post, :with_room, user: user) }
@@ -9,7 +9,7 @@ RSpec.feature "Rooms", type: :feature do
   let!(:tournament_user) { Tournament.tournament_user_create(user.id, tournament.id) }
   let!(:community_user) { Community.community_user_create(user.id, community.id) }
 
-  scenario "個人用チャットルームが作成されること" do
+  it "個人用チャットルームが作成されること" do
     sign_in user2
     visit root_path
     click_link "対戦相手を探す"
@@ -17,7 +17,7 @@ RSpec.feature "Rooms", type: :feature do
     expect(page).to have_selector "p", text: "#{user.user_name}"
   end
 
-  scenario "相手の個人用チャットルームが表示される" do
+  it "相手の個人用チャットルームが表示される" do
     create(:room, user: user, private_id: user2.id)
     sign_in user2
     visit root_path
@@ -26,7 +26,7 @@ RSpec.feature "Rooms", type: :feature do
     expect(page).to have_selector "p", text: "#{user.user_name}"
   end
 
-  scenario "投稿した人のmypageに表示されること" do
+  it "投稿した人のmypageに表示されること" do
     create(:room, user: user, private_id: user2.id)
     sign_in user
     visit root_path
@@ -44,7 +44,7 @@ RSpec.feature "Rooms", type: :feature do
     expect(page).to have_selector "p", text: "#{user2.user_name}"
   end
 
-  scenario "参加していない人のmypageには表示されないこと" do
+  it "参加していない人のmypageには表示されないこと" do
     sign_in user2
     visit root_path
     click_link "ユーザーアイコン"
@@ -59,7 +59,7 @@ RSpec.feature "Rooms", type: :feature do
     find(".tops_icon").click
   end
 
-  scenario "参加すればmypageに表示されること", js:true do
+  it "参加すればmypageに表示されること", js:true do
     sign_in user2
     visit root_path
     find(".top_post_search").click

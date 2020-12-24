@@ -21,7 +21,7 @@ https://shogicom.com
 - CSS
 - JavaScript / JQuery
 - Ruby 2.5.8
-- Ruby on Rails 6.0.2.2 (RSpec, Rubocopによる静的解析)
+- Ruby on Rails 6.0.3.4 (RSpec, Rubocopによる静的解析)
 - （開発環境）postgreSQL 12.5
 - （本番環境）postgreSQL 12.4
 - Nginx (ウェブサーバー)
@@ -33,7 +33,7 @@ https://shogicom.com
 ### インフラ構成図
 <img src="https://user-images.githubusercontent.com/61488647/102702776-cf508900-42a9-11eb-9d03-cfa433e171a2.png" width="800px">
 
-### アソシエーション
+### ER図
 <img src="https://user-images.githubusercontent.com/61488647/102702771-bc3db900-42a9-11eb-8249-4ac1c432cbd4.png" width="800px">
 
 ## 主要機能
@@ -85,25 +85,25 @@ docker-compose up
 - データベースファイルの作成
 
 ```bash
-docker-compose run web rake db:create
-docker-compose run web rake db:migrate
+docker-compose run web bundle exec rake db:create
+docker-compose run web bundle exec rake db:migrate
 ```
 
 - データベースへ情報を送る。
 
 ```bash
-docker-compose run web rake db:seed
+docker-compose run web rake bundle exec db:seed
 ```
 
-- localhost:3000へURLを入れていただければアプリが起動します。ログインから下記ユーザーでログインしていただくと、管理者画面へ移動できます。
+localhost:3000へURLを入れていただければアプリが起動します。ログインから下記ユーザーでログインしていただくと、管理者画面へ移動できます。
 
-email: tester@gmail.com
-passwoed: password
+- email: tester@gmail.com
+- passwoed: password
 
 localhost:3000/adminへ移動していただくと、管理者画面へ移動します。
 
 ```bash
-docker-compose run web rubocop --fail-level W --display-only-fail-level-offenses
+docker-compose run web bundle exec rubocop --fail-level W --display-only-fail-level-offenses
 ```
 
 と入力していただくとw(Warning)以上のエラーが解決されていることを確認できます。
