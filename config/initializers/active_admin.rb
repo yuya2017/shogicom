@@ -106,7 +106,6 @@ ActiveAdmin.setup do |config|
   config.logout_link_path = :destroy_user_session_path
   config.logout_link_path = :root_path
 
-
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
@@ -333,5 +332,5 @@ ActiveAdmin.setup do |config|
   # By default, Active Admin uses Sprocket's asset pipeline.
   # You can switch to using Webpacker here.
   #
-  # config.use_webpacker = true
+  config.use_webpacker = true
 end
