@@ -4,11 +4,7 @@
 		<main class="col-lg-9 px-4 ml-auto header_next">
 		  <div class="card_summary my-4 mypage_icon">
 			  <div class="mypage_img">
-				  <% if @user.user_image? %>
-				    <img src='<%= @user.user_image %>' class="icon_no_link" alt="ユーザーアイコン">
-				  <% else %>
-				    <img src="/img/profile.jpg" class="icon_no_link" alt="ユーザーアイコン">
-					<% end %>
+			    <img src='<%= @user.user_image %>' class="icon_no_link" alt="ユーザーアイコン">
 				</div>
   			<div class="card mx-1">
   				<div class="card-header">

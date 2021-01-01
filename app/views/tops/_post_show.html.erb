@@ -2,17 +2,10 @@
   <div class="card_summary d-lg-flex my-4 d-block">
     <div class="profile_main mx-2">
       <div class="profile_img">
-        <% if post.user.user_image? %>
-          <img src='<%= post.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="post-<%= post.id %>">
-          <figcaption class="balloon-name-description">
-            <p><%= post.user.user_name %></p>
-          </figcaption>
-        <% else %>
-          <img src="/img/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="post-<%= post.id %>">
-            <figcaption class="balloon-name-description">
-              <p><%= post.user.user_name %></p>
-            </figcaption>
-        <% end %>
+        <img src='<%= post.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="post-<%= post.id %>">
+        <figcaption class="balloon-name-description">
+          <p><%= post.user.user_name %></p>
+        </figcaption>
       </div>
       <div class="card profile_link profile-post-<%= post.id %>">
         <div class="card-body profile_body">

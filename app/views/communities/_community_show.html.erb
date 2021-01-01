@@ -3,17 +3,10 @@
     <div class="card_summary d-lg-flex my-4 d-block">
       <div class="profile_main mx-2">
         <div class="profile_img">
-          <% if community.user.user_image? %>
-            <img src='<%= community.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="community-<%= community.id %>">
-            <figcaption class="balloon-name-description">
-              <p><%= community.user.user_name %></p>
-            </figcaption>
-          <% else %>
-            <img src="/img/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="community-<%= community.id %>">
-              <figcaption class="balloon-name-description">
-                <p><%= community.user.user_name %></p>
-              </figcaption>
-          <% end %>
+          <img src='<%= community.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="community-<%= community.id %>">
+          <figcaption class="balloon-name-description">
+            <p><%= community.user.user_name %></p>
+          </figcaption>
         </div>
         <div class="card profile_link profile-community-<%= community.id %>">
           <div class="card-body profile_body">

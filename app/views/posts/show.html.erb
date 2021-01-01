@@ -23,13 +23,8 @@
     <div class="col-lg-3 header_next">
       <p class="text-center">投稿者</p>
       <div class="prifile_img text-center">
-        <% if @post.user.user_image? %>
-          <img src='<%= @post.user.user_image %>' class="icon_no_link mb-4" alt="ユーザーアイコン">
-            <p><%= @post.user.user_name %></p>
-        <% else %>
-          <img src="/img/profile.jpg" class="icon_no_link mb-4" alt="ユーザーアイコン">
-              <p><%= @post.user.user_name %></p>
-        <% end %>
+        <img src='<%= @post.user.user_image %>' class="icon_no_link mb-4" alt="ユーザーアイコン">
+        <p><%= @post.user.user_name %></p>
       </div>
       <% if user_signed_in? && @post.user_id == current_user.id %>
         <div class="side_user_edit">

@@ -3,17 +3,17 @@
 
 User.create(
   [
-    {user_name: "木下侑哉", user_chess: "1級", user_app: "将棋ウォーズ,将棋オンライン", user_time: "10分切れ負け", user_pref: 22, user_content: "気軽に来てください。", email: "tester@gmail.com", password: "password", confirmed_at: Time.now, admin: true},
-    {user_name: "畑中太郎", user_chess: "30級", user_app: "将棋ウォーズ", user_time: "10分切れ負け", user_pref: 1, user_content: "気軽に来てください。", email: "qwerty1@gmail.com", password: "aoyashi123", confirmed_at: Time.now},
-    {user_name: "小嶋太郎", user_chess: "25級", user_app: "将棋オンライン", user_time: "3分切れ負け", user_pref: 2, user_content: "基本誰でも募集しています。", email: "qwerty2@gmail.com", password: "ioyashi123", confirmed_at: Time.now},
-    {user_name: "芳賀花子", user_chess: "20級", user_app: "ぴよ将棋", user_time: "1手10秒", user_pref: 3, user_content: "ぜひ対戦しましょう！！", email: "uiopa1@gmail.com", password: "uoyashi123", confirmed_at: Time.now},
-    {user_name: "大井花子", user_chess: "15級", user_app: "将棋クエスト", user_time: "10分切れ負け", user_pref: 4, user_content: "初心者ですがよろしくお願いします。", email: "uiopa2@gmail.com", password: "eoyashi123", confirmed_at: Time.now},
-    {user_name: "磯部友蔵", user_chess: "10級", user_app: "将棋倶楽部24", user_time: "30分切れ負け", user_pref: 5, user_content: "基本誰でも募集しています。", email: "sdfgh1@gmail.com", password: "koyashi123", confirmed_at: Time.now},
-    {user_name: "秋田友蔵", user_chess: "5級", user_app: "どうぶつ将棋ウォーズ", user_time: "1手10秒", user_pref: 6, user_content: "どうぶつ将棋なら誰でも歓迎です。", email: "sdfgh2@gmail.com", password: "soyashi123", confirmed_at: Time.now},
-    {user_name: "浅見尊", user_chess: "1級", user_app: "ねこしょうぎ", user_time: "3分切れ負け", user_pref: 7, user_content: "大会をよく開くのでぜひご参加ください。", email: "jklzx1@gmail.com", password: "toyashi123", confirmed_at: Time.now},
-    {user_name: "大崎尊", user_chess: "1段", user_app: "将棋ウォーズ", user_time: "10分切れ負け", user_pref: 8, user_content: "気が向いたらイベント開催するのでお越しください。", email: "jklzx2@gmail.com", password: "noyashi123", confirmed_at: Time.now},
-    {user_name: "坪井尊", user_chess: "3段", user_app: "将棋クエスト", user_time: "1手10秒", user_pref: 9, user_content: "同じ位の方対戦しましょう。", email: "cvbnm1@gmail.com", password: "hoyashi123", confirmed_at: Time.now},
-    {user_name: "相原尊", user_chess: "5段", user_app: "将棋倶楽部24", user_time: "30分切れ負け", user_pref: 10, user_content: "段以上の方よろしくお願いいたします。", email: "cvbnm2@gmail.com", password: "moyashi123", confirmed_at: Time.now}
+    {user_name: "木下侑哉", user_chess: "1級", user_app: "将棋ウォーズ,将棋オンライン", user_time: "10分切れ負け", user_pref: 22, user_content: "気軽に来てください。", email: "tester@gmail.com", password: "password", confirmed_at: Time.now, admin: true, user_image: open("#{Rails.root}/db/fixtures/1.jpg")},
+    {user_name: "畑中太郎", user_chess: "30級", user_app: "将棋ウォーズ", user_time: "10分切れ負け", user_pref: 1, user_content: "気軽に来てください。", email: "qwerty1@gmail.com", password: "aoyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/2.jpg")},
+    {user_name: "小嶋太郎", user_chess: "25級", user_app: "将棋オンライン", user_time: "3分切れ負け", user_pref: 2, user_content: "基本誰でも募集しています。", email: "qwerty2@gmail.com", password: "ioyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/3.jpg")},
+    {user_name: "芳賀花子", user_chess: "20級", user_app: "ぴよ将棋", user_time: "1手10秒", user_pref: 3, user_content: "ぜひ対戦しましょう！！", email: "uiopa1@gmail.com", password: "uoyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/4.jpg")},
+    {user_name: "大井花子", user_chess: "15級", user_app: "将棋クエスト", user_time: "10分切れ負け", user_pref: 4, user_content: "初心者ですがよろしくお願いします。", email: "uiopa2@gmail.com", password: "eoyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/5.jpg")},
+    {user_name: "磯部友蔵", user_chess: "10級", user_app: "将棋倶楽部24", user_time: "30分切れ負け", user_pref: 5, user_content: "基本誰でも募集しています。", email: "sdfgh1@gmail.com", password: "koyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/6.jpg")},
+    {user_name: "秋田友蔵", user_chess: "5級", user_app: "どうぶつ将棋ウォーズ", user_time: "1手10秒", user_pref: 6, user_content: "どうぶつ将棋なら誰でも歓迎です。", email: "sdfgh2@gmail.com", password: "soyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/7.png")},
+    {user_name: "浅見尊", user_chess: "1級", user_app: "ねこしょうぎ", user_time: "3分切れ負け", user_pref: 7, user_content: "大会をよく開くのでぜひご参加ください。", email: "jklzx1@gmail.com", password: "toyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/8.jpg")},
+    {user_name: "大崎尊", user_chess: "1段", user_app: "将棋ウォーズ", user_time: "10分切れ負け", user_pref: 8, user_content: "気が向いたらイベント開催するのでお越しください。", email: "jklzx2@gmail.com", password: "noyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/9.jpg")},
+    {user_name: "坪井尊", user_chess: "3段", user_app: "将棋クエスト", user_time: "1手10秒", user_pref: 9, user_content: "同じ位の方対戦しましょう。", email: "cvbnm1@gmail.com", password: "hoyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/10.jpg")},
+    {user_name: "相原尊", user_chess: "5段", user_app: "将棋倶楽部24", user_time: "30分切れ負け", user_pref: 10, user_content: "段以上の方よろしくお願いいたします。", email: "cvbnm2@gmail.com", password: "moyashi123", confirmed_at: Time.now, user_image: open("#{Rails.root}/db/fixtures/11.jpg")}
   ]
 )
 
@@ -111,7 +111,10 @@ Room.create(
     {room_name: "大成地域イベント", user_id: 8, community_id: 10},
     {room_name: "福田イベント", user_id: 9, community_id: 11},
     {room_name: "稲村イベント", user_id: 10, community_id: 12},
-    {room_name: "横塚町イベント", user_id: 11, community_id: 13}
+    {room_name: "横塚町イベント", user_id: 11, community_id: 13},
+    {room_name: "個人用チャットルーム", user_id: 1, private_id: 2},
+    {room_name: "個人用チャットルーム", user_id: 1, private_id: 3},
+    {room_name: "個人用チャットルーム", user_id: 1, private_id: 4}
   ]
 )
 
@@ -129,7 +132,8 @@ TournamentUser.create(
     {user_id: 8, tournament_id: 10},
     {user_id: 9, tournament_id: 11},
     {user_id: 10, tournament_id: 12},
-    {user_id: 11, tournament_id: 13}
+    {user_id: 11, tournament_id: 13},
+    {user_id: 1, tournament_id: 2}
   ]
 )
 
@@ -147,6 +151,20 @@ CommunityUser.create(
     {user_id: 8, community_id: 10},
     {user_id: 9, community_id: 11},
     {user_id: 10, community_id: 12},
-    {user_id: 11, community_id: 13}
+    {user_id: 11, community_id: 13},
+    {user_id: 6, community_id: 1},
+    {user_id: 1, community_id: 7}
+  ]
+)
+
+Message.create(
+  [
+    {message_content: "はじめまして。", user_id: 1, room_id: 1},
+    {message_content: "よろしくお願いいたします。", user_id: 2, room_id: 1},
+    {message_content: "お願いします。", user_id: 3, room_id: 2},
+    {message_content: "はじめまして。", user_id: 2, room_id: 40},
+    {message_content: "よろしくお願いします。", user_id: 5, room_id: 14},
+    {message_content: "よろしくお願いします。", user_id: 7, room_id: 27},
+    {message_content: "はじめまして。", user_id: 10, room_id: 28}
   ]
 )
