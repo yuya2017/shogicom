@@ -56,7 +56,7 @@ class Community < ApplicationRecord
         communitues_map.push(community)
       end
     end
-    return communities
+    return communitues_map
   end
 
   private

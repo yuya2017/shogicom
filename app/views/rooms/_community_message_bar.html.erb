@@ -6,11 +6,7 @@
     <li class="nav-item message_bar">
       <%= link_to "/rooms/#{message.room_id}/community" do %>
         <div class="d-flex">
-          <% if message.room.community.user.user_image? %>
-            <img src='<%= message.room.community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
-          <% else %>
-            <img src="/img/profile.jpg" class="header_image" alt="ユーザーアイコン">
-          <% end %>
+          <img src='<%= message.room.community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <div class="messagebar_message_right ml-4">
             <p class="mypage_message_date">開催日：<%= l message.room.community.community_date, format: '%m月%-d日(%a)' %>
             <p class="mypage_message_user"><%= message.room.room_name %></p>
@@ -25,11 +21,7 @@
     <li class="nav-item message_bar">
       <%= link_to "/rooms/#{community.room.id}/community" do %>
         <div class="d-flex">
-          <% if community.user.user_image? %>
-            <img src='<%= community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
-          <% else %>
-            <img src="/img/profile.jpg" class="header_image" alt="ユーザーアイコン">
-          <% end %>
+          <img src='<%= community.user.user_image %>' class="header_image" alt="ユーザーアイコン">
           <div class="messagebar_right ml-4">
             <p class="mypage_message_date">開催日：<%= l community.community_date, format: '%m月%-d日(%a)' %>
             <p class="mypage_message_user"><%= community.room.room_name %></p>

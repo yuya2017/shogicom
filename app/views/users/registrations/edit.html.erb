@@ -39,11 +39,7 @@
 				<div class="field form_group">
           <div class="d-flex">
   				  <%= f.label :user_image, 'プロフィール画像', class:"image_prof" %><br>
-            <% if current_user.user_image? %>
-            	<img src='<%= current_user.user_image %>' class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
-            <% else %>
-            	<img src="/img/profile.jpg" class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
-            <% end %>
+            <img src='<%= current_user.user_image %>' class="icon_no_link" alt="ユーザーアイコン" id="img_prev">
           </div>
           <%= f.file_field :user_image, class: 'form-control', id: 'user_img' %>
 				</div>

@@ -3,17 +3,10 @@
     <div class="card_summary d-flex my-4">
       <div class="profile_main mx-2">
         <div class="prifile_img">
-          <% if message.user.user_image? %>
-            <img src='<%= message.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="message-<%= message.id %>">
-            <figcaption class="balloon-name-media">
-              <p><%= message.user.user_name %></p>
-            </figcaption>
-          <% else %>
-            <img src="/img/profile.jpg" class="icon_image" alt="ユーザーアイコン" data-id="message-<%= message.id %>">
-            <figcaption class="balloon-name-media">
-              <p><%= message.user.user_name %></p>
-            </figcaption>
-          <% end %>
+          <img src='<%= message.user.user_image %>' class="icon_image" alt="ユーザーアイコン" data-id="message-<%= message.id %>">
+          <figcaption class="balloon-name-media">
+            <p><%= message.user.user_name %></p>
+          </figcaption>
         </div>
         <div class="card message_profile profile_link profile-message-<%= message.id %>">
           <div class="card-body profile_body">
