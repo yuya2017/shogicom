@@ -23,8 +23,8 @@ jobs:
       - name: Pull image from GitHub Registry
         run: docker pull docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest
 
-      - name: bundler install
-        run: gem install bundler
-
       - name: Run tests
         run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test;
+
+      - name: Verification bundle
+        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest bundle -v
