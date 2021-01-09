@@ -17,6 +17,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Login GitHub Registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u owner --password-stdin
+
+      - name: Pull image from GitHub Registry
+        run: docker pull docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest
+
+      - name: Vulnerability Scan with Trivy
+        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest date
+
       # Super-Linter アクションを実行する
       - name: Run Super-Linter
         uses: github/super-linter@v3

@@ -198,5 +198,11 @@ RSpec.describe Tournament, type: :model do
         expect{ Tournament.enterTournament(user.id, tournament.id) }.to change{ TournamentUser.count }.by(0)
       end
     end
+    context "応募人数がnilの場合" do
+      it "TournamentUserが生成されないこと" do
+        tournament = create(:tournament, tournament_number_of_people: nil)
+        expect{ Tournament.enterTournament(user.id, tournament.id) }.to change{ TournamentUser.count }.by(1)
+      end
+    end
   end
 end
