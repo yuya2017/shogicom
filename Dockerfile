@@ -17,6 +17,11 @@ RUN apt-get update && apt-get install -y unzip && \
     sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' && \
     apt-get update && apt-get install -y google-chrome-stable
 
+RUN apt-get install -y sqlite3 libsqlite3-dev
+RUN mkdir /db
+RUN /usr/bin/sqlite3 /db/test.db
+CMD /bin/bash
+
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
