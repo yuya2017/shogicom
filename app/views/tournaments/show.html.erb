@@ -16,7 +16,6 @@
           <p>対戦したいアプリ：<%= @tournament.tournament_app %></p>
           <p>棋力：<%= @tournament.tournament_chess %></p>
           <p>持ち時間：<%= @tournament.tournament_time %></p>
-          <p>開催人数：<%= @tournament.tournament_number_of_people %></p>
           <p>募集内容</p>
           <p><%= @tournament.tournament_content %></p>
           <p class="post_date"><%= l @tournament.created_at, format: '%-m月%-d日(%a) %H:%M' %></p>

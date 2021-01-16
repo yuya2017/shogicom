@@ -50,13 +50,17 @@ class Tournament < ApplicationRecord
 
   def self.enterTournament(user_id, tournament_id)
     tournament = Tournament.find(tournament_id)
-    tournament_users = tournament.tournament_users.all
-    if tournament.tournament_limit >= Date.today && tournament.tournament_number_of_people > tournament_users.count && tournament_users.find_by(user_id: user_id).blank?
-      TournamentUser.create(
-        user_id: user_id,
-        tournament_id: tournament_id
-      )
-      return tournament
+    participant = tournament.tournament_users.all
+    if tournament.tournament_number_of_people.nil? || tournament.tournament_number_of_people > participant.count
+      if tournament.tournament_limit >= Date.today && participant.find_by(user_id: user_id).blank?
+        TournamentUser.create(
+          user_id: user_id,
+          tournament_id: tournament_id
+        )
+        return tournament
+      else
+        return nil
+      end
     else
       return nil
     end

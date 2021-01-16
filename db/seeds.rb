@@ -121,6 +121,7 @@ Room.create(
 TournamentUser.create(
   [
     {user_id: 1, tournament_id: 1},
+    {user_id: 5, tournament_id: 1},
     {user_id: 1, tournament_id: 2},
     {user_id: 1, tournament_id: 3},
     {user_id: 2, tournament_id: 4},
@@ -140,20 +141,21 @@ TournamentUser.create(
 CommunityUser.create(
   [
     {user_id: 1, community_id: 1},
+    {user_id: 7, community_id: 1},
     {user_id: 1, community_id: 2},
+    {user_id: 10, community_id: 2},
     {user_id: 1, community_id: 3},
     {user_id: 2, community_id: 4},
     {user_id: 3, community_id: 5},
     {user_id: 4, community_id: 6},
     {user_id: 5, community_id: 7},
+    {user_id: 1, community_id: 7}
     {user_id: 6, community_id: 8},
     {user_id: 7, community_id: 9},
     {user_id: 8, community_id: 10},
     {user_id: 9, community_id: 11},
     {user_id: 10, community_id: 12},
     {user_id: 11, community_id: 13},
-    {user_id: 6, community_id: 1},
-    {user_id: 1, community_id: 7}
   ]
 )
 

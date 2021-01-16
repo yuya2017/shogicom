@@ -146,7 +146,13 @@ RSpec.describe Community, type: :model do
       it "CommunityUserが生成されないこと" do
         Community.community_user_create(community.user.id, community.id)
         Community.enterCommunity(user.id, community.id)
-        expect{ Community.enterCommunity(user.id, community.id) }.to change{CommunityUser.count }.by(0)
+        expect{ Community.enterCommunity(user.id, community.id) }.to change{ CommunityUser.count }.by(0)
+      end
+    end
+    context "応募人数がnilの場合" do
+      it "CommunityUserが生成されないこと" do
+        community = create(:community, community_number_of_people: nil)
+        expect{ Community.enterCommunity(user.id, community.id) }.to change{ CommunityUser.count }.by(1)
       end
     end
   end
