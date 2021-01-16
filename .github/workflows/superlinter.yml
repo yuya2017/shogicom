@@ -23,8 +23,5 @@ jobs:
       - name: Pull image from GitHub Registry
         run: docker pull docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest
 
-      - name: Database configuration
-        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test
-
       - name: Run test
-        run: rails spec
+        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test; rails spec
