@@ -24,4 +24,4 @@ jobs:
         run: docker pull docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest
 
       - name: Run test
-        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test; rails spec
+        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest /bin/sh -c 'rails db:drop db:create db:migrate RAILS_ENV=test; rails spec'
