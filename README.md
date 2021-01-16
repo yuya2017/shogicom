@@ -7,6 +7,7 @@
 アプリケーションの開発にあたっては以下を実装し、実務を想定したモダンな技術を活用しました。  
 - インフラにAWSを使用(コンテナ基盤としてECSを使用)
 - Dockerを開発環境に導入し、本番環境との差異を吸収
+- GitHub Actionsを使用した自動CIに対応
 
 また、本アプリケーションは個人開発ですが、GithubのIssues機能やpull requestを活用することによる擬似チーム開発を行いました。
 
@@ -28,6 +29,7 @@ https://shogicom.com
 - Git / GitHub (Issues, pull requestによる擬似チーム開発)
 - Docker / Docker-compose
 - AWS (ECS, ECR, RDS, VPC, ALB, Route53, S3, IAM, SSM)
+- GitHub Actions
 
 ### インフラ構成図
 <img src="https://user-images.githubusercontent.com/61488647/102702776-cf508900-42a9-11eb-9d03-cfa433e171a2.png" width="800px">
@@ -173,5 +175,4 @@ docker-compose run web bin/rspec
 - チャットルームに将棋盤を表示できるようし、対戦した結果をお互いに見ながら振り返ることができるようにする。
 - チャットルームの削除機能を追加する。
 - 通知機能を追加する。
-- 自動デプロイ、自動ビルドに対応
 - rubocopをW以下にも対応させる。
