@@ -8,7 +8,7 @@ jobs:
   # キーはジョブ名として表示される
   super-lint:
     # ジョブ名を付ける
-    name: Lint code base
+    name: Run rspec
     # 実行するマシンのタイプを設定する
     runs-on: ubuntu-latest
 
@@ -17,14 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: bundler install
-        run: gem install bundler
-
       - name: Login GitHub Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u owner --password-stdin
 
       - name: Pull image from GitHub Registry
         run: docker pull docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest
 
-      - name: Run tests
-        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test; bin/rspec
+      - name: Database configuration
+        run: docker run docker.pkg.github.com/yuya2017/shogicom/shogicom_web:latest rails db:drop db:create db:migrate  RAILS_ENV=test
+
+      - name: Run test
+        run: bin/rspec
