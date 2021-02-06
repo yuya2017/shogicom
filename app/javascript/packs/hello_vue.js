@@ -62,7 +62,7 @@ Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#hello',
+    el: '#app',
     components: {
       'navbar': Header,
     }
