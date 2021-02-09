@@ -2,13 +2,13 @@
   <header>
     <div class="header_body">
       <div class="header-icon">
-        <a href="/">
+        <router-link :to="{ name: 'TopsIndexPage'}">
           <img src="/img/logo.jpg" alt="ノシ将棋" class="logo">
-        </a>
+        </router-link>
       </div>
       <div class="d-none d-lg-block">
-        <a href="/posts" class="header_search">対戦相手を探す</a>
-        <a href="/tournaments" class="header_search">大会を探す</a>
+        <router-link :to="{ name: 'PostsIndexPage'}" class="header_search">対戦相手を探す</router-link>
+        <router-link :to="{ name: 'TournamentsIndexPage'}" class="header_search">大会を探す</router-link>
         <a href="/communities" class="header_search" data-turbolinks='false'>イベントを探す</a>
       </div>
       <div class="header_mypage d-flex">

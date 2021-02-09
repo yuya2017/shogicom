@@ -25,7 +25,6 @@
         </div>
         <div class="col-lg-9 px-4 ml-auto order-3">
           <div v-for="post in posts" :key="post.id">
-            <p>{{ post.id }}</p>
             <div class="card_summary d-lg-flex my-4 d-block">
               <div class="profile_main mx-2">
                 <div class="profile_img">
