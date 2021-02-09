@@ -34,7 +34,8 @@
         </div>
         <!-- <% if user_signed_in? && @post.user_id == current_user.id %> -->
           <div class="side_user_edit">
-            <a href="#" class="btn-circle-3d">編集</a>
+            <router-link :to="{ name: 'PostsEditPage', params: { id: post.id }}" class="btn-circle-3d">編集</router-link>
+            
             <!-- <a href="/posts/#{@post.id}/edit" class="class: "btn-circle-3d"">編集</a>> -->
           </div>
         </div>

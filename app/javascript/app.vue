@@ -11,6 +11,7 @@ import VueRouter from 'vue-router'
 import TopsIndexPage from 'TopsIndexPage.vue'
 import PostsIndexPage from 'PostsIndexPage.vue'
 import PostsShowPage from 'PostsShowPage.vue'
+import PostsEditPage from 'PostsEditPage.vue'
 import TournamentsIndexPage from 'TournamentsIndexPage.vue'
 import CommunitiesIndexPage from 'CommunitiesIndexPage.vue'
 import RoomsIndexPage from 'RoomsIndexPage.vue'
@@ -19,16 +20,19 @@ const router = new VueRouter({
   routes: [
     { path: '/',
       name: 'TopsIndexPage',
-      component: TopsIndexPage  },
+      component: TopsIndexPage },
     { path: '/posts',
       name: 'PostsIndexPage',
-      component: PostsIndexPage  },
+      component: PostsIndexPage },
     { path: '/posts/:id(\\d+)',
       name: 'PostsShowPage',
-      component: PostsShowPage  },
+      component: PostsShowPage },
+    { path: '/posts/:id(\\d+)/edit',
+      name: 'PostsEditPage',
+      component: PostsEditPage },
     { path: '/Tournaments',
       name: 'TournamentsIndexPage',
-      component: TournamentsIndexPage  },
+      component: TournamentsIndexPage },
     { path: '/Communities',
       name: 'CommunitiesIndexPage',
       component: CommunitiesIndexPage },

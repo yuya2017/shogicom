@@ -1,0 +1,84 @@
+<template>
+  <nav class="col-lg-3 d-none d-lg-block bg-light pt-4 sidebar">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+          <div class="nav-link sidebar_item">
+            <!-- <span><i class="fas fa-home"></i><span> -->
+            <p class="sidebar_font">ホーム</p>
+          </div>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to rooms_private_message_path do %> -->
+          <div class="nav-link sidebar_item">
+            <!-- <span><i class="fas fa-comments"></i></span> -->
+            <p class="sidebar_font">チャットルーム</p>
+          </div>
+        <!-- <% end %> -->
+        </router-link>
+      </li>
+      <li class="nav-item">
+          <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to rooms_participating_post_path do %> -->
+          <div class="nav-link sidebar_item">
+            <!-- <span><i class="fas fa-globe-asia"></i><span> -->
+            <p class="sidebar_font">参加済みの対戦</p>
+          </div>
+        </router-link>
+        <!-- <% end %> -->
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to rooms_participating_tournament_path do %> -->
+          <div class="nav-link sidebar_item">
+            <!-- <span><i class="fas fa-chess"></i><span> -->
+            <p class="sidebar_font">参加済みの大会</p>
+          </div>
+        <!-- <% end %> -->
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to rooms_participating_community_path do %> -->
+          <div class="nav-link sidebar_item">
+            <!-- <span><i class="fas fa-users"></i><span> -->
+            <p class="sidebar_font">参加済みのイベント</p>
+          </div>
+        <!-- <% end %> -->
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <!-- <%= link_to new_post_path do %> -->
+        <router-link :to="{ name: 'TopsIndexPage'}">
+          <div class="nav-link sidebar_item sidebar_post">
+            <!-- <span><i class="fas fa-globe-asia mr-1"></i><i class="fas fa-edit"></i><span> -->
+            <p class="sidebar_font">対戦相手募集</p>
+          </div>
+        <!-- <% end %> -->
+         </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to new_tournament_path do %> -->
+          <div class="nav-link sidebar_item sidebar_post">
+            <!-- <span><i class="fas fa-chess mr-1"></i><i class="fas fa-edit"></i><span> -->
+            <p class="sidebar_font">大会開催</p>
+          </div>
+        </router-link>
+        <!-- <% end %> -->
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'TopsIndexPage'}">
+        <!-- <%= link_to new_community_path do %> -->
+          <div class="nav-link sidebar_item sidebar_post">
+            <!-- <span><i class="fas fa-users mr-1"></i><i class="fas fa-edit"></i><span> -->
+            <p class="sidebar_font">イベント開催</p>
+          </div>
+        </router-link>
+        <!-- <% end %> -->
+      </li>
+    </ul>
+  </nav>
+</template>
