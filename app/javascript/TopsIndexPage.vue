@@ -1,0 +1,100 @@
+<template>
+  <div id="app">
+    <topheader></topheader>
+    <div class="container-fluid">
+      <div class="row top_header">
+        <div class="col-lg-7 header_next header_top_left">
+          <div class="top_img_top d-flex">
+            <img src="/img/top_left.png" alt="" class="top_img my-2 mx-2">
+            <img src="/img/top_right.png" alt="" class="top_img my-2 mx-2">
+          </div>
+          <div class="top_img_bottom d-flex">
+            <img src="/img/bottom_left.png" alt="" class="top_img my-2 mx-2">
+            <img src="/img/bottom_right.png" alt="" class="top_img my-2 mx-2">
+          </div>
+        </div>
+        <div class="col-lg-5 header_next header_top_right">
+          <div class="header_comment">
+            <h1 class="header_title">遊びましょう</h1>
+            <h4 class="header_title">同じアプリで。</h4>
+            <h4 class="header_title mb-4">同じレベルで。</h4>
+            <p>将棋は年代問わず遊べて、<br>コミュニティを広げるのに最適です。<br>あなたが遊びたい形で<br>対戦相手を探して見ましょう。</p>
+          </div>
+          <div class="view-more my-4">
+            <router-link :to="{ name: 'PostsIndexPage'}">
+              <button class="learn-more top_post_search">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                  <span class="button-text">対戦相手を探す</span>
+              </button>
+            </router-link>
+          </div>
+          <div class="view-more my-4">
+            <router-link :to="{ name: 'TournamentsIndexPage'}">
+              <button class="learn-more top_tournament_search">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                  <span class="button-text">大会を探す</span>
+              </button>
+            </router-link>
+          </div>
+          <div class="view-more my-4">
+            <router-link :to="{ name: 'CommunitiesIndexPage'}">
+              <button class="learn-more top_community_search">
+                <span class="circle" aria-hidden="true">
+                  <span class="icon arrow"></span>
+                </span>
+                  <span class="button-text">イベントを探す</span>
+              </button>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <h1 class="top_bottom_title">----ノシ将棋の3つの特徴----</h1>
+      <div class="row top_bottom">
+        <div class="col-lg-4 top_feature">
+          <img src="/img/post.png" alt="対戦" class="top_img top_bottom_content">
+          <h2 class="mb-4">１．対戦</h2>
+          <p>様々なアプリで対戦することができます。<br>棋力を検索すれば自分と同じレベルの方と<br>対戦できます。</p>
+        </div>
+        <div class="col-lg-4 top_feature">
+          <img src="/img/tournament.png" alt="大会" class="top_img top_bottom_content">
+          <h2 class="mb-4">２．大会</h2>
+          <p>気楽にオンライン上で大会を開くことができ、<br>白熱した対戦ができます。</p>
+        </div>
+        <div class="col-lg-4 top_feature">
+          <img src="/img/community.png" alt="イベント" class="top_img top_bottom_content">
+          <h2 class="mb-4">３．イベント</h2>
+          <p>将棋の醍醐味は対面で対戦することだと思います。<br>イベントを開催して<br>色々な将棋仲間と出会いましょう。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import Header from './packs/components/header.vue';
+
+export default {
+  components: {
+    'topheader': Header
+  },
+  data: function () {
+    return {
+      user: {}
+    }
+  },
+  mounted () {
+    axios
+      .get('/api/tops.json')
+      .then(response => (this.user = response.data))
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   post 'communities/community_exit'
   get 'healthchecks/index'
 
+  namespace :api, format: 'json' do
+    resources :posts
+    resources :tops, only: :index
+  end
+
   resources :posts
   resources :tournaments
   resources :communities
