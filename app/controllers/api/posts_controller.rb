@@ -19,6 +19,7 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).includes(:room, :user).order(updated_at: "DESC")
+    @user = current_user
   end
 
   def show

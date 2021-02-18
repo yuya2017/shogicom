@@ -25,16 +25,35 @@
         <!-- ログインしているかしていないかで変える。
             画像も登録してあれがデータベースから、なければデフォルトの画像を取ってくる。
         -->
-        <div>
-          <a href="tops/1" class="tops_icon">
-            <img src='#' class="header_image" alt="ユーザーアイコン">
+        <div v-if="user">
+          <a :href="'tops/' + user.id" class="tops_icon">
+            <img v-bind:src="user.user_image.url" class="header_image" alt="ユーザーアイコン">
           </a>
         </div>
-        <!-- <div v-else>
-          <a href="#" class="mx-2">新規登録</a>
-          <a href="#" class="mx-2">ログイン</a>
-        </div> -->
+        <div v-else>
+          <a href="/users/sign_up" class="mx-2">新規登録</a>
+          <a href="/users/sign_in" class="mx-2">ログイン</a>
+        </div>
       </div>
     </div>
   </header>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+  data: function () {
+    return {
+      user: {}
+    }
+  },
+  methods: {
+
+  },
+  mounted () {
+    axios
+      .get('/api/tops.json')
+      .then(response => (this.user = response.data))
+  }
+}
+</script>

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     resources :posts
+    resources :tops, only: :index
   end
 
   resources :posts
