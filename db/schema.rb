@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_11_07_113544) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.integer "community_money", null: false
     t.string "community_all_tag"
     t.string "community_content"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "community_number_of_people"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
   end
 
   create_table "community_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "community_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "community_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_community_users_on_community_id"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
 
   create_table "messages", force: :cascade do |t|
     t.text "message_content", null: false
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.string "post_time", null: false
     t.string "post_all_tag"
     t.string "post_content"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -73,13 +76,13 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "room_name", null: false
-    t.integer "user_id"
-    t.integer "post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.integer "private_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tournament_id"
-    t.integer "community_id"
+    t.bigint "tournament_id"
+    t.bigint "community_id"
     t.index ["community_id"], name: "index_rooms_on_community_id"
     t.index ["post_id"], name: "index_rooms_on_post_id"
     t.index ["tournament_id"], name: "index_rooms_on_tournament_id"
@@ -87,8 +90,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
   end
 
   create_table "tournament_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "tournament_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "tournament_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tournament_id"], name: "index_tournament_users_on_tournament_id"
@@ -104,7 +107,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_113544) do
     t.integer "tournament_number_of_people"
     t.date "tournament_limit", null: false
     t.datetime "tournament_date", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_tournaments_on_user_id"

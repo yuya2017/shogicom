@@ -149,7 +149,7 @@ CommunityUser.create(
     {user_id: 3, community_id: 5},
     {user_id: 4, community_id: 6},
     {user_id: 5, community_id: 7},
-    {user_id: 1, community_id: 7}
+    {user_id: 1, community_id: 7},
     {user_id: 6, community_id: 8},
     {user_id: 7, community_id: 9},
     {user_id: 8, community_id: 10},
