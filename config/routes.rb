@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     resources :posts
-    resources :tops, only: :index
+    get 'users/user_signed_in'
   end
 
   resources :posts

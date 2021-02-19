@@ -81,16 +81,6 @@ import Header from './packs/components/header.vue';
 export default {
   components: {
     'topheader': Header
-  },
-  data: function () {
-    return {
-      user: {}
-    }
-  },
-  mounted () {
-    axios
-      .get('/api/tops.json')
-      .then(response => (this.user = response.data))
   }
 }
 </script>

@@ -53,7 +53,6 @@
                     <p>持ち時間：{{ post.post_time }}</p>
                     <p>募集内容</p>
                     <p>{{ post.post_content }}</p>
-                    <!-- 日付のフォーマットを変える -->
                     <p class="post_date">{{ post.created_at }}</p>
                   </div>
                 </router-link>
@@ -79,12 +78,14 @@ export default {
     }
   },
   mounted () {
-    axios
-      .get('/api/posts.json')
-      .then(res => {
-        this.posts = res.data.posts
-        this.user = res.data.user
-      })
+    Promise.all([
+      axios.get(`/api/posts.json`),
+      axios.get(`/api/users/user_signed_in`)
+    ]).then( ([posts, user]) => {
+      console.log(posts)
+      this.posts = posts.data
+      this.user = user.data
+    })
   },
   components: {
     'topheader': Header,
