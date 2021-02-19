@@ -52,7 +52,7 @@ export default {
   },
   mounted () {
     axios
-      .get('/api/tops.json')
+      .get('/api/users/user_signed_in.json')
       .then(response => (this.user = response.data))
   }
 }

@@ -13,6 +13,8 @@ import PostsIndexPage from 'PostsIndexPage.vue'
 import PostsShowPage from 'PostsShowPage.vue'
 import PostsEditPage from 'PostsEditPage.vue'
 import TournamentsIndexPage from 'TournamentsIndexPage.vue'
+import TournamentsShowPage from 'TournamentsShowPage.vue'
+import TournamentsEditPage from 'TournamentsEditPage.vue'
 import CommunitiesIndexPage from 'CommunitiesIndexPage.vue'
 import RoomsIndexPage from 'RoomsIndexPage.vue'
 
@@ -33,6 +35,12 @@ const router = new VueRouter({
     { path: '/Tournaments',
       name: 'TournamentsIndexPage',
       component: TournamentsIndexPage },
+    { path: '/Tournaments/:id(\\d+)',
+      name: 'TournamentsShowPage',
+      component: TournamentsShowPage },
+    { path: '/Tournaments/:id(\\d+)/edit',
+      name: 'TournamentsEditPage',
+      component: TournamentsEditPage },
     { path: '/Communities',
       name: 'CommunitiesIndexPage',
       component: CommunitiesIndexPage },

@@ -40,7 +40,7 @@
                     <p class="card-text">棋力：{{ post.user.user_chess }}</p>
                     <p class="card-text">よく対戦する持ち時間：{{ post.user.user_time }}</p> 
                     <a :href="'/tops/'+post.user.id" class="card-link profile_btn">プロフィール</a>
-                    <a v-if="user.id!=null && user.id!=post.user.id" class="card-link profile_btn" rel="nofollow" data-method="post" :href="'/rooms/create_private_room?user_id='+post.user.id">個人用チャットルーム</a>
+                    <a v-if="user && user.id!=post.user.id" class="card-link profile_btn" rel="nofollow" data-method="post" :href="'/rooms/create_private_room?user_id='+post.user.id">個人用チャットルーム</a>
                   </div>
                 </div>
               </div>
