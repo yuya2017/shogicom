@@ -19,7 +19,11 @@ class Api::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).includes(:room, :user).order(updated_at: "DESC")
-    @user = current_user
+    if user_signed_in?	
+      @user = current_user
+    else
+      @user = { id: nil }
+    end
   end
 
   def show
