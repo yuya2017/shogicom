@@ -25,12 +25,13 @@ class Api::TournamentsController < ApplicationController
   end
 
   def show
-    @room = @tournament.room
-    @tournament_users = @tournament.tournament_users.all
-    @users = []
-    @tournament_users.each do |users|
-      @users.push(User.find(users.user_id))
-    end
+    @tournament = Tournament.find(params[:id])
+    # @room = @tournament.room
+    # @tournament_users = @tournament.tournament_users.all
+    # @users = []
+    # @tournament_users.each do |users|
+    #   @users.push(User.find(users.user_id))
+    # end
   end
 
   def edit

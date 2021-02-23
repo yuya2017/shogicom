@@ -47,6 +47,7 @@
               <div class="post_box_outer">
                 <router-link :to="{ name: 'TournamentsShowPage', params: { id: tournament.id } }">
                   <div class="post_box">
+                    <h4>{{ tournament.room.room_name }}</h4>
                     <span v-if="tournament.tournament_all_tag.length" v-for="tag in splitJoin(tournament.tournament_all_tag)" v-text="tag" class="tag_text mr-2"></span>
                     <p class="tournament_date">開催日時：{{ tournament.tournament_date }}〜</p>
                     <p>応募期間：{{ tournament.tournament_limit }}まで</p>

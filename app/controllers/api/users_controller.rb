@@ -5,4 +5,8 @@ class Api::UsersController < ApplicationController
         render json: user
     end
 
+    def index
+        @users= User.all
+    end
+
 end

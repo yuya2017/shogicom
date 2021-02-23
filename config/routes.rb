@@ -33,7 +33,9 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :posts
     resources :tournaments
+    get 'users' => 'users#index'
     get 'users/user_signed_in'
+    get 'tournament_users' => 'tournament_users#index'
   end
 
   resources :posts
